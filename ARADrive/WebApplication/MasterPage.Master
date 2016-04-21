@@ -1,0 +1,41 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="WebApplication.MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>ARADrive</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <header>
+            <h1>
+                ARADrive
+            </h1>
+        </header>
+            <nav>
+                <ul class="nav_list">
+                    <li>Home</li>
+                    <li>Profile</li>
+                    <li>Catalog</li>
+                    <li>Contact us</li>
+                </ul>
+                <ul class="user">
+                    <li>Sign in</li>
+                    <li>Sign up</li>
+                </ul>
+            </nav>
+    <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+        <footer>
+            <p>All rights reserved 2016</p>
+        </footer>
+    </form>
+</body>
+</html>
