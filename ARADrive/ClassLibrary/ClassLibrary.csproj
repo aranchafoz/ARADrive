@@ -45,8 +45,15 @@
     <Compile Include="CAD\OfferCAD.cs" />
     <Compile Include="CAD\OfficeCAD.cs" />
     <Compile Include="CAD\PaymentMethodCAD.cs" />
+    <Compile Include="EN\BookingEN.cs" />
+    <Compile Include="EN\CarEN.cs" />
+    <Compile Include="EN\OfferEN.cs" />
+    <Compile Include="EN\OfficeEN.cs" />
+    <Compile Include="EN\PaymentMethodEN.cs" />
+    <Compile Include="EN\UserEN.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
