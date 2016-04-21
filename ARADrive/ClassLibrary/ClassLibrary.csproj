@@ -39,6 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CAD\BookingCAD.cs" />
+    <Compile Include="CAD\CarCAD.cs" />
+    <Compile Include="CAD\ClientCAD.cs" />
+    <Compile Include="CAD\OfferCAD.cs" />
+    <Compile Include="CAD\OfficeCAD.cs" />
+    <Compile Include="CAD\PaymentMethodCAD.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
