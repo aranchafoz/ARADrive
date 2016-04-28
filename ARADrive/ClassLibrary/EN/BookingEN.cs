@@ -3,14 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-/// <summary>
-/// Descripción breve de Class1
-/// </summary>
-/// 
-namespace ARADrive
-{
-    public class Date
-    {
+
+namespace ARADrive{
+    public class Date{
         private int day;
         private int month;
         private int year;
@@ -25,6 +20,7 @@ namespace ARADrive
         {
             return month;
         }
+        
 
         public int GetYear()
         {
@@ -36,9 +32,11 @@ namespace ARADrive
     {
 
         private int code;
+
         private CarEN car;
         private string user;
         private Date date;
+
         private Date finishDate;
         private bool driver;
         private bool satNav;
@@ -50,6 +48,7 @@ namespace ARADrive
         private int pickUp;
         private int delivery;
         private int totPrice;
+
 
         public int Code
         {
@@ -141,12 +140,13 @@ namespace ARADrive
             set { totPrice = value; }
         }
 
-        //BookingEN(dr["code"],dr["user"],dr["car"],dr["startDate"],dr["finishDate"],dr["driver"],dr["satNav"],dr["babyChair"],dr["childChair"],dr["baca"],dr["insurance"],dr["youngDriver"],dr["pickUp"],dr["delivery"],dr["totPrice"])
-        public BookingEN(int code, string name, CarEN car, Date inicio, Date fin, bool driver, bool satNav, bool BChair, bool CChair, bool baca, bool insurance, bool yngDriver, int pickup, int delivery, int tprice)
+        
+        public BookingEN(int code, string name, Date inicio, Date fin, bool driver, bool satNav, bool BChair, bool CChair, bool baca, bool insurance, bool yngdriver, int pickup, int delivery, int tprice)
+
         {
             this.code = code;
-            this.name = name;
-            this.startDate = inicio;
+            this.user = name;
+            this.Date = inicio;
             this.finishDate = fin;
             this.driver = driver;
             this.satNav = satNav;
@@ -154,7 +154,7 @@ namespace ARADrive
             this.childChair = CChair;
             this.baca = baca;
             this.insurance = insurance;
-            this.youngDriver = yngDriver;
+            this.youngDriver = yngdriver;
             this.pickUp = pickup;
             this.delivery = delivery;
             this.totPrice = tprice;

@@ -15,7 +15,7 @@ public class CarEN
 
     // Constructor
     public CarEN(int code, int category, string name, string desc, double price, 
-        bool automaticTransmission, int doors, string img)
+        bool automaticTransmission, int doors, string IMG)
 	{
         this.code = code;
         this.category = category;
@@ -24,7 +24,7 @@ public class CarEN
         this.price = price;
         this.automaticTransmission = automaticTransmission;
         this.doors = doors;
-        this.img = img;
+        this.img = IMG;
     }
 
     // Properties
@@ -70,10 +70,10 @@ public class CarEN
         get { return doors; }
     }
 
-    private string Img
+    public string IMG
     {
-        set { this.img = value; }
-        get { return img; }
+        set { this.IMG = value; }
+        get { return IMG; }
     }
 
 }

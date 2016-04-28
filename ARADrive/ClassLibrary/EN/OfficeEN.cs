@@ -14,7 +14,7 @@ using System.Web;
      private float cY;
 
 
-     public OfficeEN (int code, string name, string address, string city, string cX, string cY )
+     public OfficeEN (int code, string name, string address, string city, float cX, float cY )
      {
          this.code = code;
          this.name = name;
@@ -48,16 +48,16 @@ using System.Web;
          set { code = value; }
      }
 
-     public int CX
+     public float CX
      {
          get { return cX; }
-         set { cX = value; }
+         set { this.cX = value; }
      }
 
-     public int CY
+     public float CY
      {
          get { return cY; }
-         set { cY = value; }
+         set { this.cY = value; }
      }
 
 

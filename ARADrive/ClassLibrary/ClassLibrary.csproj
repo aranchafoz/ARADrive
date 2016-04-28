@@ -47,10 +47,10 @@
     <Compile Include="CAD\PaymentMethodCAD.cs" />
     <Compile Include="EN\BookingEN.cs" />
     <Compile Include="EN\CarEN.cs" />
+    <Compile Include="EN\ClientEN.cs" />
     <Compile Include="EN\OfferEN.cs" />
     <Compile Include="EN\OfficeEN.cs" />
     <Compile Include="EN\PaymentMethodEN.cs" />
-    <Compile Include="EN\UserEN.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

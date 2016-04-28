@@ -64,7 +64,8 @@ namespace CarCADNS
       public void updateCar(CarEN c) {
         try {
           conn.Open();
-          SqlCommand sql = new SqlCommand("UPDATE T_Car SET category=" + c.Category + ", name='" + c.Name + "', desc='" + c.Desc + "', price=" + c.Price + ", automaticTransmission=" + c.AutomaticTransmission + ", doors=" + c.Doors + ", IMG='" + c.IMG + "' WHERE code=" + c.Code, conn);
+          SqlCommand sql = new SqlCommand("UPDATE T_Car SET category=" + c.Category + ", name='" + c.Name + "', desc='" + c.Desc + "', price=" + c.Price + ", automaticTransmission=" + c.AutomaticTransmission + ", doors=" + c.Doors + ", IMG='" + c.
+              IMG + "' WHERE code=" + c.Code, conn);
           sql.ExecuteNonQuery();
         } finally {
           conn.Close();

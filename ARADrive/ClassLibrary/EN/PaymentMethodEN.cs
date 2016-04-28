@@ -10,6 +10,7 @@ using System.Web;
 
     private string user;
     private string password;
+    private ClientEN cliente;
 
     public PaymentMethodEN()
     {
@@ -17,10 +18,11 @@ using System.Web;
         password = "password";
     }
 
-    public PaymentMethodEN(string user, string password)
+    public PaymentMethodEN(string user, string password, ClientEN cliente)
     {
         this.user = user;
         this.password = password;
+        this.cliente = cliente;
     }
 
 		public string User
@@ -33,8 +35,14 @@ using System.Web;
     public string Password
     {
         get { return password; }
-        set { this.password = value; }
+       set { this.password = value; }
     }
-		
+
+    public ClientEN Cliente
+    {
+        get { return cliente; }
+        set { this.cliente = value; }
+    }
+
 }
 
