@@ -9,10 +9,12 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Collections;
+using System.Configuration;
 
-namespace ARADrive{
+namespace ClientCADNS{
     public class ClientCAD {
 
+      private string s = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ToString ();
       private ClientEN client;
       private SqlConnection c;
       private ArrayList allClients;
@@ -32,7 +34,7 @@ namespace ARADrive{
           SqlDataReader dr = com.ExecuteReader();
 
           while(dr.Read()){
-            ClientEN aux = ClientEN(dr["email"], dr["pass"], dr["premium"], dr["DNI"], dr["name"], dr["surname"], dr["phone"], dr["address"], dr["city"], dr["birthDate"], dr["drivingLicence"]);
+            ClientEN aux = new ClientEN(dr["email"], dr["pass"], dr["premium"], dr["DNI"], dr["name"], dr["surname"], dr["phone"], dr["address"], dr["city"], dr["birthDate"], dr["drivingLicence"]);
             allClients.Add(aux);
           }
 
@@ -51,7 +53,7 @@ namespace ARADrive{
           SqlDataReader dr = com.ExecuteReader();
 
 
-          ClientEN aux = ClientEN(dr["email"], dr["pass"], dr["premium"], dr["DNI"], dr["name"], dr["surname"], dr["phone"], dr["address"], dr["city"], dr["birthDate"], dr["drivingLicence"]);
+          ClientEN aux = new ClientEN(dr["email"], dr["pass"], dr["premium"], dr["DNI"], dr["name"], dr["surname"], dr["phone"], dr["address"], dr["city"], dr["birthDate"], dr["drivingLicence"]);
 
 
           dr.Close();

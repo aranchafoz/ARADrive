@@ -8,11 +8,13 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Collections;
+using System.Configuration;
 
-namespace ARADrive
+namespace CarCADNS
 {
     public class CarCAD
     {
+      private string s = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ToString ();
       private CarEN car;
       private ArrayList cars;
       private SqlConnection conn;

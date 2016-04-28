@@ -9,11 +9,13 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Collections;
+using System.Configuration;
 
-namespace ARADrive
+namespace BookingCADNS
 {
     public class BookingCAD
     {
+      private string s = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ToString ();
       private BookingEN booking;
       private ArrayList bookings;
       private SqlConnection conn;

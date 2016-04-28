@@ -9,11 +9,13 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Collections;
+using System.Configuration;
 
 
-namespace ARADrive{
+namespace PaymentMethodCADNS{
     public class PaymentMethodCAD {
 
+      private string s = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ToString ();
       private PaymentMethodEN paymentMethod;
       private SqlConnection c;
       private ArrayList allPaymentMethods;
@@ -33,7 +35,7 @@ namespace ARADrive{
           SqlDataReader dr = com.ExecuteReader();
 
           while(dr.Read()){
-            PaymentMethodEN aux = PaymentMethodEN(dr["usr"], dr["pass"], dr["client"]);
+            PaymentMethodEN aux = new PaymentMethodEN(dr["usr"], dr["pass"], dr["client"]);
             allPaymentMethods.Add(aux);
           }
 
@@ -52,7 +54,7 @@ namespace ARADrive{
           SqlDataReader dr = com.ExecuteReader();
 
 
-          ENClient aux = ENClient(dr["usr"], dr["pass"], dr["client"]);
+          ENClient aux = new ENClient(dr["usr"], dr["pass"], dr["client"]);
 
           dr.Close();
         }finally{

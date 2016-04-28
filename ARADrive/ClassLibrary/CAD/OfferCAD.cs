@@ -9,11 +9,13 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Collections;
+using System.Configuration;
 
-namespace ARADrive
+namespace OfferCADNS
 {
     public class OfferCAD
     {
+      private string s = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ToString ();
       private OfferEN offer;
       private ArrayList offers;
       private SqlConnection conn;
