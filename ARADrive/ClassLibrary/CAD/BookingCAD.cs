@@ -32,7 +32,7 @@ namespace ARADrive
           while (dr.Read()) {
             /*
             code int(4),
-            user varchar(200) NOT NULL,
+            usr varchar(200) NOT NULL,
             car int(4) NOT NULL,
             startDate date NOT NULL,
             finishDate date,
@@ -47,7 +47,7 @@ namespace ARADrive
             delivery int(4),
             totPrice decimal(7,2),
             */
-            bookings.Add(new BookingEN(dr["code"],dr["user"],dr["car"],dr["startDate"],dr["finishDate"],dr["driver"],dr["satNav"],dr["babyChair"],dr["childChair"],dr["baca"],dr["insurance"],dr["youngDriver"],dr["pickUp"],dr["delivery"],dr["totPrice"]));
+            bookings.Add(new BookingEN(dr["code"],dr["usr"],dr["car"],dr["startDate"],dr["finishDate"],dr["driver"],dr["satNav"],dr["babyChair"],dr["childChair"],dr["baca"],dr["insurance"],dr["youngDriver"],dr["pickUp"],dr["delivery"],dr["totPrice"]));
           }
 
           dr.Close();
@@ -65,7 +65,7 @@ namespace ARADrive
           SqlDataReader dr = query.ExecuteReader();
 
           if (dr.Read()) {
-            booking = new BookingEN(dr["code"],dr["user"],dr["car"],dr["startDate"],dr["finishDate"],dr["driver"],dr["satNav"],dr["babyChair"],dr["childChair"],dr["baca"],dr["insurance"],dr["youngDriver"],dr["pickUp"],dr["delivery"],dr["totPrice"]);
+            booking = new BookingEN(dr["code"],dr["usr"],dr["car"],dr["startDate"],dr["finishDate"],dr["driver"],dr["satNav"],dr["babyChair"],dr["childChair"],dr["baca"],dr["insurance"],dr["youngDriver"],dr["pickUp"],dr["delivery"],dr["totPrice"]);
           }
 
           dr.Close();
@@ -80,7 +80,7 @@ namespace ARADrive
       public void updateBooking(BookingEN c) {
         try {
           conn.Open();
-          SqlCommand sql = new SqlCommand("UPDATE T_Booking SET user='" + c.User + "', car=" + c.Car + ", startDate='" + c.Date + "', finishDate='" + c.FinishDate + "', driver=" + c.Driver + ", satNav=" + c.SatNav + ", babyChair=" + c.BabyChair + ", baca=" + c.Baca + ", insurance=" + c.Insurance + ", youngDriver=" + c.YoungDriver + ", pickUp=" + c.PickUp + ", delivery=" + c.Delivery + ", totPrice=" + c.TotPrice + " WHERE code=" + c.Code, conn);
+          SqlCommand sql = new SqlCommand("UPDATE T_Booking SET usr='" + c.User + "', car=" + c.Car + ", startDate='" + c.Date + "', finishDate='" + c.FinishDate + "', driver=" + c.Driver + ", satNav=" + c.SatNav + ", babyChair=" + c.BabyChair + ", baca=" + c.Baca + ", insurance=" + c.Insurance + ", youngDriver=" + c.YoungDriver + ", pickUp=" + c.PickUp + ", delivery=" + c.Delivery + ", totPrice=" + c.TotPrice + " WHERE code=" + c.Code, conn);
           sql.ExecuteNonQuery();
         } finally {
           conn.Close();

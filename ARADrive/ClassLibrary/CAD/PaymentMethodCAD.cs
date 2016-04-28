@@ -33,7 +33,7 @@ namespace ARADrive{
           SqlDataReader dr = com.ExecuteReader();
 
           while(dr.Read()){
-            PaymentMethodEN aux = PaymentMethodEN(dr["user"], dr["pass"], dr["client"]);
+            PaymentMethodEN aux = PaymentMethodEN(dr["usr"], dr["pass"], dr["client"]);
             allPaymentMethods.Add(aux);
           }
 
@@ -52,7 +52,7 @@ namespace ARADrive{
           SqlDataReader dr = com.ExecuteReader();
 
 
-          ENClient aux = ENClient(dr["user"], dr["pass"], dr["client"]);
+          ENClient aux = ENClient(dr["usr"], dr["pass"], dr["client"]);
 
           dr.Close();
         }finally{
@@ -66,7 +66,7 @@ namespace ARADrive{
       public void updatePaymentMethod(PaymentMethodEN pm){
         try{
           c.Open();
-          SqlCommand com = new SqlCommand("UPDATE T_PaymentMethod set pass='"+pm.Pass+"', user='"+pm.User+"'", c);
+          SqlCommand com = new SqlCommand("UPDATE T_PaymentMethod set pass='"+pm.Pass+"', usr='"+pm.User+"'", c);
           com.ExecuteNonQuery();
         }finally{
           c.Close();
