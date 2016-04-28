@@ -7,26 +7,39 @@ using System.Web;
 /// Descripción breve de Class1
 /// </summary>
 /// 
-namespace ARADrive{
-    public class Fecha{
-        private int dia;
-        private int mes;
+namespace ARADrive
+{
+    public class Date
+    {
+        private int day;
+        private int month;
+        private int year;
 
-        public int GetDia(){
-            return dia;
+
+        public int GetDay()
+        {
+            return day;
         }
 
-        public int GetMes(){
-            return mes;
+        public int GetMonth()
+        {
+            return month;
+        }
+
+        public int GetYear()
+        {
+            return year;
         }
     }
 
-    public class BookingEN{
+    public class BookingEN
+    {
 
         private int code;
-        private string name;
-        private Fecha startDate;
-        private Fecha finishDate;
+        private CarEN car;
+        private string user;
+        private Date date;
+        private Date finishDate;
         private bool driver;
         private bool satNav;
         private bool babyChair;
@@ -34,7 +47,7 @@ namespace ARADrive{
         private bool baca;
         private bool insurance;
         private bool youngDriver;
-        private string pickUp;
+        private int pickUp;
         private int delivery;
         private int totPrice;
 
@@ -44,19 +57,25 @@ namespace ARADrive{
             set { code = value; }
         }
 
-        public string Name
+        public string User
         {
-            get { return name; }
-            set { name = value; }
+            get { return user; }
+            set { user = value; }
         }
 
-        public Fecha StartDate
+        public Date Date
         {
-            get { return startDate; }
-            set { startDate = value; }
+            get { return date; }
+            set { date = value; }
         }
 
-        public Fecha FinishDate
+        public CarEN Car
+        {
+            get { return car; }
+            set { car = value; }
+        }
+
+        public Date FinishDate
         {
             get { return finishDate; }
             set { finishDate = value; }
@@ -104,7 +123,7 @@ namespace ARADrive{
             set { youngDriver = value; }
         }
 
-        public string PickUp
+        public int PickUp
         {
             get { return pickUp; }
             set { pickUp = value; }
@@ -122,7 +141,8 @@ namespace ARADrive{
             set { totPrice = value; }
         }
 
-        public BookingEN(int code, string name, Fecha inicio, Fecha fin, bool driver, bool satNav, bool BChair, bool CChair, bool baca, bool insurance, bool yngdriver, bool pickup, int delivery, float tprice)
+        //BookingEN(dr["code"],dr["user"],dr["car"],dr["startDate"],dr["finishDate"],dr["driver"],dr["satNav"],dr["babyChair"],dr["childChair"],dr["baca"],dr["insurance"],dr["youngDriver"],dr["pickUp"],dr["delivery"],dr["totPrice"])
+        public BookingEN(int code, string name, CarEN car, Date inicio, Date fin, bool driver, bool satNav, bool BChair, bool CChair, bool baca, bool insurance, bool yngDriver, int pickup, int delivery, int tprice)
         {
             this.code = code;
             this.name = name;
