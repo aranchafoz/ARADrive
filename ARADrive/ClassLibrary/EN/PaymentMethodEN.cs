@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using BookingENns;
+using ClienENns;
 
-namespace ARADrive
+namespace PaymentMethodENns
 {
 
     public class PaymentMethodEN
