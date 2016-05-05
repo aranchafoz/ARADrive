@@ -86,7 +86,7 @@ namespace ClientCADNS{
       public void deleteClient(String email){
         try{
           DataSet bdvirtual = new DataSet();
-          SqlDataAdapter sql = new SqlDataAdapter("DELETE FROM T_User WHERE email='"+email+"'", c);
+          SqlDataAdapter sql = new SqlDataAdapter("SELECT * FROM T_User WHERE email='"+email+"'", c);
           sql.Fill(bdvirtual,"user");
           DataTable t = new DataTable();
           t = bdvirtual.Tables["user"];
