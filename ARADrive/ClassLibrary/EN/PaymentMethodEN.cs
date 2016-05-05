@@ -15,20 +15,20 @@ namespace PaymentMethodENns
 
 
         private string user;
-        private string password;
-        private ClientEN cliente;
+        private string pass;
+        private ClientEN client;
 
         public PaymentMethodEN()
         {
             user = "user";
-            password = "password";
+            pass = "password";
         }
 
-        public PaymentMethodEN(string user, string password, ClientEN cliente)
+        public PaymentMethodEN(string user, string password, string cliente)
         {
             this.user = user;
-            this.password = password;
-            this.cliente = cliente;
+            this.pass = password;
+            this.client = cliente;
         }
 
         public string User
@@ -40,14 +40,14 @@ namespace PaymentMethodENns
 
         public string Password
         {
-            get { return password; }
-            set { this.password = value; }
+            get { return pass; }
+            set { this.pass = value; }
         }
 
-        public ClientEN Cliente
+        public ClientEN Client
         {
-            get { return cliente; }
-            set { this.cliente = value; }
+            get { return client; }
+            set { this.client = value; }
         }
 
     }
