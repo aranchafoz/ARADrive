@@ -9,10 +9,12 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Collections;
+using System.Configuration;
 
-namespace ARADrive{
+namespace OfficeCADNS{
     public class OfficeCAD {
 
+      private string s = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ToString ();
       private OfficeEN office;
       private SqlConnection c;
       private ArrayList allOffices;
@@ -24,7 +26,7 @@ namespace ARADrive{
 
 
 
-      public ArrayList AllOffices(){
+      public ArrayList allOffices(){
         try{
           c.Open();
           allOffices = new ArrayList();
@@ -32,7 +34,7 @@ namespace ARADrive{
           SqlDataReader dr = com.ExecuteReader();
 
           while(dr.Read()){
-            OfficeEN aux = OfficeEN(dr["code"], dr["name"], dr["address"], dr["city"], dr["cX"], dr["cY"]);
+            OfficeEN aux = new OfficeEN(dr["code"], dr["name"], dr["address"], dr["city"], dr["cX"], dr["cY"]);
             allOffices.Add(aux);
           }
 
@@ -51,7 +53,7 @@ namespace ARADrive{
           SqlDataReader dr = com.ExecuteReader();
 
 
-          OfficeEN aux = OfficeEN(dr["code"], dr["name"], dr["address"], dr["city"], dr["cX"], dr["cY"]);
+          OfficeEN aux = new OfficeEN(dr["code"], dr["name"], dr["address"], dr["city"], dr["cX"], dr["cY"]);
 
 
           dr.Close();
