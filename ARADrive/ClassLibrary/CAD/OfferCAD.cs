@@ -10,6 +10,8 @@ using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Collections;
 using System.Configuration;
+using OfferENns;
+using BookingENns;
 
 namespace OfferCADNS
 {
@@ -32,17 +34,38 @@ namespace OfferCADNS
           SqlDataReader dr = query.ExecuteReader();
 
           while (dr.Read()) {
-            /*
-            `code` int(2),
-            `car` int(4) NOT NULL,
-            `startDate` date NOT NULL,
-            `finishDate` date NOT NULL,
-            `IMG` varchar(200),
-            `newPrice` decimal(7,2) NOT NULL,
-            `title` varchar(20) NOT NULL,
-            `description` varchar(100) DEFAULT NULL,
-            */
-            offers.Add(new OfferEN((int)dr["code"],(int)dr["car"],dr["startDate"],dr["finishDate"],dr["IMG"].toString(),(double)dr["newPrice"],dr["title"].toString(),dr["description"].toString()));
+              int[] date = new int[3];
+              String startDate = dr["startDate"].ToString();
+              int j = 0;
+              for (int i = 0; i < startDate.Length; i++)
+              {
+                  String s = "";
+                  while (startDate[i] != '-')
+                  {
+                      s += startDate[i];
+                  }
+                  date[j] = int.Parse(s);
+                  j++;
+              }
+              Date sd = new Date(date[0], date[1], date[2]);
+
+              date = new int[3];
+              String finishDate = dr["finishDate"].ToString();
+              j = 0;
+              for (int i = 0; i < finishDate.Length; i++)
+              {
+                  String s = "";
+                  while (finishDate[i] != '-')
+                  {
+                      s += finishDate[i];
+                  }
+                  date[j] = int.Parse(s);
+                  j++;
+              }
+              Date fd = new Date(date[0], date[1], date[2]);
+
+
+                  offers.Add(new OfferEN((int)dr["code"], (int)dr["car"], sd, fd, dr["IMG"].ToString(), (double)dr["newPrice"], dr["title"].ToString(), dr["description"].ToString()));
           }
 
           dr.Close();
@@ -60,7 +83,37 @@ namespace OfferCADNS
           SqlDataReader dr = query.ExecuteReader();
 
           if (dr.Read()) {
-            offer = new OfferEN((int)dr["code"],(int)dr["car"],dr["startDate"],dr["finishDate"],dr["IMG"].toString(),(double)dr["newPrice"],dr["title"].toString(),dr["description"].toString());
+              String startDate = dr["startDate"].ToString();
+              int j = 0;
+              int[] date = new int[3];
+              for (int i = 0; i < startDate.Length; i++)
+              {
+                  String s = "";
+                  while (startDate[i] != '-')
+                  {
+                      s += startDate[i];
+                  }
+                  date[j] = int.Parse(s);
+                  j++;
+              }
+              Date sd = new Date(date[0], date[1], date[2]);
+
+              date = new int[3];
+              String finishDate = dr["finishDate"].ToString();
+              j = 0;
+              for (int i = 0; i < finishDate.Length; i++)
+              {
+                  String s = "";
+                  while (finishDate[i] != '-')
+                  {
+                      s += finishDate[i];
+                  }
+                  date[j] = int.Parse(s);
+                  j++;
+              }
+              Date fd = new Date(date[0], date[1], date[2]);
+
+            offer = new OfferEN((int)dr["code"],(int)dr["car"],sd,fd,dr["IMG"].ToString(),(double)dr["newPrice"],dr["title"].ToString(),dr["description"].ToString());
           }
 
           dr.Close();
@@ -75,7 +128,7 @@ namespace OfferCADNS
       public void updateOffer(OfferEN c) {
         try {
           conn.Open();
-          SqlCommand sql = new SqlCommand("UPDATE T_Offer SET car=" + c.Car + ", startDate='" + c.Date + "', finishDate='" + c.FinishDate + "', IMG='" + c.IMG + "', newPrice=" + c.NewPrice + ", title='" + c.Title + "', description='" + c.Description + "' WHERE code=" + c.Code, conn);
+          SqlCommand sql = new SqlCommand("UPDATE T_Offer SET car=" + c.Car + ", startDate='" + c.StartDate + "', finishDate='" + c.FinishDate + "', IMG='" + c.Img + "', newPrice=" + c.NewPrice + ", title='" + c.Title + "', description='" + c.Description + "' WHERE code=" + c.Code, conn);
           sql.ExecuteNonQuery();
         } finally {
           conn.Close();
@@ -85,7 +138,7 @@ namespace OfferCADNS
       public void insertOffer(OfferEN c) {
         try {
           conn.Open();
-          SqlCommand sql = new SqlCommand("INSERT INTO T_Offer VALUES (" + c.Car + ", '" + c.Date + "', '" + c.FinishDate + "', '" + c.IMG + "', " + c.NewPrice + ", '" + c.Title + "', '" + c.Description + " )", conn);
+          SqlCommand sql = new SqlCommand("INSERT INTO T_Offer VALUES (" + c.Car + ", '" + c.StartDate + "', '" + c.FinishDate + "', '" + c.Img + "', " + c.NewPrice + ", '" + c.Title + "', '" + c.Description + " )", conn);
           sql.ExecuteNonQuery();
         } finally {
           conn.Close();

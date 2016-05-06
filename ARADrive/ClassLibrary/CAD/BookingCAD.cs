@@ -10,6 +10,7 @@ using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Collections;
 using System.Configuration;
+using BookingENns;
 
 namespace BookingCADNS
 {
@@ -32,24 +33,36 @@ namespace BookingCADNS
           SqlDataReader dr = query.ExecuteReader();
 
           while (dr.Read()) {
-            /*
-            code int(4),
-            usr varchar(200) NOT NULL,
-            car int(4) NOT NULL,
-            startDate date NOT NULL,
-            finishDate date,
-            driver bool NOT NULL DEFAULT false,
-            satNav bool NOT NULL DEFAULT false,
-            babyChair bool NOT NULL DEFAULT false,
-            childChair bool NOT NULL DEFAULT false,
-            baca bool NOT NULL DEFAULT false,
-            insurance bool NOT NULL DEFAULT false,
-            youngDriver bool NOT NULL DEFAULT false,
-            pickUp int(4) NOT NULL,
-            delivery int(4),
-            totPrice decimal(7,2),
-            */
-            bookings.Add(new BookingEN((int)dr["code"],dr["usr"].toString(),(int)dr["car"],dr["startDate"],dr["finishDate"],(bool)dr["driver"],(bool)dr["satNav"],(bool)dr["babyChair"],(bool)dr["childChair"],(bool)dr["baca"],(bool)dr["insurance"],(bool)dr["youngDriver"],(int)dr["pickUp"],(int)dr["delivery"],(double)dr["totPrice"]));
+              int[] date = new int[3];
+              String startDate = dr["startDate"].ToString();
+              int j = 0;
+              for (int i = 0; i < startDate.Length; i++)
+              {
+                  String s = "";
+                  while (startDate[i] != '-')
+                  {
+                      s += startDate[i];
+                  }
+                  date[j] = int.Parse(s);
+                  j++;
+              }
+              Date sd = new Date(date[0], date[1], date[2]);
+
+              date = new int[3];
+              String finishDate = dr["finishDate"].ToString();
+              j = 0;
+              for (int i = 0; i < finishDate.Length; i++)
+              {
+                  String s = "";
+                  while (finishDate[i] != '-')
+                  {
+                      s += finishDate[i];
+                  }
+                  date[j] = int.Parse(s);
+                  j++;
+              }
+              Date fd = new Date(date[0], date[1], date[2]);
+            bookings.Add(new BookingEN((int)dr["code"],dr["usr"].ToString(),(int)dr["car"],sd,fd,(bool)dr["driver"],(bool)dr["satNav"],(bool)dr["babyChair"],(bool)dr["childChair"],(bool)dr["baca"],(bool)dr["insurance"],(bool)dr["youngDriver"],(int)dr["pickUp"],(int)dr["delivery"],(double)dr["totPrice"]));
           }
 
           dr.Close();
@@ -67,7 +80,36 @@ namespace BookingCADNS
           SqlDataReader dr = query.ExecuteReader();
 
           if (dr.Read()) {
-            booking = new BookingEN((int)dr["code"],dr["usr"].toString(),(int)dr["car"],dr["startDate"],dr["finishDate"],(bool)dr["driver"],(bool)dr["satNav"],(bool)dr["babyChair"],(bool)dr["childChair"],(bool)dr["baca"],(bool)dr["insurance"],(bool)dr["youngDriver"],(int)dr["pickUp"],(int)dr["delivery"],(double)dr["totPrice"]);
+              int[] date = new int[3];
+              String startDate = dr["startDate"].ToString();
+              int j = 0;
+              for (int i = 0; i < startDate.Length; i++)
+              {
+                  String s = "";
+                  while (startDate[i] != '-')
+                  {
+                      s += startDate[i];
+                  }
+                  date[j] = int.Parse(s);
+                  j++;
+              }
+              Date sd = new Date(date[0], date[1], date[2]);
+
+              date = new int[3];
+              String finishDate = dr["finishDate"].ToString();
+              j = 0;
+              for (int i = 0; i < finishDate.Length; i++)
+              {
+                  String s = "";
+                  while (finishDate[i] != '-')
+                  {
+                      s += finishDate[i];
+                  }
+                  date[j] = int.Parse(s);
+                  j++;
+              }
+              Date fd = new Date(date[0], date[1], date[2]);
+            booking = new BookingEN((int)dr["code"],dr["usr"].ToString(),(int)dr["car"],sd,fd,(bool)dr["driver"],(bool)dr["satNav"],(bool)dr["babyChair"],(bool)dr["childChair"],(bool)dr["baca"],(bool)dr["insurance"],(bool)dr["youngDriver"],(int)dr["pickUp"],(int)dr["delivery"],(double)dr["totPrice"]);
           }
 
           dr.Close();

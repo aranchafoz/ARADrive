@@ -10,6 +10,8 @@ using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Collections;
 using System.Configuration;
+using PaymentMethodENns;
+using ClientENns;
 
 
 namespace PaymentMethodCADNS{
@@ -27,7 +29,7 @@ namespace PaymentMethodCADNS{
 
 
 
-      public ArrayList allPaymentMethods(){
+      public ArrayList getAllPaymentMethods(){
         try{
           c.Open();
           allPaymentMethods = new ArrayList();
@@ -35,33 +37,33 @@ namespace PaymentMethodCADNS{
           SqlDataReader dr = com.ExecuteReader();
 
           while(dr.Read()){
-            PaymentMethodEN aux = new PaymentMethodEN(dr["usr"].toString(), dr["pass"].toString(), dr["client"].toString());
+            PaymentMethodEN aux = new PaymentMethodEN(dr["usr"].ToString(), dr["pass"].ToString(), dr["client"].ToString());
             allPaymentMethods.Add(aux);
           }
 
           dr.Close();
         }finally{
           c.Close();
-
-          return(allPaymentMethods);
         }
+        return (allPaymentMethods);
       }
 
-      public ENClient getPaymentMethod(String client){
+      public PaymentMethodEN getPaymentMethod(String client)
+      {
         try{
           c.Open();
           SqlCommand com = new SqlCommand("Select * from T_PaymentMethod WHERE client='"+client+"'", c);
           SqlDataReader dr = com.ExecuteReader();
 
 
-          ENClient aux = new ENClient(dr["usr"].toString(), dr["pass"].toString(), dr["client"].toString());
+          PaymentMethodEN aux = new PaymentMethodEN(dr["usr"].ToString(), dr["pass"].ToString(), dr["client"].ToString());
 
           dr.Close();
+          return (aux);
         }finally{
           c.Close();
-
-          return(aux);
         }
+
       }
 
 

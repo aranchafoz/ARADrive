@@ -10,6 +10,8 @@ using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Collections;
 using System.Configuration;
+using ClientENns;
+using BookingENns;
 
 namespace ClientCADNS{
     public class ClientCAD {
@@ -45,7 +47,22 @@ namespace ClientCADNS{
             t = bdvirtual.Tables["user"];
             DataRow dr = t.Rows[0];
 
-          ClientEN aux = new ClientEN(dr[0].toString(), dr[1].toString(), (bool)dr[2], dr[3].toString(), dr[4].toString(), dr[5].toString(), (int)dr[6], dr[7].toString(), dr[8].toString(), dr[9], (bool)dr[10]);
+            int[] date = new int[3];
+            String birthDate = dr[9].ToString();
+            int j = 0;
+            for (int i = 0; i < birthDate.Length; i++)
+            {
+                String s = "";
+                while (birthDate[i] != '-')
+                {
+                    s += birthDate[i];
+                }
+                date[j] = int.Parse(s);
+                j++;
+            }
+            Date bd = new Date(date[0], date[1], date[2]);
+
+          ClientEN aux = new ClientEN(dr[0].ToString(), dr[1].ToString(), (bool)dr[2], dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), (int)dr[6], dr[7].ToString(), dr[8].ToString(), bd, (bool)dr[10]);
           return(aux);
         }finally{
           c.Close();
@@ -56,7 +73,7 @@ namespace ClientCADNS{
       public bool updateClient(ClientEN cl){
         try{
           DataSet bdvirtual = new DataSet();
-          SqlDataAdapter sql = new SqlDataAdapter("SELECT * FROM T_User WHERE email='"+email+"'", c);
+          SqlDataAdapter sql = new SqlDataAdapter("SELECT * FROM T_User WHERE email='"+cl.Email+"'", c);
           sql.Fill(bdvirtual,"user");
           DataTable t = new DataTable();
           t = bdvirtual.Tables["user"];

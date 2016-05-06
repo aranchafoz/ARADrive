@@ -10,6 +10,7 @@ using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Collections;
 using System.Configuration;
+using OfficeENns;
 
 namespace OfficeCADNS{
     public class OfficeCAD {
@@ -26,7 +27,7 @@ namespace OfficeCADNS{
 
 
 
-      public ArrayList allOffices(){
+      public ArrayList getAllOffices(){
         try{
           c.Open();
           allOffices = new ArrayList();
@@ -34,16 +35,15 @@ namespace OfficeCADNS{
           SqlDataReader dr = com.ExecuteReader();
 
           while(dr.Read()){
-            OfficeEN aux = new OfficeEN((int)dr["code"], dr["name"].toString(), dr["address"].toString(), dr["city"].toString(), (double)dr["cX"], (double)dr["cY"]);
+            OfficeEN aux = new OfficeEN((int)dr["code"], dr["name"].ToString(), dr["address"].ToString(), dr["city"].ToString(), (double)dr["cX"], (double)dr["cY"]);
             allOffices.Add(aux);
           }
 
           dr.Close();
         }finally{
-          c.Close();
-
-          return(allOffices);
+            c.Close();
         }
+        return (allOffices);
       }
 
       public OfficeEN getOffice(int code){
@@ -53,14 +53,13 @@ namespace OfficeCADNS{
           SqlDataReader dr = com.ExecuteReader();
 
 
-          OfficeEN aux = new OfficeEN((int)dr["code"], dr["name"].toString(), dr["address"].toString(), dr["city"].toString(), (double)dr["cX"], (double)dr["cY"]);
+          OfficeEN aux = new OfficeEN((int)dr["code"], dr["name"].ToString(), dr["address"].ToString(), dr["city"].ToString(), (double)dr["cX"], (double)dr["cY"]);
 
 
           dr.Close();
+          return aux;
         }finally{
           c.Close();
-
-          return(aux);
         }
       }
     }

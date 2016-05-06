@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Collections;
 using System.Configuration;
+using CarENns;
 
 namespace CarCADNS
 {
@@ -22,7 +23,8 @@ namespace CarCADNS
         conn = new SqlConnection(s);
       }
 
-      public ArrayList getAllCars() {
+      public DataSet getAllCars()
+      {
         try{
           DataSet bdvirtual = new DataSet();
           SqlDataAdapter sql = new SqlDataAdapter("SELECT * FROM T_Car", conn);
@@ -43,17 +45,17 @@ namespace CarCADNS
             DataRow dr = t.Rows[0];
 
             //car = new CarEN(dr[0], dr[1], dr[2], dr[3], dr[4], dr[5], dr[6], dr[7]);
-            car = new CarEN((int)dr[0], (int)dr[1], dr[2].toString(), dr[3].toString(), (double)dr[4], (bool)dr[5], (int)dr[6], dr[7].toString());
+            car = new CarEN((int)dr[0], (int)dr[1], dr[2].ToString(), dr[3].ToString(), (double)dr[4], (bool)dr[5], (int)dr[6], dr[7].ToString());
             return(car);
         }finally{
-          c.Close();
+          conn.Close();
         }
       }
 
-      public void updateCar(CarEN c) {
+      public bool updateCar(CarEN c) {
         try{
           DataSet bdvirtual = new DataSet();
-          SqlDataAdapter sql = new SqlDataAdapter("SELECT * FROM T_Car WHERE code=" + code, conn);
+          SqlDataAdapter sql = new SqlDataAdapter("SELECT * FROM T_Car WHERE code=" + c.Code, conn);
           sql.Fill(bdvirtual,"car");
           DataTable t = new DataTable();
           t = bdvirtual.Tables["car"];
@@ -70,14 +72,14 @@ namespace CarCADNS
           SqlCommandBuilder cbuilder = new SqlCommandBuilder(sql);
           sql.Update(bdvirtual, "car");
           return true;
-        }catch (Exception e) {
+        }catch{
             return false;
         }finally{
-          c.Close();
+          conn.Close();
         }
       }
 
-      public void insertCar(CarEN c) {
+      public bool insertCar(CarEN c) {
         try{
           DataSet bdvirtual = new DataSet();
           SqlDataAdapter sql = new SqlDataAdapter("SELECT * FROM T_Car", conn);
@@ -97,10 +99,10 @@ namespace CarCADNS
           SqlCommandBuilder cbuilder = new SqlCommandBuilder(sql);
           sql.Update(bdvirtual, "car");
           return true;
-        }catch (Exception e) {
+        }catch{
             return false;
         }finally{
-          c.Close();
+          conn.Close();
         }
       }
 
@@ -115,7 +117,7 @@ namespace CarCADNS
           SqlCommandBuilder cbuilder = new SqlCommandBuilder(sql);
           sql.Update(bdvirtual, "car");
         }finally{
-          c.Close();
+          conn.Close();
         }
       }
     }
