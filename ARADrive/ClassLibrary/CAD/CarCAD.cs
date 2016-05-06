@@ -42,7 +42,8 @@ namespace CarCADNS
             t = bdvirtual.Tables["car"];
             DataRow dr = t.Rows[0];
 
-            car = new CarEN(dr[0], dr[1], dr[2], dr[3], dr[4], dr[5], dr[6], dr[7]);
+            //car = new CarEN(dr[0], dr[1], dr[2], dr[3], dr[4], dr[5], dr[6], dr[7]);
+            car = new CarEN((int)dr[0], (int)dr[1], dr[2].toString(), dr[3].toString(), (double)dr[4], (bool)dr[5], (int)dr[6], dr[7].toString());
             return(car);
         }finally{
           c.Close();
@@ -50,15 +51,6 @@ namespace CarCADNS
       }
 
       public void updateCar(CarEN c) {
-<<<<<<< Updated upstream
-        try {
-          conn.Open();
-          SqlCommand sql = new SqlCommand("UPDATE T_Car SET category=" + c.Category + ", name='" + c.Name + "', desc='" + c.Desc + "', price=" + c.Price + ", automaticTransmission=" + c.AutomaticTransmission + ", doors=" + c.Doors + ", IMG='" + c.
-              IMG + "' WHERE code=" + c.Code, conn);
-          sql.ExecuteNonQuery();
-        } finally {
-          conn.Close();
-=======
         try{
           DataSet bdvirtual = new DataSet();
           SqlDataAdapter sql = new SqlDataAdapter("SELECT * FROM T_Car WHERE code=" + code, conn);
@@ -82,7 +74,6 @@ namespace CarCADNS
             return false;
         }finally{
           c.Close();
->>>>>>> Stashed changes
         }
       }
 

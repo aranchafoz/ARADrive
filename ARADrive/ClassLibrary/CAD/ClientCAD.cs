@@ -45,7 +45,7 @@ namespace ClientCADNS{
             t = bdvirtual.Tables["user"];
             DataRow dr = t.Rows[0];
 
-          ClientEN aux = new ClientEN(dr[0], dr[1], dr[2], dr[3], dr[4], dr[5], dr[6], dr[7], dr[8], dr[9], dr[10]);
+          ClientEN aux = new ClientEN(dr[0].toString(), dr[1].toString(), (bool)dr[2], dr[3].toString(), dr[4].toString(), dr[5].toString(), (int)dr[6], dr[7].toString(), dr[8].toString(), dr[9], (bool)dr[10]);
           return(aux);
         }finally{
           c.Close();

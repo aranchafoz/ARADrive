@@ -49,7 +49,7 @@ namespace BookingCADNS
             delivery int(4),
             totPrice decimal(7,2),
             */
-            bookings.Add(new BookingEN(dr["code"],dr["usr"],dr["car"],dr["startDate"],dr["finishDate"],dr["driver"],dr["satNav"],dr["babyChair"],dr["childChair"],dr["baca"],dr["insurance"],dr["youngDriver"],dr["pickUp"],dr["delivery"],dr["totPrice"]));
+            bookings.Add(new BookingEN((int)dr["code"],dr["usr"].toString(),(int)dr["car"],dr["startDate"],dr["finishDate"],(bool)dr["driver"],(bool)dr["satNav"],(bool)dr["babyChair"],(bool)dr["childChair"],(bool)dr["baca"],(bool)dr["insurance"],(bool)dr["youngDriver"],(int)dr["pickUp"],(int)dr["delivery"],(double)dr["totPrice"]));
           }
 
           dr.Close();
@@ -67,7 +67,7 @@ namespace BookingCADNS
           SqlDataReader dr = query.ExecuteReader();
 
           if (dr.Read()) {
-            booking = new BookingEN(dr["code"],dr["usr"],dr["car"],dr["startDate"],dr["finishDate"],dr["driver"],dr["satNav"],dr["babyChair"],dr["childChair"],dr["baca"],dr["insurance"],dr["youngDriver"],dr["pickUp"],dr["delivery"],dr["totPrice"]);
+            booking = new BookingEN((int)dr["code"],dr["usr"].toString(),(int)dr["car"],dr["startDate"],dr["finishDate"],(bool)dr["driver"],(bool)dr["satNav"],(bool)dr["babyChair"],(bool)dr["childChair"],(bool)dr["baca"],(bool)dr["insurance"],(bool)dr["youngDriver"],(int)dr["pickUp"],(int)dr["delivery"],(double)dr["totPrice"]);
           }
 
           dr.Close();

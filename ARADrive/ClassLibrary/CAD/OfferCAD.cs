@@ -42,7 +42,7 @@ namespace OfferCADNS
             `title` varchar(20) NOT NULL,
             `description` varchar(100) DEFAULT NULL,
             */
-            offers.Add(new OfferEN(dr["code"],dr["car"],dr["startDate"],dr["finishDate"],dr["IMG"],dr["newPrice"],dr["title"],dr["description"]));
+            offers.Add(new OfferEN((int)dr["code"],(int)dr["car"],dr["startDate"],dr["finishDate"],dr["IMG"].toString(),(double)dr["newPrice"],dr["title"].toString(),dr["description"].toString()));
           }
 
           dr.Close();
@@ -60,7 +60,7 @@ namespace OfferCADNS
           SqlDataReader dr = query.ExecuteReader();
 
           if (dr.Read()) {
-            offer = new OfferEN(dr["code"],dr["car"],dr["startDate"],dr["finishDate"],dr["IMG"],dr["newPrice"],dr["title"],dr["description"]);
+            offer = new OfferEN((int)dr["code"],(int)dr["car"],dr["startDate"],dr["finishDate"],dr["IMG"].toString(),(double)dr["newPrice"],dr["title"].toString(),dr["description"].toString());
           }
 
           dr.Close();

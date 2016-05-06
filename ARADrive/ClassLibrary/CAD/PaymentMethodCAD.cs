@@ -35,7 +35,7 @@ namespace PaymentMethodCADNS{
           SqlDataReader dr = com.ExecuteReader();
 
           while(dr.Read()){
-            PaymentMethodEN aux = new PaymentMethodEN(dr["usr"], dr["pass"], dr["client"]);
+            PaymentMethodEN aux = new PaymentMethodEN(dr["usr"].toString(), dr["pass"].toString(), dr["client"].toString());
             allPaymentMethods.Add(aux);
           }
 
@@ -54,7 +54,7 @@ namespace PaymentMethodCADNS{
           SqlDataReader dr = com.ExecuteReader();
 
 
-          ENClient aux = new ENClient(dr["usr"], dr["pass"], dr["client"]);
+          ENClient aux = new ENClient(dr["usr"].toString(), dr["pass"].toString(), dr["client"].toString());
 
           dr.Close();
         }finally{

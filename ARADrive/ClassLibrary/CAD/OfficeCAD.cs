@@ -34,7 +34,7 @@ namespace OfficeCADNS{
           SqlDataReader dr = com.ExecuteReader();
 
           while(dr.Read()){
-            OfficeEN aux = new OfficeEN(dr["code"], dr["name"], dr["address"], dr["city"], dr["cX"], dr["cY"]);
+            OfficeEN aux = new OfficeEN((int)dr["code"], dr["name"].toString(), dr["address"].toString(), dr["city"].toString(), (double)dr["cX"], (double)dr["cY"]);
             allOffices.Add(aux);
           }
 
@@ -53,7 +53,7 @@ namespace OfficeCADNS{
           SqlDataReader dr = com.ExecuteReader();
 
 
-          OfficeEN aux = new OfficeEN(dr["code"], dr["name"], dr["address"], dr["city"], dr["cX"], dr["cY"]);
+          OfficeEN aux = new OfficeEN((int)dr["code"], dr["name"].toString(), dr["address"].toString(), dr["city"].toString(), (double)dr["cX"], (double)dr["cY"]);
 
 
           dr.Close();
