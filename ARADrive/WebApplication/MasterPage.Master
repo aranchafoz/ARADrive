@@ -6,36 +6,64 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>ARADrive</title>
+    <!--REQUIRED STYLE SHEETS-->
+    <!-- BOOTSTRAP CORE STYLE CSS -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONTAWESOME STYLE CSS -->
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
+     <!-- VEGAS STYLE CSS -->
+    <link href="assets/scripts/vegas/jquery.vegas.min.css" rel="stylesheet" />
+    <!-- CUSTOM STYLE CSS -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <!-- GOOGLE FONT -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
     <form id="form1" runat="server">
-        <header>
-            <h1>
-                ARADrive
-            </h1>
-        </header>
-            <nav>
-                <ul class="nav_list">
-                    <li>Home</li>
-                    <li>Profile</li>
-                    <li>Catalog</li>
-                    <li>Contact us</li>
-                </ul>
-                <ul class="user">
-                    <li>Sign in</li>
-                    <li>Sign up</li>
-                </ul>
-            </nav>
+        <div class="navbar navbar-inverse navbar-fixed-top scrollclass" >
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!--Brand & Logo-->
+                    <img src="assets/img/car-48.png" /><a class="navbar-brand" href="Home.aspx">ARADrive</a>
+                </div>
+                <!--Navbar menu-->
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="Home.aspx">HOME</a></li>
+                        <li><a href="Profile.aspx">PROFILE</a></li>
+                        <li><a href="Catalog.aspx">CATALOG</a></li>
+                        <li><a href="Contact.aspx">CONTACT</a></li>
+                        <li class="divider-vertical"></li>
+                        <li class="divider-vertical"></li>
+                        <li><a href="Log_in.aspx">Log in</a></li>
+                        <li><a href="Register.aspx">Register</a></li>
+                    
+                    </ul>
+                </div>
+           
+            </div>
+        </div>
+
     <div>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         
         </asp:ContentPlaceHolder>
     </div>
-        <footer>
-            <p>All rights reserved 2016</p>
-        </footer>
+    <!--FOOTER SECTION -->
+    <div class="for-full-back navbar-fixed-bottom" id="footer">
+        2016 www.aradrive.com | All Right Reserved
+         
+    </div>
+    <!-- END FOOTER SECTION -->
     </form>
 </body>
 </html>
+

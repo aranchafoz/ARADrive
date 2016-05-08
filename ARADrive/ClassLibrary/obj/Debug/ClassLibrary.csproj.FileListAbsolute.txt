@@ -1,2 +1,3 @@
 C:\Users\javie\OneDrive\Documentos\GitHub\ARADrive\ARADrive\ClassLibrary\obj\Debug\ClassLibrary.csprojResolveAssemblyReference.cache
 C:\Users\miste\Desktop\WebHada\ARADrive\ARADrive\ClassLibrary\obj\Debug\ClassLibrary.csprojResolveAssemblyReference.cache
+C:\Users\Lenovo\Documents\GitHub\ARADrive\ARADrive\ClassLibrary\obj\Debug\ClassLibrary.csprojResolveAssemblyReference.cache
