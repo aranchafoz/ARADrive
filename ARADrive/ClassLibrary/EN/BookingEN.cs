@@ -53,7 +53,7 @@ namespace BookingENns{
         private bool youngDriver;
         private int pickUp;
         private int delivery;
-        private int totPrice;
+        private double totPrice;
 
 
         public int Code
@@ -140,14 +140,14 @@ namespace BookingENns{
             set { delivery = value; }
         }
 
-        public int TotPrice
+        public double TotPrice
         {
             get { return totPrice; }
             set { totPrice = value; }
         }
 
         
-        public BookingEN(int code, int coche, string name, Date inicio, Date fin, bool driver, bool satNav, bool BChair, bool CChair, bool baca, bool insurance, bool yngdriver, int pickup, int delivery, int tprice)
+        public BookingEN(int code, string name, int coche, Date inicio, Date fin, bool driver, bool satNav, bool BChair, bool CChair, bool baca, bool insurance, bool yngdriver, int pickup, int delivery, double tprice)
 
         {
             this.car = coche;
