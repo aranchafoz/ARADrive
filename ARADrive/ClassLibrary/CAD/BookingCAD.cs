@@ -62,7 +62,7 @@ namespace BookingCADNS
                   j++;
               }
               Date fd = new Date(date[0], date[1], date[2]);
-            bookings.Add(new BookingEN((int)dr["code"],dr["usr"].ToString(),(int)dr["car"],sd,fd,(bool)dr["driver"],(bool)dr["satNav"],(bool)dr["babyChair"],(bool)dr["childChair"],(bool)dr["baca"],(bool)dr["insurance"],(bool)dr["youngDriver"],(int)dr["pickUp"],(int)dr["delivery"],(double)dr["totPrice"]));
+            bookings.Add(new BookingEN((int)dr["code"],dr["user"].ToString(),(int)dr["car"],sd,fd,(bool)dr["driver"],(bool)dr["satNav"],(bool)dr["babyChair"],(bool)dr["childChair"],(bool)dr["baca"],(bool)dr["insurance"],(bool)dr["youngDriver"],(int)dr["pickUp"],(int)dr["delivery"],(double)dr["totPrice"]));
           }
 
           dr.Close();

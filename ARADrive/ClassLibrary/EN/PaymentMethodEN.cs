@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using BookingENns;
-using ClienENns;
+using ClientENns;
 
 namespace PaymentMethodENns
 {
 
     public class PaymentMethodEN
     {
-
-        private PaymentMethodEN paymentMethod;
-
 
         private string user;
         private string pass;

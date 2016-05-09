@@ -1,7 +1,7 @@
 ﻿using System;
 using BookingENns;
 
-namespace ClienENns
+namespace ClientENns
 {
     public class ClientEN
     {

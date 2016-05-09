@@ -1,16 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="DisenyoWeb.Home" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style type="text/css">
-        .auto-style2 {
-            width: 248px;
-        }
-        .auto-style3 {
-            width: 241px;
-        }
-        .auto-style4 {
-            width: 243px;
-        }
-    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />

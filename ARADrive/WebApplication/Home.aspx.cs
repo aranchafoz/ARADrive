@@ -32,12 +32,12 @@ namespace DisenyoWeb
                 }
                 else
                 {
-                    System.Windows.Forms.MessageBox.Show("Please select the Pick Up Date before the Drop Off Date");
+                    //System.Windows.Forms.MessageBox.Show("Please select the Pick Up Date before the Drop Off Date");
                 }
             }
             else
             {
-                System.Windows.Forms.MessageBox.Show("The dates cannot be before today!");
+               // System.Windows.Forms.MessageBox.Show("The dates cannot be before today!");
             }
 
         }
