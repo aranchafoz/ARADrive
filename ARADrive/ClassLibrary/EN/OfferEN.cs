@@ -10,25 +10,25 @@ using BookingENns;
 /// </summary>
 namespace OfferENns
 {
-    public class Offer
+    public class OfferEN
     {
         private int code;
         private int car;
         private Date startDate;
         private Date finishDate;
         private string img;
-        private float newPrice;
+        private double newPrice;
         private string title;
         private string description;
 
-        public Offer(int code, int car, Date fecha1 , Date Fecha2, string image, int price, string title, string descripcion)
+        public OfferEN(int code, int car, Date fecha1 , Date Fecha2, string image, double price, string title, string descripcion)
         {
             this.code = code;
             this.car = car;
-            startDate = fecha1;
-            finishDate = Fecha2;
-            img = image;
-            NewPrice = price;
+            this.startDate = fecha1;
+            this.finishDate = Fecha2;
+            this.img = image;
+            this.newPrice = price;
             this.title = title;
             this.description = descripcion;
 
@@ -64,7 +64,7 @@ namespace OfferENns
             set { img = value; }
         }
 
-        public float NewPrice
+        public double NewPrice
         {
             get { return newPrice; }
             set { newPrice = value; }

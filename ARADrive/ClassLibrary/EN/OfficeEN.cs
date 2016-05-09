@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace OfficeEnns
+namespace OfficeENns
 {
     public class OfficeEN
     {
@@ -12,11 +12,11 @@ namespace OfficeEnns
         private string name;
         private string address;
         private string city;
-        private float cX;
-        private float cY;
+        private double cX;
+        private double cY;
 
 
-        public OfficeEN(int code, string name, string address, string city, float cX, float cY)
+        public OfficeEN(int code, string name, string address, string city, double cX, double cY)
         {
             this.code = code;
             this.name = name;
@@ -50,13 +50,13 @@ namespace OfficeEnns
             set { code = value; }
         }
 
-        public int CX
+        public double CX
         {
             get { return cX; }
             set { cX = value; }
         }
 
-        public int CY
+        public double CY
         {
             get { return cY; }
             set { cY = value; }

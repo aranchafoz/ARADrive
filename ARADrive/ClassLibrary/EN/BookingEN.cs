@@ -11,7 +11,12 @@ namespace BookingENns{
         private int month;
         private int year;
 
-
+        public Date(int dia, int mes, int anyo)
+        {
+            this.day = dia;
+            this.month = mes;
+            this.year = anyo;
+        }
         public int GetDay()
         {
             return day;
@@ -34,7 +39,7 @@ namespace BookingENns{
 
         private int code;
 
-        private CarEN car;
+        private int car;
         private string user;
         private Date date;
 
@@ -69,7 +74,7 @@ namespace BookingENns{
             set { date = value; }
         }
 
-        public CarEN Car
+        public int Car
         {
             get { return car; }
             set { car = value; }
@@ -142,9 +147,10 @@ namespace BookingENns{
         }
 
         
-        public BookingEN(int code, string name, Date inicio, Date fin, bool driver, bool satNav, bool BChair, bool CChair, bool baca, bool insurance, bool yngdriver, int pickup, int delivery, int tprice)
+        public BookingEN(int code, int coche, string name, Date inicio, Date fin, bool driver, bool satNav, bool BChair, bool CChair, bool baca, bool insurance, bool yngdriver, int pickup, int delivery, int tprice)
 
         {
+            this.car = coche;
             this.code = code;
             this.user = name;
             this.Date = inicio;
