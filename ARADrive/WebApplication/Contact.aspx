@@ -31,6 +31,8 @@
                     <br />
                     <asp:Button ID="Button_Send" class="btn btn-primary" Width="26%" style="margin-left:37%;" runat="server" Text="Send" />                
                     <br />
+                    <asp:Label ID="Label_Resultado" runat="server" Text="Label"></asp:Label>
+                    <br />
                 </form>
             </div>
             <div class="col-xs-4"></div>
