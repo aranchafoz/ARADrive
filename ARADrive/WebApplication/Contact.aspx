@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Panel ID="Panel1" runat="server" Height="75px"> </asp:Panel>
+     <asp:Panel ID="Panel1" runat="server" Height="75px"> </asp:Panel>
     <div class="container-fluid" style="padding:20px">
         <div class="row-fluid">
             <div class="page-header" style="margin-left:20%;margin-right:20%">
@@ -24,8 +24,8 @@
                         <asp:TextBox ID="TextBox_Subject" type="text" class="form-control" runat="server"></asp:TextBox>
                     </div>
                     <div class="form-group">
-                        <label for="">Password</label>
-                        <asp:TextBox ID="TextBox_Message" type="text" class="form-control" runat="server" Height="200px"></asp:TextBox>
+                        <label for="">Your message</label>
+                        <asp:TextBox ID="TextBox_Message" type="text" class="form-control" runat="server" Height="200px" TextMode="MultiLine"></asp:TextBox>
                     </div>                  
                     
                     <br />

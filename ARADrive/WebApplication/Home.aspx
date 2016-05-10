@@ -14,15 +14,15 @@
                 <form class="form-signin" action="">
                     <div class="form-group">
                         <label for="">Pick up date</label>
-                        <asp:TextBox ID="Calendar_PickUp1" type="date" class="form-control" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="Calendar_PickUp1" type="date" class="form-control" runat="server" TextMode="Date"></asp:TextBox>
                     </div>
                     <div class="form-group">
                         <label for="">Drop off date</label>
-                        <asp:TextBox ID="Calendar_DropOff1" type="date" class="form-control" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="Calendar_DropOff1" type="date" class="form-control" runat="server" TextMode="Date"></asp:TextBox>
                     </div>                  
                     
                     <br />
-                    <asp:Button ID="Button_Sudmit" class="btn" Width="26%" style="margin-left:37%;" runat="server" Text="Search" />                
+                    <asp:Button ID="Button_Search" class="btn" Width="26%" style="margin-left:37%;" runat="server" Text="Search" OnClick="OnClick_Search"/>                
                     <br />
                 </form>
             </div>
@@ -75,7 +75,6 @@
                 </asp:Calendar>
             </td>
             <td>
-                <asp:Button ID="ButtonSearch" runat="server" Height="34px" Text="Search" Width="188px" />
             </td>
         </tr>
 

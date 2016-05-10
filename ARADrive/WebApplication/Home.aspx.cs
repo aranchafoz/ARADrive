@@ -15,7 +15,8 @@ namespace DisenyoWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            ButtonSearch.Click += new EventHandler(this.OnClick_Search);
+            Button_Search.Click += new EventHandler(this.OnClick_Search);
+            Button_Search.Click += new EventHandler(this.OnClick_Search);
         }
 
         protected void OnClick_Search(Object sender, EventArgs e)
@@ -32,12 +33,12 @@ namespace DisenyoWeb
                 }
                 else
                 {
-                    //System.Windows.Forms.MessageBox.Show("Please select the Pick Up Date before the Drop Off Date");
+                    System.Windows.Forms.MessageBox.Show("Please select the Pick Up Date before the Drop Off Date");
                 }
             }
             else
             {
-               // System.Windows.Forms.MessageBox.Show("The dates cannot be before today!");
+                System.Windows.Forms.MessageBox.Show("The dates cannot be before today!");
             }
 
         }
@@ -45,6 +46,7 @@ namespace DisenyoWeb
 
         protected void ShowResult()
         {
+            
             Line1.Visible = true;
             Label_Result.Text = "Selected Date: From " + date_PickUp.Day.ToString() + "."
                                     + date_PickUp.Month.ToString() + "." + date_PickUp.Year.ToString()

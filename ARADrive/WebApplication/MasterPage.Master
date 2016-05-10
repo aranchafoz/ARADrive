@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="WebApplication.MasterPage" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="DisenyoWeb.MasterPage" %>
 
 <!DOCTYPE html>
 
@@ -38,7 +38,12 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="Home.aspx">HOME</a></li>
-                        <li><a href="Profile.aspx">PROFILE</a></li>
+                        <!--Link with nested profile master page-->
+                        <li>
+                            <asp:HyperLink ID="lnkProfile" runat="server" NavigateUrl="Account.aspx"
+                                  Text="PROFILE" />
+
+                        </li>
                         <li><a href="Catalog.aspx">CATALOG</a></li>
                         <li><a href="Contact.aspx">CONTACT</a></li>
                         <li class="divider-vertical"></li>
@@ -66,4 +71,3 @@
     </form>
 </body>
 </html>
-

@@ -49,13 +49,13 @@ namespace DisenyoWeb {
         protected global::System.Web.UI.WebControls.TextBox Calendar_DropOff1;
         
         /// <summary>
-        /// Control Button_Sudmit.
+        /// Control Button_Search.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button_Sudmit;
+        protected global::System.Web.UI.WebControls.Button Button_Search;
         
         /// <summary>
         /// Control Panel3.
@@ -110,15 +110,6 @@ namespace DisenyoWeb {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Calendar Calendar_DropOff;
-        
-        /// <summary>
-        /// Control ButtonSearch.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonSearch;
         
         /// <summary>
         /// Control Line1.

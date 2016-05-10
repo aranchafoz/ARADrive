@@ -63,10 +63,6 @@
                         <label for="">Telephone number</label>
                         <asp:TextBox ID="TextBox_Telephone" type="number" class="form-control" runat="server"></asp:TextBox>
                     </div>
-                    <div class="form-group">
-                        <label for="">Mobile number</label>
-                        <asp:TextBox ID="TextBox_Mobile" type="number" class="form-control" runat="server"></asp:TextBox>
-                    </div>
                     <!--Driving license details-->                                     
                     <legend>Driving license details</legend>
                     <div class="form-group">
@@ -84,7 +80,7 @@
                     </div>
                     <div class="form-group">
                         <label for="">Birthdate</label>
-                        <asp:TextBox ID="TextBox_Birthdate" type="date" class="form-control" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="TextBox_Birthdate" type="date" class="form-control" runat="server" TextMode="Date"></asp:TextBox>
                     </div>             
                     <div class="form-group">
                         <label for="">Driving license number</label>
@@ -92,7 +88,7 @@
                     </div>      
                     <div class="form-group">
                         <label for="">Due date</label>
-                        <asp:TextBox ID="TextBox_DrivingLicenseDueDate" type="date" class="form-control" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="TextBox_DrivingLicenseDueDate" type="date" class="form-control" runat="server" TextMode="Date"></asp:TextBox>
                     </div>              
                     
                     
