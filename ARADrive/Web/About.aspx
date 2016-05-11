@@ -10,36 +10,80 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:Panel ID="Panel1" runat="server" Height="75px"> </asp:Panel>
     <div class="container-fluid" style="padding:20px">
-        <div class="row-fluid">
-            <div class="page-header" style="margin-left:20%;margin-right:20%">
-                <h1>About Us</h1>
-            </div>
-        </div>    
-        <div class="col-xs-2"><br /><br /></div>  
-        <div class="col-xs-4 well" style="padding:10px">
-                <div class="row" style="text-align:left;padding:0 15px;margin:0 15px">                    
-                        <h3>Who are we?</h3>                 
+        <div class="row">
+            <div class="row-fluid">
+                <div class="page-header" style="margin-left:20%;margin-right:20%">
+                    <h1>About Us</h1>
                 </div>
-                <div class="row" style="text-align:left;padding:0 15px;margin:0 15px">
-                    <br />
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                         Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
-                         natoque penatibus et magnis dis parturient montes, nascetur
-                         ridiculus mus. Donec quam felis, ultricies nec, pellentesque
-                         eu, pretium quis, sem. Nulla consequat massa quis enim. Donec
-                         pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
-                         In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
-                         Nullam dictum felis eu pede mollis pretium. Integer tincidunt.
-                    </p>                
+            </div>    
+            <div class="col-xs-2"><br /><br /></div>  
+            <div class="col-xs-4 well" style="padding:10px">
+                    <div class="row" style="text-align:left;padding:0 15px;margin:0 15px">                    
+                            <h3>Who are we?</h3>                 
+                    </div>
+                    <div class="row" style="text-align:left;padding:0 15px;margin:0 15px">
+                        <br />
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                             Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
+                             natoque penatibus et magnis dis parturient montes, nascetur
+                             ridiculus mus. Donec quam felis, ultricies nec, pellentesque
+                             eu, pretium quis, sem. Nulla consequat massa quis enim. Donec
+                             pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
+                             In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
+                             Nullam dictum felis eu pede mollis pretium. Integer tincidunt.
+                        </p>                
+                    </div>
+            </div> 
+            <!-- Google Map -->
+            <div class="col-xs-4" style="padding:0 10px;margin:0 10px">
+                <div id="map"></div>
+            </div> 
+            <div class="col-xs-2"><br /><br /></div> 
+        </div>
+        <!-- Offices -->
+        <div class="row" style="padding:10px 0">
+            <div class="row-fluid">
+                <div class="page-header" style="margin-left:20%;margin-right:20%">
+                    <h2>Offices</h2>
                 </div>
-        </div> 
-        <!-- Google Map -->
-        <div class="col-xs-4" style="padding:0 10px;margin:0 10px">
-            <div id="map"></div>
-        </div> 
-        <div class="col-xs-2"><br /><br /></div> 
-        <!-- Scripts -->
+                <div class="col-xs-2"></div>
+                <div class="col-xs-8">
+                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSourceOffices" CellPadding="4" ForeColor="#333333" GridLines="None">
+                        <AlternatingRowStyle BackColor="White"></AlternatingRowStyle>
+                        <Columns>
+                            <asp:BoundField DataField="name" HeaderText="name" SortExpression="name"></asp:BoundField>
+                            <asp:BoundField DataField="address" HeaderText="address" SortExpression="address"></asp:BoundField>
+                            <asp:BoundField DataField="city" HeaderText="city" SortExpression="city"></asp:BoundField>
+                        </Columns>
+                        <EditRowStyle BackColor="#2461BF"></EditRowStyle>
+
+                        <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White"></FooterStyle>
+
+                        <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White"></HeaderStyle>
+
+                        <PagerStyle HorizontalAlign="Center" BackColor="#2461BF" ForeColor="White"></PagerStyle>
+
+                        <RowStyle BackColor="#EFF3FB"></RowStyle>
+
+                        <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333"></SelectedRowStyle>
+
+                        <SortedAscendingCellStyle BackColor="#F5F7FB"></SortedAscendingCellStyle>
+
+                        <SortedAscendingHeaderStyle BackColor="#6D95E1"></SortedAscendingHeaderStyle>
+
+                        <SortedDescendingCellStyle BackColor="#E9EBEF"></SortedDescendingCellStyle>
+
+                        <SortedDescendingHeaderStyle BackColor="#4870BE"></SortedDescendingHeaderStyle>
+                    </asp:GridView>
+                    <asp:SqlDataSource runat="server" ID="SqlDataSourceOffices" ConnectionString='<%$ ConnectionStrings:ConnectionString %>' SelectCommand="SELECT [name], [address], [city] FROM [T_Office]"></asp:SqlDataSource>
+            
+                </div>
+                <div class="col-xs-2"></div>
+            </div>  
+        </div>
+    </div>
+    <!-- Scripts -->
         <script>
           function initMap() {
             var mapDiv = document.getElementById('map');
@@ -51,6 +95,5 @@
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
             async defer></script> 
-        </div>
     <asp:Panel ID="Panel2" runat="server" Height="230px"> </asp:Panel>
 </asp:Content>

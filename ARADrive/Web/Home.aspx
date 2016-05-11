@@ -3,8 +3,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:Panel ID="Panel2" runat="server" Height="75px"> </asp:Panel>
-    <div class="container-fluid" style="padding:20px;background:url(assets/img/carretera-guitarra.jpg);background-repeat:no-repeat">
-        <div class="row-fluid">
+    <div class="container-fluid" style="padding:20px;background:url(assets/img/carretera-mar.jpeg);background-repeat:no-repeat;">
+        <div class="row-fluid" style="height:600px">
             <div class="page-header" style="margin-left:20%;margin-right:20%">
                 <h1>Make a reservation</h1>
             </div>
@@ -28,10 +28,9 @@
             <div class="col-xs-4"></div>
         </div>       
     </div>
-    <asp:Panel ID="Panel3" runat="server" Height="100px"> </asp:Panel>
+    <!--<asp:Panel ID="Panel3" runat="server" Height="100px"> </asp:Panel>
     <asp:Panel ID="Panel1" runat="server" Height="100px"> </asp:Panel>
     <table style="width: 100%;">
-        <!--Fila 1-->
         <tr>
             <td>&nbsp;</td>
             <td class="auto-style2">&nbsp;</td>
@@ -40,7 +39,6 @@
             <td class="auto-style4">&nbsp;</td>
             <td>&nbsp;</td>
         </tr>
-        <!--Fila 2-->
         <tr> 
             <td>&nbsp;</td>
             <td class="auto-style2">
@@ -77,7 +75,6 @@
             </td>
         </tr>
 
-        <!--Fila 3-->
         <tr>
             <td>&nbsp;</td>
             <td class="auto-style2">
@@ -88,7 +85,6 @@
             <td class="auto-style4">&nbsp;</td>
             <td>&nbsp;</td>
         </tr>
-        <!--Fila 4-->
         <tr>
             <td>&nbsp;</td>
             <td colspan="2">
@@ -98,7 +94,6 @@
             <td>&nbsp;</td>
             <td>&nbsp;</td>
         </tr>
-        <!--Fila 5-->
         <tr>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -121,6 +116,6 @@
             </td>
         </tr>
     </table>
-    
+    -->
     <asp:Panel ID="Panel5" runat="server" Height="230px"> </asp:Panel>
 </asp:Content>
