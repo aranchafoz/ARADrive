@@ -6,7 +6,7 @@
     <div class="container-fluid" style="padding:20px">
         <div class="row-fluid">
             <div class="page-header" style="margin-left:20%;margin-right:20%">
-                <h1>Get in contact with us</h1>
+                <h1>Get in touch with us</h1>
             </div>
             <div class="col-xs-4"></div>
             <div class="col-xs-4">

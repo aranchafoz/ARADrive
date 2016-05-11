@@ -48,13 +48,13 @@
                     <h2>Offices</h2>
                 </div>
                 <div class="col-xs-2"></div>
-                <div class="col-xs-8">
+                <div class="col-xs-8" style="margin-left:35%">
                     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSourceOffices" CellPadding="4" ForeColor="#333333" GridLines="None">
                         <AlternatingRowStyle BackColor="White"></AlternatingRowStyle>
                         <Columns>
-                            <asp:BoundField DataField="name" HeaderText="name" SortExpression="name"></asp:BoundField>
-                            <asp:BoundField DataField="address" HeaderText="address" SortExpression="address"></asp:BoundField>
-                            <asp:BoundField DataField="city" HeaderText="city" SortExpression="city"></asp:BoundField>
+                            <asp:BoundField DataField="name" HeaderText="Name" SortExpression="Name"></asp:BoundField>
+                            <asp:BoundField DataField="address" HeaderText="Address" SortExpression="Address"></asp:BoundField>
+                            <asp:BoundField DataField="city" HeaderText="City" SortExpression="City"></asp:BoundField>
                         </Columns>
                         <EditRowStyle BackColor="#2461BF"></EditRowStyle>
 
