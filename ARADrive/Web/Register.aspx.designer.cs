@@ -175,13 +175,13 @@ namespace Web {
         protected global::System.Web.UI.WebControls.TextBox TextBox_DrivingLicenseDueDate;
         
         /// <summary>
-        /// Control Button_Sudmit.
+        /// Control Button_Submit.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button_Sudmit;
+        protected global::System.Web.UI.WebControls.Button Button_Submit;
         
         /// <summary>
         /// Control Panel2.

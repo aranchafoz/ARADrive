@@ -75,9 +75,9 @@ namespace Web
         {
             SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
             MailMessage message = new MailMessage();
-            try
+            if (IsValidEmail(TextBox_UserEmail.ToString()) && TextBox_UserName.ToString() != string.Empty && TextBox_Message.ToString() != string.Empty && TextBox_Subject.ToString() != string.Empty)
             {
-                if (IsValidEmail(TextBox_UserEmail.ToString()) && TextBox_UserName.ToString() != string.Empty && TextBox_Message.ToString() != string.Empty && TextBox_Subject.ToString() != string.Empty)
+                try
                 {
                     MailAddress fromAddress = new MailAddress(TextBox_UserEmail.ToString(), TextBox_UserName.ToString());
                     MailAddress toAddress = new MailAddress("aradrive.contact@gmail.com", "ARADrive");
@@ -90,14 +90,14 @@ namespace Web
                     smtpClient.Send(message);
                     Label_Resultado.Text = "Message sent";
                 }
-                else
+                catch (ArgumentException)
                 {
-                    Label_Resultado.Text = "* Some fields are missing or invalid";
+                    Label_Resultado.Text = "The message couldn't be sent!";
                 }
             }
-            catch (ArgumentException)
+            else
             {
-                Label_Resultado.Text = "The message couldn't be sent!";
+                Label_Resultado.Text = "Some fields are invalid or are missing";
             }
         }
     }
