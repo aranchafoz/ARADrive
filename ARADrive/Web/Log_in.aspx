@@ -21,7 +21,7 @@
                     </div>                  
                     
                     <br />
-                    <asp:Button ID="Button_Sudmit" class="btn" Width="26%" style="margin-left:37%;" runat="server" Text="Log in" />                
+                    <asp:Button ID="Button_Submit" class="btn" Width="26%" style="margin-left:37%;" runat="server" Text="Log in" />                
                     <br />
                 </form>
             </div>
