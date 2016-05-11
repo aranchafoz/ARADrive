@@ -24,14 +24,14 @@
                     <div class="row" style="text-align:left;padding:0 15px;margin:0 15px">
                         <br />
                         <p>
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                             Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
-                             natoque penatibus et magnis dis parturient montes, nascetur
-                             ridiculus mus. Donec quam felis, ultricies nec, pellentesque
-                             eu, pretium quis, sem. Nulla consequat massa quis enim. Donec
-                             pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
-                             In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
-                             Nullam dictum felis eu pede mollis pretium. Integer tincidunt.
+                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AraDrive is one of the world's best-known car rental brands.
+                         Owned by 6 students of the University of Alicante, started 
+                         up as an assignment but after the years it became true.
+                         <br />
+                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AraDrive, was founded in 2016 as a car rental company
+                         for the butget minded  renter. Despite the little experience
+                         today AraDrive has already rented over 10.000 cars becoming 
+                         one of the industry leaders in Spain .
                         </p>                
                     </div>
             </div> 
