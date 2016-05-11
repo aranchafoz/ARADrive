@@ -99,6 +99,14 @@
     <Content Include="App_Data\Database_log.ldf">
       <DependentUpon>Database.mdf</DependentUpon>
     </Content>
+    <Content Include="assets\img\Building-20.png" />
+    <Content Include="assets\img\Calendar-20.png" />
+    <Content Include="assets\img\Car-48.png" />
+    <Content Include="assets\img\Driver_License_Card-20.png" />
+    <Content Include="assets\img\Home-20.png" />
+    <Content Include="assets\img\ID_Card-20.png" />
+    <Content Include="assets\img\Phone-20.png" />
+    <Content Include="assets\img\type-me.jpg" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -223,7 +231,6 @@
   <ItemGroup>
     <Folder Include="assets\css\" />
     <Folder Include="assets\fonts\" />
-    <Folder Include="assets\img\" />
     <Folder Include="assets\js\" />
     <Folder Include="assets\plugins\" />
   </ItemGroup>
