@@ -46,6 +46,7 @@
                         </li>
                         <li><a href="Catalog.aspx">CATALOG</a></li>
                         <li><a href="Contact.aspx">CONTACT</a></li>
+                        <li><a href="About.aspx">ABOUT US</a></li>
                         <li class="divider-vertical"></li>
                         <li class="divider-vertical"></li>
                         <li><a href="Log_in.aspx">Log in</a></li>

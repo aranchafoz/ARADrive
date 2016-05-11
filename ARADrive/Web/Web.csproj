@@ -102,11 +102,13 @@
     <Content Include="assets\img\Building-20.png" />
     <Content Include="assets\img\Calendar-20.png" />
     <Content Include="assets\img\Car-48.png" />
+    <Content Include="assets\img\carretera-rosada.jpg" />
     <Content Include="assets\img\Driver_License_Card-20.png" />
     <Content Include="assets\img\Home-20.png" />
     <Content Include="assets\img\ID_Card-20.png" />
     <Content Include="assets\img\Phone-20.png" />
     <Content Include="assets\img\type-me.jpg" />
+    <Content Include="About.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -142,6 +144,13 @@
     </Compile>
     <Compile Include="Account.aspx.designer.cs">
       <DependentUpon>Account.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="History.aspx.cs">
       <DependentUpon>History.aspx</DependentUpon>

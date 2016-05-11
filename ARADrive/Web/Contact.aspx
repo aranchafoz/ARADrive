@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Contact.aspx.cs" Inherits="Web.Contact" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Contact.aspx.cs" Inherits="Web.Contact" EnableEventValidation="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -28,10 +28,9 @@
                         <asp:TextBox ID="TextBox_Message" type="text" class="form-control" runat="server" Height="200px" TextMode="MultiLine"></asp:TextBox>
                     </div>                  
                     
+                    <asp:Label ID="Label_Resultado" runat="server" Text="" Font-Italic="true" Font-Size="Small" ForeColor="Red"></asp:Label>
                     <br />
                     <asp:Button ID="Button_Send" class="btn btn-primary" Width="26%" style="margin-left:37%;" runat="server" Text="Send" />                
-                    <br />
-                    <asp:Label ID="Label_Resultado" runat="server" Text="Label"></asp:Label>
                     <br />
                 </form>
             </div>

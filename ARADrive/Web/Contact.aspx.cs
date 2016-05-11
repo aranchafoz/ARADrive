@@ -92,12 +92,12 @@ namespace Web
                 }
                 else
                 {
-                    Label_Resultado.Text = "Some fields are missing or invalid";
+                    Label_Resultado.Text = "* Some fields are missing or invalid";
                 }
             }
             catch (ArgumentException)
             {
-                Label_Resultado.Text = "No se pudo enviar el mensaje!";
+                Label_Resultado.Text = "The message couldn't be sent!";
             }
         }
     }

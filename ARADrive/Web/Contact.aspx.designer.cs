@@ -58,15 +58,6 @@ namespace Web {
         protected global::System.Web.UI.WebControls.TextBox TextBox_Message;
         
         /// <summary>
-        /// Control Button_Send.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button_Send;
-        
-        /// <summary>
         /// Control Label_Resultado.
         /// </summary>
         /// <remarks>
@@ -74,6 +65,15 @@ namespace Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label_Resultado;
+        
+        /// <summary>
+        /// Control Button_Send.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button_Send;
         
         /// <summary>
         /// Control Panel2.

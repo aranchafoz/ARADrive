@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:Panel ID="Panel2" runat="server" Height="75px"> </asp:Panel>
-    <div class="container-fluid" style="padding:20px">
+    <div class="container-fluid" style="padding:20px;background:url(assets/img/carretera-guitarra.jpg);background-repeat:no-repeat">
         <div class="row-fluid">
             <div class="page-header" style="margin-left:20%;margin-right:20%">
                 <h1>Make a reservation</h1>
@@ -21,7 +21,7 @@
                     </div>                  
                     
                     <br />
-                    <asp:Button ID="Button_Search" class="btn" Width="26%" style="margin-left:37%;" runat="server" Text="Search" />                
+                    <asp:Button ID="Button_Search" class="btn btn-primary" Width="26%" style="margin-left:37%;" runat="server" Text="Search" />                
                     <br />
                 </form>
             </div>

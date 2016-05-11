@@ -10,33 +10,24 @@
 namespace Web {
     
     
-    public partial class Premium {
+    public partial class About {
         
         /// <summary>
-        /// Control Label_PersuadingMessage.
+        /// Control Panel1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label_PersuadingMessage;
+        protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
-        /// Control Button_RegularUser.
+        /// Control Panel2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button_RegularUser;
-        
-        /// <summary>
-        /// Control Button_PremiumUser.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button_PremiumUser;
+        protected global::System.Web.UI.WebControls.Panel Panel2;
     }
 }
