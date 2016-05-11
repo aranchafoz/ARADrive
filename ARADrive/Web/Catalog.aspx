@@ -10,5 +10,5 @@
             </div>
         </div>       
     </div>
-    <asp:Panel ID="Panel2" runat="server" Height="100px"> </asp:Panel>
+    <asp:Panel ID="Panel2" runat="server" Height="230px"> </asp:Panel>
 </asp:Content>
