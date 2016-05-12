@@ -49,33 +49,19 @@
                 </div>
                 <div class="col-xs-2"></div>
                 <div class="col-xs-8" style="margin-left:35%">
-                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSourceOffices" CellPadding="4" ForeColor="#333333" GridLines="None">
-                        <AlternatingRowStyle BackColor="White"></AlternatingRowStyle>
-                        <Columns>
-                            <asp:BoundField DataField="name" HeaderText="Name" SortExpression="Name"></asp:BoundField>
-                            <asp:BoundField DataField="address" HeaderText="Address" SortExpression="Address"></asp:BoundField>
-                            <asp:BoundField DataField="city" HeaderText="City" SortExpression="City"></asp:BoundField>
-                        </Columns>
-                        <EditRowStyle BackColor="#2461BF"></EditRowStyle>
-
-                        <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White"></FooterStyle>
-
-                        <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White"></HeaderStyle>
-
-                        <PagerStyle HorizontalAlign="Center" BackColor="#2461BF" ForeColor="White"></PagerStyle>
-
-                        <RowStyle BackColor="#EFF3FB"></RowStyle>
-
-                        <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333"></SelectedRowStyle>
-
-                        <SortedAscendingCellStyle BackColor="#F5F7FB"></SortedAscendingCellStyle>
-
-                        <SortedAscendingHeaderStyle BackColor="#6D95E1"></SortedAscendingHeaderStyle>
-
-                        <SortedDescendingCellStyle BackColor="#E9EBEF"></SortedDescendingCellStyle>
-
-                        <SortedDescendingHeaderStyle BackColor="#4870BE"></SortedDescendingHeaderStyle>
-                    </asp:GridView>
+                    <asp:ListView ID="ListView_Offices" runat="server" DataSourceID="SqlDataSource_Offices">
+                        <ItemTemplate>
+                            <address>
+                              <strong><asp:Label Text='<%# Eval("name") %>' runat="server" ID="Label_OfficeName" /></strong><br/>
+                              <asp:Label Text='<%# Eval("address") %>' runat="server" ID="Label_OfficeAddress" /><br/>
+                              <asp:Label Text='<%# Eval("city") %>' runat="server" ID="Label_City" /><br/>
+                              <!-- Office telephone
+                                  <abbr title="Phone">P:</abbr> (123) 456-7890
+                                -->
+                            </address>
+                        </ItemTemplate>
+                    </asp:ListView>
+                    <!-- SQL Sentence to obtain AllOffices -->
                     <asp:SqlDataSource runat="server" ID="SqlDataSourceOffices" ConnectionString='<%$ ConnectionStrings:ConnectionString %>' SelectCommand="SELECT [name], [address], [city] FROM [T_Office]"></asp:SqlDataSource>
             
                 </div>
