@@ -43,11 +43,11 @@ namespace Web
 
         protected void ShowResult()
         {
-
+            /*
             Label_for_Result.Text = "DatePickUp: " + date_PickUp.ToString() +
                                         "DateDropOff: " + date_DropOff.ToString() +
                                             ", Daydiff: " + BookingCADNS.BookingCAD.DayDifference(date_DropOff, date_PickUp);
-
+            */
         }
         
     }

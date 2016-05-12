@@ -5,6 +5,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:Panel ID="Panel2" runat="server" Height="75px"> </asp:Panel>
+
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+
     <asp:Panel ID="Panel_MainContent" runat="server">
         <div class="container-fluid" style="padding:20px;background:url(assets/img/carretera-mar.jpeg);background-repeat:no-repeat;">
         <div class="row-fluid" style="height:600px">
@@ -26,14 +29,13 @@
                     <br />
                     <asp:Button ID="Button_Search" class="btn btn-primary" Width="26%" style="margin-left:37%;" runat="server" Text="Search" />                
                     <br />
-    <asp:Label ID="Label_for_Result" runat="server" Text="Label"></asp:Label>
                 </form>
             </div>
             <div class="col-xs-4"></div>
         </div>       
     </div>
     </asp:Panel>
-    <asp:Panel ID="Panel_SearchResult" runat="server">
+    <asp:Panel ID="Panel_SearchResult" runat="server" Height="0">
         <asp:DataList ID="DataList_Consult" runat="server" DataSourceID="SqlDataSourceCarsDays">
             <ItemTemplate>
                 Name:
@@ -54,7 +56,8 @@
 
     <ajaxToolkit:CollapsiblePanelExtender ID="CollapsiblePanelExtender_Result" runat="server" Enabled="true"
         TargetControlID="Panel_SearchResult" ExpandControlID="Panel_MainContent" CollapseControlID="Panel_MainContent"
-        Collapsed="true" SuppressPostBack="true">
+        Collapsed="true" 
+        SuppressPostBack="true">
 
     </ajaxToolkit:CollapsiblePanelExtender>
 
