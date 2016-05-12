@@ -68,6 +68,10 @@ C:\Users\miste\Desktop\WebHada\ARADrive\ARADrive\Web\bin\Microsoft.CodeDom.Provi
 C:\Users\miste\Desktop\WebHada\ARADrive\ARADrive\Web\obj\Debug\Web.csprojResolveAssemblyReference.cache
 C:\Users\miste\Desktop\WebHada\ARADrive\ARADrive\Web\obj\Debug\Web.dll
 C:\Users\miste\Desktop\WebHada\ARADrive\ARADrive\Web\obj\Debug\Web.pdb
+C:\Users\Lenovo\Documents\GitHub\ARADrive\ARADrive\Web\bin\AjaxControlToolkit.dll
+C:\Users\Lenovo\Documents\GitHub\ARADrive\ARADrive\Web\obj\Debug\Interop.MSScriptControl.dll
+C:\Users\Lenovo\Documents\GitHub\ARADrive\ARADrive\Web\obj\Debug\Interop.Scripting.dll
+C:\Users\Lenovo\Documents\GitHub\ARADrive\ARADrive\Web\obj\Debug\Web.csproj.ResolveComReference.cache
 C:\Users\tina\Source\Repos\ARADrive\ARADrive\Web\bin\ApplicationInsights.config
 C:\Users\tina\Source\Repos\ARADrive\ARADrive\Web\bin\roslyn\csc.exe
 C:\Users\tina\Source\Repos\ARADrive\ARADrive\Web\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -101,9 +105,8 @@ C:\Users\tina\Source\Repos\ARADrive\ARADrive\Web\bin\Microsoft.AI.WindowsServer.
 C:\Users\tina\Source\Repos\ARADrive\ARADrive\Web\bin\Microsoft.ApplicationInsights.xml
 C:\Users\tina\Source\Repos\ARADrive\ARADrive\Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\tina\Source\Repos\ARADrive\ARADrive\Web\obj\Debug\Web.csprojResolveAssemblyReference.cache
+C:\Users\tina\Source\Repos\ARADrive\ARADrive\Web\obj\Debug\Interop.MSScriptControl.dll
+C:\Users\tina\Source\Repos\ARADrive\ARADrive\Web\obj\Debug\Interop.Scripting.dll
+C:\Users\tina\Source\Repos\ARADrive\ARADrive\Web\obj\Debug\Web.csproj.ResolveComReference.cache
 C:\Users\tina\Source\Repos\ARADrive\ARADrive\Web\obj\Debug\Web.dll
 C:\Users\tina\Source\Repos\ARADrive\ARADrive\Web\obj\Debug\Web.pdb
-C:\Users\Lenovo\Documents\GitHub\ARADrive\ARADrive\Web\bin\AjaxControlToolkit.dll
-C:\Users\Lenovo\Documents\GitHub\ARADrive\ARADrive\Web\obj\Debug\Interop.MSScriptControl.dll
-C:\Users\Lenovo\Documents\GitHub\ARADrive\ARADrive\Web\obj\Debug\Interop.Scripting.dll
-C:\Users\Lenovo\Documents\GitHub\ARADrive\ARADrive\Web\obj\Debug\Web.csproj.ResolveComReference.cache

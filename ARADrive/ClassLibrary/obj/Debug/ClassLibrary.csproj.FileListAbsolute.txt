@@ -16,5 +16,6 @@ C:\Users\miste\Desktop\WebHada\ARADrive\ARADrive\ClassLibrary\obj\Debug\ClassLib
 C:\Users\Lenovo\Documents\GitHub\ARADrive\ARADrive\ClassLibrary\obj\Debug\ClassLibrary.csprojResolveAssemblyReference.cache
 C:\Users\tina\Source\Repos\ARADrive\ARADrive\ClassLibrary\bin\Debug\ClassLibrary.dll
 C:\Users\tina\Source\Repos\ARADrive\ARADrive\ClassLibrary\bin\Debug\ClassLibrary.pdb
+C:\Users\tina\Source\Repos\ARADrive\ARADrive\ClassLibrary\obj\Debug\ClassLibrary.csprojResolveAssemblyReference.cache
 C:\Users\tina\Source\Repos\ARADrive\ARADrive\ClassLibrary\obj\Debug\ClassLibrary.dll
 C:\Users\tina\Source\Repos\ARADrive\ARADrive\ClassLibrary\obj\Debug\ClassLibrary.pdb
