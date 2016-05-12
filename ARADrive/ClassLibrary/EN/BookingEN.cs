@@ -10,7 +10,6 @@ namespace BookingENns{
         private int day;
         private int month;
         private int year;
-
         public Date(int dia, int mes, int anyo)
         {
             this.day = dia;
