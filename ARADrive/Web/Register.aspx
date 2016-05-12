@@ -11,6 +11,7 @@
             <div class="col-xs-4"></div>
             <div class="col-xs-4">
                 <form class="form-signin" action="">
+                    <asp:Label ID="Label_Error" runat="server" Text=""></asp:Label>
                     <!--Profile-->
                     <legend>Profile</legend>
                     <div class="form-group">

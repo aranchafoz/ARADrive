@@ -24,6 +24,7 @@ namespace BookingCADNS
             return new Date(datetime.Day, datetime.Month, datetime.Year);
             
         }
+      
       private string s = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ToString ();
       private BookingEN booking;
       private ArrayList bookings;

@@ -73,22 +73,35 @@ namespace Web
         }
         protected void Button_Submit_Click(object sender, EventArgs e)
         {
-            
-           if (!IsValidEmail(TextBox_Email.ToString())
-                && TextBox_Address.ToString() != string.Empty && TextBox_Country.ToString() != string.Empty
-                && TextBox_Name.ToString() != string.Empty && TextBox_PostalCode.ToString() != string.Empty
-                && TextBox_Surname.ToString() != string.Empty && TextBox_Telephone.ToString() != string.Empty
-                && TextBox_PasswordConfirm.ToString() != string.Empty && TextBox_EmailConfirm.ToString() != string.Empty
-                && TextBox_Password.ToString() != string.Empty && TextBox_Location.ToString() != string.Empty)
-            {
-                if (TextBox_Email.ToString() == TextBox_EmailConfirm.ToString() && TextBox_Password.ToString() == TextBox_PasswordConfirm.ToString())
+            try {
+                if (!IsValidEmail(TextBox_Email.ToString())
+                     && TextBox_Address.Text.ToString() != string.Empty && TextBox_Country.Text.ToString() != string.Empty
+                     && TextBox_Name.Text.ToString() != string.Empty && TextBox_PostalCode.Text.ToString() != string.Empty
+                     && TextBox_Surname.Text.ToString() != string.Empty && TextBox_Telephone.Text.ToString() != string.Empty
+                     && TextBox_PasswordConfirm.ToString() != string.Empty && TextBox_EmailConfirm.Text.ToString() != string.Empty
+                     && TextBox_Password.Text.ToString() != string.Empty && TextBox_Location.Text.ToString() != string.Empty)
                 {
-                    int Telefono = Int32.Parse(TextBox_Telephone.Text);
-                    Date Birthdate = BookingCAD.ConvertDate(TextBox_Birthdate.Text.ToString());
-                    ClientEN client = new ClientEN(TextBox_Email.ToString(), TextBox_Password.ToString(), false, TextBox_NIF.ToString(), TextBox_Name.ToString(),
-                        TextBox_Surname.ToString(), Telefono, TextBox_Address.ToString(), TextBox_Location.ToString(), null, true);
-                    ClientCAD Client = new ClientCAD();
+                    if (TextBox_Email.Text.ToString() == TextBox_EmailConfirm.Text.ToString() && TextBox_Password.Text.ToString() == TextBox_PasswordConfirm.Text.ToString())
+                    {
+                        int Telefono = Int32.Parse(TextBox_Telephone.Text.ToString());
+                        Date Birthdate = BookingCAD.ConvertDate(TextBox_Birthdate.Text.ToString());
+                        ClientEN client = new ClientEN(TextBox_Email.ToString(), TextBox_Password.ToString(), false, TextBox_NIF.ToString(), TextBox_Name.ToString(),
+                            TextBox_Surname.ToString(), Telefono, TextBox_Address.ToString(), TextBox_Location.ToString(), Birthdate, true);
+                        ClientCAD Client = new ClientCAD();
+                    }
+                    else
+                    {
+                        Label_Error.Text = "Confirmation fields mismatch";
+                    }
                 }
+                else
+                {
+                    Label_Error.Text = "Some fields are missing";
+                }
+            }
+            catch (NullReferenceException)
+            {
+                Label_Error.Text = "Error creating account";
             }
         }
     }
