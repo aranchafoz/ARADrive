@@ -11,11 +11,19 @@ using System.Data.SqlTypes;
 using System.Collections;
 using System.Configuration;
 using BookingENns;
+using System.Globalization;
 
 namespace BookingCADNS
 {
     public class BookingCAD
     {
+
+      public static Date ConvertDate(string text)
+        {
+            DateTime datetime= DateTime.ParseExact(text, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            return new Date(datetime.Day, datetime.Month, datetime.Year);
+            
+        }
       private string s = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ToString ();
       private BookingEN booking;
       private ArrayList bookings;

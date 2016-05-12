@@ -9,6 +9,8 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using ClientCADNS;
 using ClientENns;
+using BookingENns;
+using BookingCADNS;
 
 namespace Web
 {
@@ -71,7 +73,8 @@ namespace Web
         }
         protected void Button_Submit_Click(object sender, EventArgs e)
         {
-            if (!IsValidEmail(TextBox_Email.ToString())
+            
+           if (!IsValidEmail(TextBox_Email.ToString())
                 && TextBox_Address.ToString() != string.Empty && TextBox_Country.ToString() != string.Empty
                 && TextBox_Name.ToString() != string.Empty && TextBox_PostalCode.ToString() != string.Empty
                 && TextBox_Surname.ToString() != string.Empty && TextBox_Telephone.ToString() != string.Empty
@@ -80,8 +83,8 @@ namespace Web
             {
                 if (TextBox_Email.ToString() == TextBox_EmailConfirm.ToString() && TextBox_Password.ToString() == TextBox_PasswordConfirm.ToString())
                 {
-                    int Telefono = Int32.Parse(TextBox_Telephone.ToString());
-                    //DateTime Birthdate = TextBox_Birthdate;
+                    int Telefono = Int32.Parse(TextBox_Telephone.Text);
+                    Date Birthdate = BookingCAD.ConvertDate(TextBox_Birthdate.Text.ToString());
                     ClientEN client = new ClientEN(TextBox_Email.ToString(), TextBox_Password.ToString(), false, TextBox_NIF.ToString(), TextBox_Name.ToString(),
                         TextBox_Surname.ToString(), Telefono, TextBox_Address.ToString(), TextBox_Location.ToString(), null, true);
                     ClientCAD Client = new ClientCAD();

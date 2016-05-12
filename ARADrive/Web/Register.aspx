@@ -80,7 +80,8 @@
                     </div>
                     <div class="form-group">
                         <label for="">Birthdate</label>
-                        <asp:TextBox ID="TextBox_Birthdate" type="date" class="form-control" runat="server" TextMode="Date"></asp:TextBox>
+                        <asp:TextBox ID="TextBox_Birthdate" class="form-control" runat="server" TextMode="Date"></asp:TextBox>
+                        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
                     </div>             
                     <div class="form-group">
                         <label for="">Driving license number</label>
