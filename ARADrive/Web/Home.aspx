@@ -1,9 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="Web.Home" EnableEventValidation="false"%>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:Panel ID="Panel2" runat="server" Height="75px"> </asp:Panel>
-    <div class="container-fluid" style="padding:20px;background:url(assets/img/carretera-mar.jpeg);background-repeat:no-repeat;">
+    <asp:Panel ID="Panel_MainContent" runat="server">
+        <div class="container-fluid" style="padding:20px;background:url(assets/img/carretera-mar.jpeg);background-repeat:no-repeat;">
         <div class="row-fluid" style="height:600px">
             <div class="page-header" style="margin-left:20%;margin-right:20%">
                 <h1>Make a reservation</h1>
@@ -29,6 +32,32 @@
             <div class="col-xs-4"></div>
         </div>       
     </div>
+    </asp:Panel>
+    <asp:Panel ID="Panel_SearchResult" runat="server">
+        <asp:DataList ID="DataList_Consult" runat="server" DataSourceID="SqlDataSourceCarsDays">
+            <ItemTemplate>
+                Name:
+                <asp:Label Text='<%# Eval("name") %>' runat="server" ID="nameLabel" /><br />
+                Category:
+                <asp:Label Text='<%# Eval("category") %>' runat="server" ID="categoryLabel" /><br />
+                Description:
+                <asp:Label Text='<%# Eval("descrip") %>' runat="server" ID="descripLabel" /><br />
+                Price per day:
+                <asp:Label Text='<%# Eval("price") %>' runat="server" ID="priceLabel" /><br />
+                Total price:
+                <asp:Label Text="" runat="server" ID="Label_TotalPrice" /><br />
+                <br />
+            </ItemTemplate>
+        </asp:DataList>
+        <asp:SqlDataSource runat="server" ID="SqlDataSourceCarsDays" ConnectionString='<%$ ConnectionStrings:ConnectionString %>' SelectCommand="SELECT [name], [category], [descrip], [price] FROM [T_Car]"></asp:SqlDataSource>
+    </asp:Panel>
+
+    <ajaxToolkit:CollapsiblePanelExtender ID="CollapsiblePanelExtender_Result" runat="server" Enabled="true"
+        TargetControlID="Panel_SearchResult" ExpandControlID="Panel_MainContent" CollapseControlID="Panel_MainContent"
+        Collapsed="true" SuppressPostBack="true">
+
+    </ajaxToolkit:CollapsiblePanelExtender>
+
     <!--<asp:Panel ID="Panel3" runat="server" Height="100px"> </asp:Panel>
     <asp:Panel ID="Panel1" runat="server" Height="100px"> </asp:Panel>
     <table style="width: 100%;">
