@@ -17,13 +17,6 @@ namespace BookingCADNS
 {
     public class BookingCAD
     {
-
-      public static Date ConvertDate(string text)
-        {
-            DateTime datetime= DateTime.ParseExact(text, "yyyy-MM-dd", CultureInfo.InvariantCulture);
-            return new Date(datetime.Day, datetime.Month, datetime.Year);
-            
-        }
       
       private string s = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ToString ();
       private BookingEN booking;
@@ -161,5 +154,17 @@ namespace BookingCADNS
       }
 
 
+        public static Date ConvertDate(string text)
+        {
+            DateTime datetime = DateTime.ParseExact(text, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            return new Date(datetime.Day, datetime.Month, datetime.Year);
+        }
+
+        public static double DayDifference(Date date1, Date date2)
+        {
+            DateTime dateTime1 = new DateTime(date1.GetYear(), date1.GetMonth(), date1.GetDay());
+            DateTime dateTime2 = new DateTime(date2.GetYear(), date2.GetMonth(), date2.GetDay());
+            return (dateTime1 - dateTime2).TotalDays;
+        }
     }
 }

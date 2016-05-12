@@ -19,13 +19,14 @@ namespace Web
         {
             Button_Search.Click += new EventHandler(this.OnClick_Search);
         }
-        
+
+
         protected void OnClick_Search(Object sender, EventArgs e)
         {
             // Read Pick Up Date and Drop Off 
             date_PickUp = BookingCADNS.BookingCAD.ConvertDate(Calendar_PickUp1.Text);
-            date_DropOff = BookingCADNS.BookingCAD.ConvertDate(Calendar_PickUp1.Text);
-            date_today = BookingCADNS.BookingCAD.ConvertDate(DateTime.Today.ToString());
+            date_DropOff = BookingCADNS.BookingCAD.ConvertDate(Calendar_DropOff1.Text);
+            date_today = new Date(DateTime.Today.Day, DateTime.Today.Month, DateTime.Today.Year);
 
             // Date_DropOff has to be at least Date_PickUp  &  Date_PickUp has to be at least today
             if ((date_DropOff.Equals(date_PickUp) > -1) && (date_PickUp.Equals(date_today) > -1))
@@ -43,8 +44,11 @@ namespace Web
         protected void ShowResult()
         {
 
-            Label_for_Result.Text = "DatePickUp: " + date_PickUp.ToString();
+            Label_for_Result.Text = "DatePickUp: " + date_PickUp.ToString() +
+                                        "DateDropOff: " + date_DropOff.ToString() +
+                                            ", Daydiff: " + BookingCADNS.BookingCAD.DayDifference(date_DropOff, date_PickUp);
 
         }
+        
     }
 }
