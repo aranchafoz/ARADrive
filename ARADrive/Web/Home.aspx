@@ -23,6 +23,7 @@
                     <br />
                     <asp:Button ID="Button_Search" class="btn btn-primary" Width="26%" style="margin-left:37%;" runat="server" Text="Search" />                
                     <br />
+    <asp:Label ID="Label_for_Result" runat="server" Text="Label"></asp:Label>
                 </form>
             </div>
             <div class="col-xs-4"></div>

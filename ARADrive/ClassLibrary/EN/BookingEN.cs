@@ -16,6 +16,7 @@ namespace BookingENns{
             this.month = mes;
             this.year = anyo;
         }
+        
         public int GetDay()
         {
             return day;
@@ -30,6 +31,51 @@ namespace BookingENns{
         public int GetYear()
         {
             return year;
+        }
+
+        public int Equals(Date date)
+        {
+            int ret = 0;
+            if (this.GetYear() == date.GetYear())
+            {
+                if (this.GetMonth() == date.GetMonth())
+                {
+                    if (this.GetDay() == date.GetDay())
+                    {
+                        ret = 0;
+                    }
+                    else if (this.GetDay() < date.GetDay())
+                    {
+                        ret = -1;
+                    }
+                    else if (this.GetDay() < date.GetDay())
+                    {
+                        ret = 1;
+                    }
+                }
+                else if (this.GetMonth() < date.GetMonth())
+                {
+                    ret = -1;
+                }
+                else if (this.GetMonth() < date.GetMonth())
+                {
+                    ret = 1;
+                }
+            }
+            else if (this.GetYear() < date.GetYear())
+            {
+                ret = -1;
+            }
+            else if (this.GetYear() < date.GetYear())
+            {
+                ret = 1;
+            }
+            return ret;
+        }
+
+        public override string ToString()
+        {
+            return GetDay() + "." + GetMonth() + "." + GetYear();
         }
     }
 

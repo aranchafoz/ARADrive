@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookingENns;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,8 +11,9 @@ namespace Web
 {
     public partial class Home : System.Web.UI.Page
     {
-        private DateTime date_PickUp;
-        private DateTime date_DropOff;
+        private Date date_PickUp;
+        private Date date_DropOff;
+        private Date date_today;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -20,24 +22,19 @@ namespace Web
         
         protected void OnClick_Search(Object sender, EventArgs e)
         {
+            // Read Pick Up Date and Drop Off 
+            date_PickUp = BookingCADNS.BookingCAD.ConvertDate(Calendar_PickUp1.Text);
+            date_DropOff = BookingCADNS.BookingCAD.ConvertDate(Calendar_PickUp1.Text);
+            date_today = BookingCADNS.BookingCAD.ConvertDate(DateTime.Today.ToString());
 
-            if ((Calendar_PickUp.SelectedDate > DateTime.Today) && (Calendar_PickUp.SelectedDate > DateTime.Today))
+            // Date_DropOff has to be at least Date_PickUp  &  Date_PickUp has to be at least today
+            if ((date_DropOff.Equals(date_PickUp) > -1) && (date_PickUp.Equals(date_today) > -1))
             {
-                // Read Pick Up Date and Drop Off Date
-                if (Calendar_PickUp.SelectedDate <= Calendar_DropOff.SelectedDate)  // HERE: Check if some date is selected
-                {
-                    date_PickUp = Calendar_PickUp.SelectedDate;
-                    date_DropOff = Calendar_DropOff.SelectedDate;
-                    ShowResult();
-                }
-                else
-                {
-                    //System.Windows.Forms.MessageBox.Show("Please select the Pick Up Date before the Drop Off Date");
-                }
+                ShowResult();
             }
             else
             {
-                //System.Windows.Forms.MessageBox.Show("The dates cannot be before today!");
+                System.Windows.Forms.MessageBox.Show("Please check the dates!");
             }
 
         }
@@ -46,12 +43,7 @@ namespace Web
         protected void ShowResult()
         {
 
-            Line1.Visible = true;
-            Label_Result.Text = "Selected Date: From " + date_PickUp.Day.ToString() + "."
-                                    + date_PickUp.Month.ToString() + "." + date_PickUp.Year.ToString()
-                                    + " until " + date_DropOff.Day.ToString() + "."
-                                    + date_DropOff.Month.ToString() + "." + date_DropOff.Year.ToString();
-            Label_Result.Visible = true;
+            Label_for_Result.Text = "DatePickUp: " + date_PickUp.ToString();
 
         }
     }
