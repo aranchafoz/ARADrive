@@ -97,7 +97,7 @@ namespace Web
             }
             else
             {
-                Label_Resultado.Text = "Some fields are invalid or are missing";
+                Label_Resultado.Text = "* Some fields are invalid or are missing";
             }
         }
     }

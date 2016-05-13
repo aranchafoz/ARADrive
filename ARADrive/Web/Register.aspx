@@ -11,7 +11,7 @@
             <div class="col-xs-4"></div>
             <div class="col-xs-4">
                 <form class="form-signin" action="">
-                    <asp:Label ID="Label_Error" runat="server" Text=""></asp:Label>
+                    <asp:Label ID="Label_Error" runat="server" Text="" Font-Italic="true" Font-Size="Small" ForeColor="Red"></asp:Label>
                     <!--Profile-->
                     <legend>Profile</legend>
                     <div class="form-group">
@@ -82,7 +82,6 @@
                     <div class="form-group">
                         <label for="">Birthdate</label>
                         <asp:TextBox ID="TextBox_Birthdate" class="form-control" runat="server" TextMode="Date"></asp:TextBox>
-                        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
                     </div>             
                     <div class="form-group">
                         <label for="">Driving license number</label>
@@ -102,5 +101,4 @@
             <div class="col-xs-4"></div>
         </div>       
     </div>
-    <asp:Panel ID="Panel2" runat="server" Height="230px"> </asp:Panel>
 </asp:Content>

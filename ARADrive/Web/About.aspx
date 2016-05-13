@@ -49,7 +49,7 @@
                 </div>
                 <div class="col-xs-2"></div>
                 <div class="col-xs-8" style="margin-left:35%">
-                    <asp:ListView ID="ListView_Offices" runat="server" DataSourceID="SqlDataSource_Offices">
+                    <asp:ListView ID="ListView_Offices" runat="server" DataSourceID="SqlDataSourceOffices">
                         <ItemTemplate>
                             <address>
                               <strong><asp:Label Text='<%# Eval("name") %>' runat="server" ID="Label_OfficeName" /></strong><br/>
@@ -81,5 +81,4 @@
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
             async defer></script> 
-    <asp:Panel ID="Panel2" runat="server" Height="230px"> </asp:Panel>
 </asp:Content>

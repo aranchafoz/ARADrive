@@ -96,7 +96,7 @@ namespace Web
                 }
                 else
                 {
-                    Label_Error.Text = "Some fields are missing";
+                    Label_Error.Text = "* Some fields are missing";
                 }
             }
             catch (NullReferenceException)
