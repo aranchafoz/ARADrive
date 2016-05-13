@@ -12,15 +12,15 @@
             <div class="col-xs-4">
                 <form class="form-signin" action="">
                     <div class="form-group">
-                        <label for="">Your name&nbsp;<i style="color:#cccccc"><small>*required</small></i></label>
+                        <label for="">Your name&nbsp;<i style="color:#666666"><small>*required</small></i></label>
                         <asp:TextBox ID="TextBox_UserName" AutoCompleteType="DisplayName" class="form-control" runat="server"></asp:TextBox>
                     </div>
                     <div class="form-group">
-                        <label for="">Your email&nbsp;<i style="color:#cccccc"><small>*required</small></i></label>
+                        <label for="">Your email&nbsp;<i style="color:#666666"><small>*required</small></i></label>
                         <asp:TextBox ID="TextBox_UserEmail" AutoCompleteType="Email" class="form-control" runat="server"></asp:TextBox>
                     </div>
                     <div class="form-group">
-                        <label for="">Subject&nbsp;<i style="color:#cccccc"><small>*required</small></i></label>
+                        <label for="">Subject&nbsp;<i style="color:#666666"><small>*required</small></i></label>
                         <asp:TextBox ID="TextBox_Subject" type="text" class="form-control" runat="server"></asp:TextBox>
                     </div>
                     <div class="form-group">
@@ -29,7 +29,7 @@
                     </div>                  
                     
                     <asp:Label ID="Label_Resultado" runat="server" Text="" Font-Italic="true" Font-Size="Small" ForeColor="Red"></asp:Label>
-                    <br />
+                    <br /><br />
                     <asp:Button ID="Button_Send" class="btn btn-primary" Width="26%" style="margin-left:37%;" runat="server" Text="Send" />                
                     <br />
                 </form>
@@ -37,5 +37,5 @@
             <div class="col-xs-4"></div>
         </div>       
     </div>
-    <asp:Panel ID="Panel2" runat="server" Height="230px"> </asp:Panel>
+    
 </asp:Content>

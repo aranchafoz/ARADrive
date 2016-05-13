@@ -21,12 +21,11 @@
                     </div>                  
                     
                     <br />
-                    <asp:Button ID="Button_Submit" class="btn" Width="26%" style="margin-left:37%;" runat="server" Text="Log in" />                
+                    <asp:Button ID="Button_Submit" class="btn btn-primary" Width="26%" style="margin-left:37%;" runat="server" Text="Log in" />                
                     <br />
                 </form>
             </div>
             <div class="col-xs-4"></div>
         </div>       
     </div>
-    <asp:Panel ID="Panel2" runat="server" Height="230px"> </asp:Panel>
 </asp:Content>

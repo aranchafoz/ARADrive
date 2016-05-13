@@ -21,7 +21,7 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body>
+<body style="background:url(assets/img/carretera-mar.jpeg);background-repeat:no-repeat;background-attachment:fixed">
     <form id="form1" runat="server">
         <div class="navbar navbar-inverse navbar-fixed-top scrollclass" >
             <div class="container">
@@ -63,29 +63,31 @@
         
         </asp:ContentPlaceHolder>
     </div>
-    <div class="navbar-fixed-bottom">
+    <div class="bottom">
         <!--SOCIAL SECTION-->
         <section id="social-section">
             <div class="container bottom">
                 <div class="row text-center">
                     <div class="col-md-4 scl scl-dark-bk">
                         <h4>FACEBOOK</h4>
-                        <p class="text-center"><a href="#"><i class="fa fa-facebook fa-5x"></i></a></p>
+                        <p class="text-center"><a href="https://www.facebook.com/profile.php?id=100012232832942"><i class="fa fa-facebook fa-5x"></i></a></p>
                     </div>
                     <div class="col-md-4 scl">
                         <h4>TWITTER</h4>
-                        <p class="text-center"><a href="#"><i class="fa fa-twitter fa-5x"></i></a></p>
+                        <p class="text-center"><a href="https://twitter.com/DriveAra"><i class="fa fa-twitter fa-5x"></i></a></p>
                     </div>
                     <div class="col-md-4 scl scl-dark-bk">
                         <h4>GOOGLE +</h4>
-                        <p class="text-center"><a href="#"><i class="fa fa-google-plus fa-5x"></i></a></p>
+                        <p class="text-center"><a href="https://plus.google.com/u/0/107446139836472188712/posts"><i class="fa fa-google-plus fa-5x"></i></a></p>
                     </div>
                 </div>
             </div>
         </section>  
         <!--END SOCIAL SECTION-->
+        
+        <asp:Panel ID="Panel5" runat="server" Height="60px"> </asp:Panel>
         <!--FOOTER SECTION -->
-        <div class="for-full-back bottom" id="footer">
+        <div class="for-full-back bottom navbar-fixed-bottom" id="footer">
             2016 www.aradrive.com | All Rights Reserved
      
         </div>
