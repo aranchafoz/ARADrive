@@ -1,4 +1,4 @@
-// v2.0
+﻿// v2.0
 
 using System;
 using System.Collections.Generic;
@@ -12,6 +12,7 @@ using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Collections;
 using System.Configuration;
+using System.Globalization;
 using BookingENns;
 
 namespace BookingCADNS
@@ -23,7 +24,20 @@ namespace BookingCADNS
       private ArrayList bookings;
       private SqlConnection conn;
 
-      public BookingCAD() {
+        public static Date ConvertDate(string text)
+        {
+            DateTime datetime = DateTime.ParseExact(text, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            return new Date(datetime.Day, datetime.Month, datetime.Year);
+        }
+
+        public static double DayDifference(Date date1, Date date2)
+        {
+            DateTime dateTime1 = new DateTime(date1.GetYear(), date1.GetMonth(), date1.GetDay());
+            DateTime dateTime2 = new DateTime(date2.GetYear(), date2.GetMonth(), date2.GetDay());
+            return (dateTime1 - dateTime2).TotalDays;
+        }
+
+        public BookingCAD() {
         conn = new SqlConnection(s); // FALTA POR PONER BIEN LO DEL STRING 's' !!
       }
 
