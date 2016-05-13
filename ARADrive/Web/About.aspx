@@ -43,12 +43,13 @@
         </div>
         <!-- Offices -->
         <div class="row" style="padding:10px 0">
-            <div class="row-fluid">
+            <div class="row-fluid ">
                 <div class="page-header" style="margin-left:20%;margin-right:20%">
                     <h2>Offices</h2>
                 </div>
-                <div class="col-xs-2"></div>
-                <div class="col-xs-8" style="margin-left:35%">
+                <div class="col-xs-3"></div>
+                <div class="col-xs-6">
+                    <div class="panel" style="padding:20px 5%">
                     <asp:ListView ID="ListView_Offices" runat="server" DataSourceID="SqlDataSourceOffices">
                         <ItemTemplate>
                             <address>
@@ -61,11 +62,12 @@
                             </address>
                         </ItemTemplate>
                     </asp:ListView>
+                    </div>
                     <!-- SQL Sentence to obtain AllOffices -->
                     <asp:SqlDataSource runat="server" ID="SqlDataSourceOffices" ConnectionString='<%$ ConnectionStrings:ConnectionString %>' SelectCommand="SELECT [name], [address], [city] FROM [T_Office]"></asp:SqlDataSource>
             
                 </div>
-                <div class="col-xs-2"></div>
+                <div class="col-xs-3"></div>
             </div>  
         </div>
     </div>
