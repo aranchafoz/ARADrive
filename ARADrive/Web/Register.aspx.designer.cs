@@ -22,6 +22,15 @@ namespace Web {
         protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
+        /// Control ScriptManagerRegister.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManagerRegister;
+        
+        /// <summary>
         /// Control Label_Error.
         /// </summary>
         /// <remarks>
@@ -130,15 +139,6 @@ namespace Web {
         protected global::System.Web.UI.WebControls.TextBox TextBox_Telephone;
         
         /// <summary>
-        /// Control CheckBox_DrivingLicense.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox_DrivingLicense;
-        
-        /// <summary>
         /// Control TextBox_NIF.
         /// </summary>
         /// <remarks>
@@ -148,15 +148,6 @@ namespace Web {
         protected global::System.Web.UI.WebControls.TextBox TextBox_NIF;
         
         /// <summary>
-        /// Control TextBox_IssuingCountry.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox_IssuingCountry;
-        
-        /// <summary>
         /// Control TextBox_Birthdate.
         /// </summary>
         /// <remarks>
@@ -164,6 +155,33 @@ namespace Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBox_Birthdate;
+        
+        /// <summary>
+        /// Control CheckBox_DrivingLicense.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox CheckBox_DrivingLicense;
+        
+        /// <summary>
+        /// Control Panel_DrivingLicense.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel_DrivingLicense;
+        
+        /// <summary>
+        /// Control TextBox_IssuingCountry.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBox_IssuingCountry;
         
         /// <summary>
         /// Control TextBox_DrivingLicenseNumber.
@@ -191,5 +209,14 @@ namespace Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button_Submit;
+        
+        /// <summary>
+        /// Control CollapsiblePanelExtender_DrivingLicense.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CollapsiblePanelExtender CollapsiblePanelExtender_DrivingLicense;
     }
 }

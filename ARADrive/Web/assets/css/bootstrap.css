@@ -5785,3 +5785,9 @@ margin: 0 9px;
 border-left: 1px hidden;
 border-right: 1px hidden;
 }
+.transparent{    
+    background-color: rgba(20, 173, 124, 0.35);
+}
+.translucid{    
+    background-color: rgba(20, 173, 124, 0.5);
+}

@@ -44,7 +44,7 @@
                     </div>
                     <div class="panel-footer" style="text-align:center">
                         <h4 style="text-align:center;margin-right:5px">Price: <b>65$</b><i><small> per year</small></i></h4>
-                        <asp:Button ID="Button_PremiumUser" CssClass="btn btn-success" runat="server" Text="Upgrape"/>
+                        <asp:Button ID="Button_PremiumUser" CssClass="btn btn-success" runat="server" Text="Upgrade"/>
                     </div>
                 </div>                
             </div>
