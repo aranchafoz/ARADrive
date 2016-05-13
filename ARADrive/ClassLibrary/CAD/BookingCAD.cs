@@ -1,4 +1,6 @@
-﻿using System;
+// v2.0
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,13 +13,11 @@ using System.Data.SqlTypes;
 using System.Collections;
 using System.Configuration;
 using BookingENns;
-using System.Globalization;
 
 namespace BookingCADNS
 {
     public class BookingCAD
     {
-      
       private string s = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ToString ();
       private BookingEN booking;
       private ArrayList bookings;
@@ -64,7 +64,7 @@ namespace BookingCADNS
                   j++;
               }
               Date fd = new Date(date[0], date[1], date[2]);
-            bookings.Add(new BookingEN((int)dr["code"],dr["user"].ToString(),(int)dr["car"],sd,fd,(bool)dr["driver"],(bool)dr["satNav"],(bool)dr["babyChair"],(bool)dr["childChair"],(bool)dr["baca"],(bool)dr["insurance"],(bool)dr["youngDriver"],(int)dr["pickUp"],(int)dr["delivery"],(double)dr["totPrice"]));
+            bookings.Add(new BookingEN((int)dr["code"],dr["usr"].ToString(),(int)dr["car"],sd,fd,(bool)dr["driver"],(bool)dr["satNav"],(bool)dr["babyChair"],(bool)dr["childChair"],(bool)dr["baca"],(bool)dr["insurance"],(bool)dr["youngDriver"],(int)dr["pickUp"],(int)dr["delivery"],(double)dr["totPrice"]));
           }
 
           dr.Close();
@@ -136,7 +136,7 @@ namespace BookingCADNS
       public void insertBooking(BookingEN c) {
         try {
           conn.Open();
-          SqlCommand sql = new SqlCommand("INSERT INTO T_Booking VALUES (" + c.Code + ", '" + c.User + "', " + c.Car + ", '" + c.Date + "', '" + c.FinishDate + "', " + c.Driver + ", " + c.SatNav + ", " + c.BabyChair + ", " + c.Baca + ", " + c.Insurance + ", " + c.YoungDriver + ", " + c.PickUp + ", " + c.Delivery + ", " + c.TotPrice + " )", conn);
+          SqlCommand sql = new SqlCommand("INSERT INTO T_Booking VALUES (" + c.Code + ", '" + c.User + "', " + c.Car + ", '" + c.Date + "', '" + c.FinishDate + "', " + c.Driver + ", " + c.SatNav + ", " + c.BabyChair + ", " + ", " + c.BabyChair + ", " + c.Baca + ", " + c.Insurance + ", " + c.YoungDriver + ", " + c.PickUp + ", " + c.Delivery + ", " + c.TotPrice + " )", conn);
           sql.ExecuteNonQuery();
         } finally {
           conn.Close();
@@ -154,17 +154,5 @@ namespace BookingCADNS
       }
 
 
-        public static Date ConvertDate(string text)
-        {
-            DateTime datetime = DateTime.ParseExact(text, "yyyy-MM-dd", CultureInfo.InvariantCulture);
-            return new Date(datetime.Day, datetime.Month, datetime.Year);
-        }
-
-        public static double DayDifference(Date date1, Date date2)
-        {
-            DateTime dateTime1 = new DateTime(date1.GetYear(), date1.GetMonth(), date1.GetDay());
-            DateTime dateTime2 = new DateTime(date2.GetYear(), date2.GetMonth(), date2.GetDay());
-            return (dateTime1 - dateTime2).TotalDays;
-        }
     }
 }
