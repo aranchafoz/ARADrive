@@ -5791,3 +5791,6 @@ border-right: 1px hidden;
 .translucid{    
     background-color: rgba(20, 173, 124, 0.5);
 }
+.white-clear{
+    background-color: rgba(255,255,255,0.85);
+}

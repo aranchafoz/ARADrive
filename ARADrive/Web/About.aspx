@@ -49,23 +49,67 @@
                 </div>
                 <div class="col-xs-3"></div>
                 <div class="col-xs-6">
-                    <div class="panel" style="padding:20px 5%">
-                    <asp:ListView ID="ListView_Offices" runat="server" DataSourceID="SqlDataSourceOffices">
-                        <ItemTemplate>
-                            <address>
-                              <strong><asp:Label Text='<%# Eval("name") %>' runat="server" ID="Label_OfficeName" /></strong><br/>
-                              <asp:Label Text='<%# Eval("address") %>' runat="server" ID="Label_OfficeAddress" /><br/>
-                              <asp:Label Text='<%# Eval("city") %>' runat="server" ID="Label_City" /><br/>
-                              <!-- Office telephone
-                                  <abbr title="Phone">P:</abbr> (123) 456-7890
-                                -->
-                            </address>
-                        </ItemTemplate>
-                    </asp:ListView>
-                    </div>
-                    <!-- SQL Sentence to obtain AllOffices -->
-                    <asp:SqlDataSource runat="server" ID="SqlDataSourceOffices" ConnectionString='<%$ ConnectionStrings:ConnectionString %>' SelectCommand="SELECT [name], [address], [city] FROM [T_Office]"></asp:SqlDataSource>
-            
+                    <div class="panel white-clear" style="padding:20px 0 20px 5%">
+                        <table style="margin:0 auto;padding:20px 20px;width:100%;">
+                            <tr>
+                                <td>
+                                    <asp:ListView ID="ListView_Col1" runat="server" DataSourceID="SqlDataSource1">
+                                        <ItemTemplate>
+                                            <address>
+                                              <strong><asp:Label Text='<%# Eval("name") %>' runat="server" ID="Label_OfficeName" /></strong><br/>
+                                              <asp:Label Text='<%# Eval("address") %>' runat="server" ID="Label_OfficeAddress" /><br/>
+                                              <asp:Label Text='<%# Eval("city") %>' runat="server" ID="Label_City" /><br/>
+                                            </address>
+                                        </ItemTemplate>
+                                    </asp:ListView>
+                                    <!-- SQL Sentence to obtain AllOffices -->
+                                    <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:ConnectionString %>'
+                                         SelectCommand="SELECT [name], [address], [city] FROM [T_Office] WHERE [code] BETWEEN 1 AND 7"></asp:SqlDataSource>
+                                </td>
+                                <td>
+                                    <asp:ListView ID="ListView_Col2" runat="server" DataSourceID="SqlDataSource2">
+                                        <ItemTemplate>
+                                            <address>
+                                              <strong><asp:Label Text='<%# Eval("name") %>' runat="server" ID="Label_OfficeName" /></strong><br/>
+                                              <asp:Label Text='<%# Eval("address") %>' runat="server" ID="Label_OfficeAddress" /><br/>
+                                              <asp:Label Text='<%# Eval("city") %>' runat="server" ID="Label_City" /><br/>
+                                            </address>
+                                        </ItemTemplate>
+                                    </asp:ListView>
+                                    <!-- SQL Sentence to obtain AllOffices -->
+                                    <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:ConnectionString %>'
+                                         SelectCommand="SELECT [name], [address], [city] FROM [T_Office] WHERE [code] BETWEEN 8 AND 14"></asp:SqlDataSource>
+                                </td>
+                                <td>
+                                    <asp:ListView ID="ListView_Col3" runat="server" DataSourceID="SqlDataSource3">
+                                        <ItemTemplate>
+                                            <address>
+                                              <strong><asp:Label Text='<%# Eval("name") %>' runat="server" ID="Label_OfficeName" /></strong><br/>
+                                              <asp:Label Text='<%# Eval("address") %>' runat="server" ID="Label_OfficeAddress" /><br/>
+                                              <asp:Label Text='<%# Eval("city") %>' runat="server" ID="Label_City" /><br/>
+                                            </address>
+                                        </ItemTemplate>
+                                    </asp:ListView>
+                                    <!-- SQL Sentence to obtain AllOffices -->
+                                    <asp:SqlDataSource runat="server" ID="SqlDataSource3" ConnectionString='<%$ ConnectionStrings:ConnectionString %>'
+                                         SelectCommand="SELECT [name], [address], [city] FROM [T_Office] WHERE [code] BETWEEN 15 AND 21"></asp:SqlDataSource>
+                                </td>
+                                <td>
+                                    <asp:ListView ID="ListView_Col4" runat="server" DataSourceID="SqlDataSource4">
+                                        <ItemTemplate>
+                                            <address>
+                                              <strong><asp:Label Text='<%# Eval("name") %>' runat="server" ID="Label_OfficeName" /></strong><br/>
+                                              <asp:Label Text='<%# Eval("address") %>' runat="server" ID="Label_OfficeAddress" /><br/>
+                                              <asp:Label Text='<%# Eval("city") %>' runat="server" ID="Label_City" /><br/>
+                                            </address>
+                                        </ItemTemplate>
+                                    </asp:ListView>
+                                    <!-- SQL Sentence to obtain AllOffices -->
+                                    <asp:SqlDataSource runat="server" ID="SqlDataSource4" ConnectionString='<%$ ConnectionStrings:ConnectionString %>'
+                                         SelectCommand="SELECT [name], [address], [city] FROM [T_Office] WHERE [code] BETWEEN 22 AND 28"></asp:SqlDataSource>
+                                </td>
+                            </tr>
+                        </table>                        
                 </div>
                 <div class="col-xs-3"></div>
             </div>  
