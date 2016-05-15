@@ -33,40 +33,40 @@ namespace BookingENns{
             return year;
         }
 
-        public int Equals(Date date)
+        public static int CompareDates(Date date_PickUp, Date date_DropOff)
         {
             int ret = 0;
-            if (this.GetYear() == date.GetYear())
+            if (date_PickUp.GetYear() == date_DropOff.GetYear())
             {
-                if (this.GetMonth() == date.GetMonth())
+                if (date_PickUp.GetMonth() == date_DropOff.GetMonth())
                 {
-                    if (this.GetDay() == date.GetDay())
+                    if (date_PickUp.GetDay() == date_DropOff.GetDay())
                     {
                         ret = 0;
                     }
-                    else if (this.GetDay() < date.GetDay())
+                    else if (date_PickUp.GetDay() < date_DropOff.GetDay())
                     {
                         ret = -1;
                     }
-                    else if (this.GetDay() < date.GetDay())
+                    else if (date_PickUp.GetDay() > date_DropOff.GetDay())
                     {
                         ret = 1;
                     }
                 }
-                else if (this.GetMonth() < date.GetMonth())
+                else if (date_PickUp.GetMonth() < date_DropOff.GetMonth())
                 {
                     ret = -1;
                 }
-                else if (this.GetMonth() < date.GetMonth())
+                else if (date_PickUp.GetMonth() > date_DropOff.GetMonth())
                 {
                     ret = 1;
                 }
             }
-            else if (this.GetYear() < date.GetYear())
+            else if (date_PickUp.GetYear() < date_DropOff.GetYear())
             {
                 ret = -1;
             }
-            else if (this.GetYear() < date.GetYear())
+            else if (date_PickUp.GetYear() > date_DropOff.GetYear())
             {
                 ret = 1;
             }

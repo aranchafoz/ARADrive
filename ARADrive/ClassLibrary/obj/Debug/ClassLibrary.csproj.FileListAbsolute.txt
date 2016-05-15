@@ -22,3 +22,8 @@ C:\Users\javie\OneDrive\Documentos\GitHub\ARADrive\ARADrive\ClassLibrary\bin\Deb
 C:\Users\javie\OneDrive\Documentos\GitHub\ARADrive\ARADrive\ClassLibrary\bin\Debug\ClassLibrary.pdb
 C:\Users\javie\OneDrive\Documentos\GitHub\ARADrive\ARADrive\ClassLibrary\obj\Debug\ClassLibrary.dll
 C:\Users\javie\OneDrive\Documentos\GitHub\ARADrive\ARADrive\ClassLibrary\obj\Debug\ClassLibrary.pdb
+C:\Users\tina46\Source\Repos\ARADrive\ARADrive\ClassLibrary\bin\Debug\ClassLibrary.dll
+C:\Users\tina46\Source\Repos\ARADrive\ARADrive\ClassLibrary\bin\Debug\ClassLibrary.pdb
+C:\Users\tina46\Source\Repos\ARADrive\ARADrive\ClassLibrary\obj\Debug\ClassLibrary.csprojResolveAssemblyReference.cache
+C:\Users\tina46\Source\Repos\ARADrive\ARADrive\ClassLibrary\obj\Debug\ClassLibrary.dll
+C:\Users\tina46\Source\Repos\ARADrive\ARADrive\ClassLibrary\obj\Debug\ClassLibrary.pdb
