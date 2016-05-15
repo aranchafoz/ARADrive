@@ -85,9 +85,11 @@ namespace Web
                     {
                         int Telefono = Int32.Parse(TextBox_Telephone.Text.ToString());
                         Date Birthdate = BookingCAD.ConvertDate(TextBox_Birthdate.Text.ToString());
-                        ClientEN client = new ClientEN(TextBox_Email.ToString(), TextBox_Password.ToString(), false, TextBox_NIF.ToString(), TextBox_Name.ToString(),
+                        ClientEN clienten = new ClientEN(TextBox_Email.ToString(), TextBox_Password.ToString(), false, TextBox_NIF.ToString(), TextBox_Name.ToString(),
                             TextBox_Surname.ToString(), Telefono, TextBox_Address.ToString(), TextBox_Location.ToString(), Birthdate, true);
                         ClientCAD Client = new ClientCAD();
+                        Client.insertCliente(clienten);
+                        Label_Error.Text = "Welcome to ARADrive!";
                     }
                     else
                     {

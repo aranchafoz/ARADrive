@@ -115,36 +115,50 @@ namespace ClientCADNS{
         }
       }
 
-      public bool insertCliente(ClientEN cl){
-        try{
-          DataSet bdvirtual = new DataSet();
-          SqlDataAdapter sql = new SqlDataAdapter("SELECT * FROM T_User", c);
-          sql.Fill(bdvirtual,"user");
-          DataTable t = new DataTable();
-          t = bdvirtual.Tables["user"];
-          DataRow nuevafila = t.NewRow();
-          nuevafila[0] = cl.Email;
-          nuevafila[1] = cl.Pass;
-          nuevafila[2] = cl.Premium;
-          nuevafila[3] = cl.DNI;
-          nuevafila[4] = cl.Name;
-          nuevafila[5] = cl.Surname;
-          nuevafila[6] = cl.Phone;
-          nuevafila[7] = cl.Address;
-          nuevafila[8] = cl.City;
-          nuevafila[9] = cl.BirthDate;
-          nuevafila[10] = cl.DrivingLicence;
-          t.Rows.Add(nuevafila);
-          SqlCommandBuilder cbuilder = new SqlCommandBuilder(sql);
-          sql.Update(bdvirtual, "user");
-          return true;
-        }catch (Exception e) {
-            return false;
-        }finally{
-          c.Close();
-        }
-      }
+        public bool insertCliente(ClientEN cl)
+        {
+            try{
+              DataSet bdvirtual = new DataSet();
+              SqlDataAdapter sql = new SqlDataAdapter("SELECT * FROM T_User", c);
+              sql.Fill(bdvirtual,"user");
+              DataTable t = new DataTable();
+              t = bdvirtual.Tables["user"];
+              DataRow nuevafila = t.NewRow();
+              nuevafila[0] = cl.Email;
+              nuevafila[1] = cl.Pass;
+              nuevafila[2] = cl.Premium;
+              nuevafila[3] = cl.DNI;
+              nuevafila[4] = cl.Name;
+              nuevafila[5] = cl.Surname;
+              nuevafila[6] = cl.Phone;
+              nuevafila[7] = cl.Address;
+              nuevafila[8] = cl.City;
+              nuevafila[9] = cl.BirthDate;
+              nuevafila[10] = cl.DrivingLicence;
+              t.Rows.Add(nuevafila);
+              SqlCommandBuilder cbuilder = new SqlCommandBuilder(sql);
+              sql.Update(bdvirtual, "user");
+              return true;
+            }catch (Exception e) {
+                return false;
+            }finally{
+              c.Close();
+            }
+          }
+            /*try
+            {
+                c.Open();
+                SqlCommand sql = new SqlCommand("INSERT INTO T_User VALUES (" + cl.Email + ", '" + cl.Pass + "', " + cl.Premium + ", '" + cl.DNI + "', '" + cl.Name + "', " + cl.Surname + ", " + cl.Phone + ", " + cl.Address + ", " + cl.City + ", " + cl.BirthDate + ", " + cl.DrivingLicence + ", " + ")", c);
+                sql.ExecuteNonQuery();
+                return true;
+            } catch (Exception e)
+            {
+                return false;
+            }
+            finally
+            {
+                c.Close();
+            }*/
 
-        
-    }
-}
+        }
+  }
