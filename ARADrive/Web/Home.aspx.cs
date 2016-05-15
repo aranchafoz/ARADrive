@@ -26,40 +26,40 @@ namespace Web
         protected void OnClick_Search(Object sender, EventArgs e)
         {
             Label_Error.Text = "MOSTRANDO!!";
-            CollapsiblePanelExtender_Result.Collapsed = false;
             CollapsiblePanelExtender_Result.Collapsed = true;
+            CollapsiblePanelExtender_Result.Collapsed = false;
+
 
             // Check if dates are the correct format
             if (IsCorrectDateFormat(Calendar_PickUp1.Text) && IsCorrectDateFormat(Calendar_DropOff1.Text))
-                {
-                    // Read PickUp- and DropOff-Date  +  get today's date
-                    date_PickUp = BookingCADNS.BookingCAD.ConvertDate(Calendar_PickUp1.Text);
-                    date_DropOff = BookingCADNS.BookingCAD.ConvertDate(Calendar_DropOff1.Text);
-                    date_today = new Date(DateTime.Today.Day, DateTime.Today.Month, DateTime.Today.Year);
+            {
+                // Read PickUp- and DropOff-Date  +  get today's date
+                date_PickUp = BookingCADNS.BookingCAD.ConvertDate(Calendar_PickUp1.Text);
+                date_DropOff = BookingCADNS.BookingCAD.ConvertDate(Calendar_DropOff1.Text);
+                date_today = new Date(DateTime.Today.Day, DateTime.Today.Month, DateTime.Today.Year);
 
-                    // Date_DropOff has to be at least Date_PickUp  &  Date_PickUp has to be at least today
-                    if ((Date.CompareDates(date_PickUp, date_DropOff) < 1) && (Date.CompareDates(date_today, date_PickUp) < 1))
-                    { 
-                        // calculate difference of the two dates
-                        dayDifference = BookingCADNS.BookingCAD.DayDifference(date_DropOff, date_PickUp);
+                // Date_DropOff has to be at least Date_PickUp  &  Date_PickUp has to be at least today
+                if ((Date.CompareDates(date_PickUp, date_DropOff) < 1) && (Date.CompareDates(date_today, date_PickUp) < 1))
+                { 
+                    // calculate difference of the two dates
+                    dayDifference = BookingCADNS.BookingCAD.DayDifference(date_DropOff, date_PickUp) + 1.0 ;
 
-                        ShowResult();
-                    }
-                    else
-                    {
-                        System.Windows.Forms.MessageBox.Show("Please check the dates!");
-                    }
+                    ShowCategoryAndTotalPrice();
                 }
                 else
                 {
-                    System.Windows.Forms.MessageBox.Show("Please check the format of your date!");
+                    Label_Error.Text = "Please check the dates!";
                 }
+            }
+            else
+            {
+                Label_Error.Text = "Please check the format of your date!";
+            }
             
-
         }
 
 
-        protected void ShowResult()
+        protected void ShowCategoryAndTotalPrice()
         {
             Label label_totalPrice = null;
             Label label_PricePerDay = null;
@@ -114,12 +114,6 @@ namespace Web
 
             }
 
-
-            /*
-            Label_for_Result.Text = "DatePickUp: " + date_PickUp.ToString() +
-                                        "DateDropOff: " + date_DropOff.ToString() +
-                                            ", Daydiff: " + BookingCADNS.BookingCAD.DayDifference(date_DropOff, date_PickUp);
-            */
         }
 
         public bool IsCorrectDateFormat (string date)
