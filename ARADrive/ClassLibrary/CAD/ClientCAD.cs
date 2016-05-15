@@ -39,34 +39,45 @@ namespace ClientCADNS{
       }
 
       public ClientEN getClient(String email){
-        try{
-            DataSet bdvirtual = new DataSet();
-            SqlDataAdapter sql = new SqlDataAdapter("SELECT * FROM T_User WHERE email='"+email+"'", c);
-            sql.Fill(bdvirtual,"user");
-            DataTable t = new DataTable();
-            t = bdvirtual.Tables["user"];
-            DataRow dr = t.Rows[0];
+            ClientEN aux = null;
+            try {
+                DataSet bdvirtual = new DataSet();
+                SqlDataAdapter sql = new SqlDataAdapter("SELECT * FROM T_User WHERE email='"+email+"'", c);
+                sql.Fill(bdvirtual,"user");
+                DataTable t = new DataTable();
+                t = bdvirtual.Tables["user"];
+                DataRow dr = t.Rows[0];
 
-            int[] date = new int[3];
-            String birthDate = dr[9].ToString();
-            int j = 0;
-            for (int i = 0; i < birthDate.Length; i++)
-            {
-                String s = "";
-                while (birthDate[i] != '-')
+                int[] date = new int[3];
+                String birthDate = dr[9].ToString();
+                /*int j = 0;
+                for (int i = 0; i < birthDate.Length; i++)
                 {
-                    s += birthDate[i];
+                    String s = "";
+                    while (birthDate[i] != '-')
+                    {
+                        s += birthDate[i];
+                    }
+                    date[j] = int.Parse(s);
+                    j++;
                 }
-                date[j] = int.Parse(s);
-                j++;
-            }
-            Date bd = new Date(date[0], date[1], date[2]);
+                Date bd = new Date(date[0], date[1], date[2]);*/
 
-          ClientEN aux = new ClientEN(dr[0].ToString(), dr[1].ToString(), (bool)dr[2], dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), (int)dr[6], dr[7].ToString(), dr[8].ToString(), bd, (bool)dr[10]);
-          return(aux);
-        }finally{
-          c.Close();
-        }
+                int day = Int32.Parse(birthDate.Substring(0, 2));
+                int month = Int32.Parse(birthDate.Substring(3, 2));
+                int year = Int32.Parse(birthDate.Substring(6, 4));
+                Date bd = new Date(day, month, year);
+
+                aux = new ClientEN(dr[0].ToString(), dr[1].ToString(), (bool)dr[2], dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), (int)dr[6], dr[7].ToString(), dr[8].ToString(), bd, (bool)dr[10]);
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException("Could not find a User for this Email-Adress");
+            }
+            finally {
+              c.Close();
+            }
+            return aux;
       }
 
 

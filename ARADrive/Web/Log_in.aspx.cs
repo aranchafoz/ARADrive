@@ -22,8 +22,8 @@ namespace Web
         protected void Button_Submit_Click(object sender, EventArgs e)
         {
             // get email and password of fields
-            this.email = TextBox_Email.ToString();
-            this.password = TextBox_Password.ToString();
+            this.email = TextBox_Email.Text.ToString();
+            this.password = TextBox_Password.Text.ToString();
 
             ClientCAD clientCAD = new ClientCAD();
             ClientEN client = clientCAD.getClient(email);
@@ -31,6 +31,9 @@ namespace Web
             if (client.Pass.Equals(password))
             {
                 Session.Add(client.Email, client);
+                System.Windows.Forms.MessageBox.Show("Login was successful");
+                TextBox_Email.Text = "";
+                TextBox_Password.Text = "";
             }
             else
             {
