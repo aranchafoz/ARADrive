@@ -19,7 +19,7 @@ namespace BookingCADNS
 {
     public class BookingCAD
     {
-      private string s = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ToString ();
+      private string s = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString ();
       private BookingEN booking;
       private ArrayList bookings;
       private SqlConnection conn;

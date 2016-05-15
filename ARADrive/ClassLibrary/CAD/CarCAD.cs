@@ -15,7 +15,7 @@ namespace CarCADNS
 {
     public class CarCAD
     {
-      private string s = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ToString ();
+      private string s = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString ();
       private CarEN car;
       private SqlConnection conn;
 

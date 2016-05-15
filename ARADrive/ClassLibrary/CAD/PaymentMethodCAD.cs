@@ -17,7 +17,7 @@ using ClientENns;
 namespace PaymentMethodCADNS{
     public class PaymentMethodCAD {
 
-      private string s = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ToString ();
+      private string s = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString ();
       private PaymentMethodEN paymentMethod;
       private SqlConnection c;
       private ArrayList allPaymentMethods;

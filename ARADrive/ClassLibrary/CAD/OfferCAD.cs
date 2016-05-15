@@ -17,7 +17,7 @@ namespace OfferCADNS
 {
     public class OfferCAD
     {
-      private string s = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ToString ();
+      private string s = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString ();
       private OfferEN offer;
       private ArrayList offers;
       private SqlConnection conn;

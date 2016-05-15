@@ -15,7 +15,7 @@ using OfficeENns;
 namespace OfficeCADNS{
     public class OfficeCAD {
 
-      private string s = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ToString ();
+      private string s = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString ();
       private OfficeEN office;
       private SqlConnection c;
       private ArrayList allOffices;

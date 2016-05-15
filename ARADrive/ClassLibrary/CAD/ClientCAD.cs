@@ -16,7 +16,7 @@ using BookingENns;
 namespace ClientCADNS{
     public class ClientCAD {
 
-      private string s = ConfigurationManager.ConnectionStrings["DatabaseConnection"].ToString ();
+      private string s = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString ();
       private ClientEN client;
       private SqlConnection c;
 
