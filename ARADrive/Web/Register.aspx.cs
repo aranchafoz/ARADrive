@@ -73,24 +73,55 @@ namespace Web
         }
         protected void Button_Submit_Click(object sender, EventArgs e)
         {
+            string email = TextBox_Email.Text;
+            string emailConfirm = TextBox_EmailConfirm.Text;
+            string password = TextBox_Password.Text;
+            string passwordConfirm = TextBox_PasswordConfirm.Text;
+            string dni = TextBox_NIF.Text;
+            string name = TextBox_Name.Text;
+            string surname = TextBox_Surname.Text;
+            string bd = TextBox_Birthdate.Text;
+            string telephone = TextBox_Telephone.Text;
+            string address = TextBox_Address.Text;
+            string country = TextBox_Country.Text;
+            string postalcode = TextBox_PostalCode.Text;
+            string location = TextBox_Location.Text;
+            bool drivingLicense = CheckBox_DrivingLicense.Checked;
+
+            // FOR TESTING: 
+            /*string email = "tina@brunner.de";
+            string emailConfirm = "tina@brunner.de";
+            string password = "Asdf1234";
+            string passwordConfirm = "Asdf1234";
+            string dni = "394583H";
+            string name = "Brunner";
+            string surname = "Tina";
+            string bd = "1993-05-26";
+            string telephone = "659448372";
+            string address = "Street 1";
+            string country = "Germany";
+            string postalcode = "49302";
+            string location = "Munich";
+            bool drivingLicense = false;*/
+
+
             try {
-                if (!IsValidEmail(TextBox_Email.ToString())
-                     && TextBox_Address.Text.ToString() != string.Empty && TextBox_Country.Text.ToString() != string.Empty
-                     && TextBox_Name.Text.ToString() != string.Empty && TextBox_PostalCode.Text.ToString() != string.Empty
-                     && TextBox_Surname.Text.ToString() != string.Empty && TextBox_Telephone.Text.ToString() != string.Empty
-                     && TextBox_PasswordConfirm.ToString() != string.Empty && TextBox_EmailConfirm.Text.ToString() != string.Empty
-                     && TextBox_Password.Text.ToString() != string.Empty && TextBox_Location.Text.ToString() != string.Empty)
+                if (IsValidEmail(email)             && IsValidEmail(emailConfirm)
+                    && address != string.Empty      && country != string.Empty          && postalcode != string.Empty
+                    && name != string.Empty         && surname != string.Empty          && bd != string.Empty
+                    && telephone != string.Empty    && email != string.Empty            && dni != string.Empty
+                    && password != string.Empty     && passwordConfirm != string.Empty
+                    && location != string.Empty)
                 {
-                    if (TextBox_Email.Text.ToString() == TextBox_EmailConfirm.Text.ToString() && TextBox_Password.Text.ToString() == TextBox_PasswordConfirm.Text.ToString())
+                    if (email.Equals(emailConfirm) && password.Equals(passwordConfirm))
                     {
-                        int Telefono = Int32.Parse(TextBox_Telephone.Text.ToString());
-                        Date Birthdate = BookingCAD.ConvertDate(TextBox_Birthdate.Text.ToString());
-                        ClientEN clienten = new ClientEN(TextBox_Email.ToString(), TextBox_Password.ToString(), false, TextBox_NIF.ToString(), TextBox_Name.ToString(),
-                            TextBox_Surname.ToString(), Telefono, TextBox_Address.ToString(), TextBox_Location.ToString(), Birthdate, true);
-                        ClientCAD Client = new ClientCAD();
-                        Client.insertCliente(clienten);
-                        Label_Error.Text = "Welcome to ARADrive!";
-                    }
+                        int telefono = Int32.Parse(telephone);
+                        Date birthdate = BookingCAD.ConvertDate(bd);
+                        ClientEN clientEN = new ClientEN(email, password, false, dni, name, surname, telefono, 
+                            address, location, birthdate, drivingLicense);
+                        ClientCAD clientCAD = new ClientCAD();
+                        clientCAD.insertCliente(clientEN);
+                }
                     else
                     {
                         Label_Error.Text = "Confirmation fields mismatch";

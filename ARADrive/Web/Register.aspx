@@ -53,7 +53,7 @@
                             <asp:TextBox ID="TextBox_Country" class="form-control" runat="server"></asp:TextBox>
                         </div>    
                         <div class="form-group">
-                            <label for="">Location</label>
+                            <label for="">City</label>
                             <asp:TextBox ID="TextBox_Location" AutoCompleteType="HomeCity" class="form-control" runat="server"></asp:TextBox>
                         </div>
                         <div class="form-group">

@@ -128,29 +128,58 @@ namespace ClientCADNS{
 
         public bool insertCliente(ClientEN cl)
         {
-            try{
-              DataSet bdvirtual = new DataSet();
-              SqlDataAdapter sql = new SqlDataAdapter("SELECT * FROM T_User", c);
-              sql.Fill(bdvirtual,"user");
-              DataTable t = new DataTable();
-              t = bdvirtual.Tables["user"];
-              DataRow nuevafila = t.NewRow();
-              nuevafila[0] = cl.Email;
-              nuevafila[1] = cl.Pass;
-              nuevafila[2] = cl.Premium;
-              nuevafila[3] = cl.DNI;
-              nuevafila[4] = cl.Name;
-              nuevafila[5] = cl.Surname;
-              nuevafila[6] = cl.Phone;
-              nuevafila[7] = cl.Address;
-              nuevafila[8] = cl.City;
-              nuevafila[9] = cl.BirthDate;
-              nuevafila[10] = cl.DrivingLicence;
-              t.Rows.Add(nuevafila);
-              SqlCommandBuilder cbuilder = new SqlCommandBuilder(sql);
-              sql.Update(bdvirtual, "user");
-              return true;
-            }catch (Exception e) {
+            try {
+                /*DataSet dataSet = new DataSet();
+                SqlDataAdapter dataAdapter = new SqlDataAdapter("SELECT * FROM T_User", c);
+                dataAdapter.Fill(dataSet,"user");
+                DataTable t = new DataTable();
+                t = dataSet.Tables["user"];
+                DataRow nuevafila = t.NewRow();
+                nuevafila[0] = cl.Email;
+                nuevafila[1] = cl.Pass;
+                nuevafila[2] = cl.Premium;
+                nuevafila[3] = cl.DNI;
+                nuevafila[4] = cl.Name;
+                nuevafila[5] = cl.Surname;
+                nuevafila[6] = cl.Phone;
+                nuevafila[7] = cl.Address;
+                nuevafila[8] = cl.City;
+
+                DateTime birth = new DateTime(cl.BirthDate.GetYear(), cl.BirthDate.GetMonth(), cl.BirthDate.GetDay());
+                nuevafila[9] = birth;
+
+                nuevafila[10] = cl.DrivingLicence;
+                t.Rows.Add(nuevafila);
+                SqlCommandBuilder cbuilder = new SqlCommandBuilder(dataAdapter);
+                dataAdapter.Update(dataSet, "user"); */
+
+                DataTable dataTable = new DataTable ();
+                SqlDataAdapter dataAdapter = new SqlDataAdapter("SELECT * FROM T_User", c);
+                dataAdapter.Fill(dataTable);
+                DataRow nuevafila = dataTable.NewRow();
+                nuevafila[0] = cl.Email;
+                nuevafila[1] = cl.Pass;
+                nuevafila[2] = cl.Premium;
+                nuevafila[3] = cl.DNI;
+                nuevafila[4] = cl.Name;
+                nuevafila[5] = cl.Surname;
+                nuevafila[6] = cl.Phone;
+                nuevafila[7] = cl.Address;
+                nuevafila[8] = cl.City;
+
+                DateTime birth = new DateTime(cl.BirthDate.GetYear(), cl.BirthDate.GetMonth(), cl.BirthDate.GetDay());
+                nuevafila[9] = birth;
+
+                nuevafila[10] = cl.DrivingLicence;
+                dataTable.Rows.Add(nuevafila);
+
+                SqlCommandBuilder cbuilder = new SqlCommandBuilder(dataAdapter);
+                dataAdapter.Update((DataTable)dataTable);
+
+                return true;
+
+            } catch (Exception ex) {
+                Console.WriteLine(ex.Message.ToString());
                 return false;
             }finally{
               c.Close();
