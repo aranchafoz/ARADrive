@@ -60,7 +60,14 @@ namespace PaymentMethodCADNS{
 
           dr.Close();
           return (aux);
-        }finally{
+            }
+            catch
+            {
+                PaymentMethodEN aux = new PaymentMethodEN();
+                return (aux);
+            }
+
+        finally {
           c.Close();
         }
 

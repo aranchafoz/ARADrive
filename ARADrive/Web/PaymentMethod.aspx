@@ -24,7 +24,7 @@
                     <div class="row" style="text-align:right">
                         <div class="col-xs-12">
                             <!--<asp:Button ID="Button_Save" class="btn btn-success" Width="20%" runat="server" Text="Save"/>-->
-                            <asp:Button ID="Button_Submit" class="btn btn-primary" Width="40%" runat="server" Text="Submit"/>
+                            <asp:Button ID="Button_Submit" class="btn btn-primary" Width="40%" runat="server" Text="Submit" OnClick="Button_Submit_Click"/>
                         </div>  
                     </div>
                 </div>  
