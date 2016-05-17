@@ -36,12 +36,7 @@ namespace Web
                 if (payment.User != "user")
                 {
                     client.Premium = true;
-                    nuevoPremium = clientCAD.updateClient(client);
-                    Button_PremiumUser.Text = "Success";
-                }
-                else
-                {
-                    Button_PremiumUser.Text = "Check PaymentMethod";
+                    nuevoPremium = clientCAD.updateCliente(client);
                 }
             }
         }
