@@ -5,47 +5,52 @@ using ClientCADNS;
 using ClientENns;
 using PaymentMethodENns;
 using PaymentMethodCADNS;
+using System;
+using System.Linq;
 
 namespace Web
 
 {
-    protected void Page_Load(object sender, EventArgs e)
+    public partial class Premium : System.Web.UI.Page
     {
-        string mail = (string)(Session[0]);
-
-
-        ClientCAD clientCAD = new ClientCAD();
-        ClientEN client = clientCAD.getClient(mail);
-        PaymentMethodCAD paymentCAD = new PaymentMethodCAD();
-        PaymentMethodEN payment = paymentCAD.getPaymentMethod(mail);
-
-        if (client.Premium == true)
+        protected void Page_Load(object sender, EventArgs e)
         {
-            Button_PremiumUser.Text = "Selected";
-            Button_PremiumUser.Enabled = false;
-
-        }
-    }
-    protected void Button_Submit_Click(object sender, EventArgs e)
-    {
-        string mail = (string)(Session[0]);
+            string mail = (string)(Session[0]);
 
 
-        ClientCAD clientCAD = new ClientCAD();
-        ClientEN client = clientCAD.getClient(mail);
-        PaymentMethodCAD paymentCAD = new PaymentMethodCAD();
-        PaymentMethodEN payment = paymentCAD.getPaymentMethod(mail);
+            ClientCAD clientCAD = new ClientCAD();
+            ClientEN client = clientCAD.getClient(mail);
+            PaymentMethodCAD paymentCAD = new PaymentMethodCAD();
+            PaymentMethodEN payment = paymentCAD.getPaymentMethod(mail);
 
-        if (client.Premium == true)
-        {
-            Button_PremiumUser.Text = "Already Premium";
-        }
-        else
-        {
-            if (payment.User != "user")
+            if (client.Premium == true)
             {
-                client.Premium = true;
-                nuevoPremium = clientCAD.updateCliente(client);
+                Button_PremiumUser.Text = "Selected";
+                Button_PremiumUser.Enabled = false;
+
+            }
+        }
+        protected void Button_Submit_Click(object sender, EventArgs e)
+        {
+            string mail = (string)(Session[0]);
+            bool nuevoPremium = false;
+
+            ClientCAD clientCAD = new ClientCAD();
+            ClientEN client = clientCAD.getClient(mail);
+            PaymentMethodCAD paymentCAD = new PaymentMethodCAD();
+            PaymentMethodEN payment = paymentCAD.getPaymentMethod(mail);
+
+            if (client.Premium == true)
+            {
+                Button_PremiumUser.Text = "Already Premium";
+            }
+            else
+            {
+                if (payment.User != "user")
+                {
+                    client.Premium = true;
+                    nuevoPremium = ClientCAD.updateClient(client);
+                }
             }
         }
     }
