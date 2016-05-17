@@ -8,6 +8,51 @@
             <div class="page-header" style="margin-left:20%;margin-right:20%">
                 <h1>Catalog</h1>
             </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3"></div>
+            <div class="col-xs-6" style="align-items:center">
+            <asp:Panel ID="Panel_SearchResult" runat="server">
+                <asp:DataList ID="DataList_Consult" runat="server" DataSourceID="SqlDataSourceCarsCatalog">
+                    <ItemTemplate>
+                        <div class="panel panel-info" style="">
+                            <div class="panel-heading">
+                                <asp:Label ID="Label_CarName" runat="server" Text='<%# Eval("name") %>' Font-Size="Large"></asp:Label>
+                            </div>
+                            <div class="panel-body"  >
+                                <div class="row" >
+                                    <div class="col-xs-4">
+                                        <img class="img-responsive" style="crop:inherit" src="assets/img/carPics/<%# Eval("IMG") %>" />                                        
+                                        <!--IMG:
+                                        <asp:Label Text='<%# Eval("IMG") %>' runat="server" ID="IMGLabel" /><br />-->
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <label for=""><em>Category:</em> &nbsp;</label>
+                                        <asp:Label Text='<%# Eval("category") %>' runat="server" ID="Label_CarCategory" /><br />                            
+                                        <label for=""><em>Description:</em></label><br />
+                                        <p style="padding-left:20px;padding-bottom:0">
+                                            <asp:Label Text='<%# Eval("descrip") %>' runat="server" ID="Label_CarDescription" />
+                                        </p>
+                                        <label for=""><em>Price per day:</em>&nbsp;</label>                
+                                        <asp:Label Text='<%# Eval("price") %>' runat="server" ID="Label_CarPrice" />
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <label for=""><em>Automatic Transmission:</em></label><br />
+                                        <asp:Label Text='<%# Eval("automaticTransmission") %>' runat="server" ID="Label_CarTransmission" /><br />
+                                        <label for=""><em>Doors:</em></label><br />
+                                        <asp:Label Text='<%# Eval("doors") %>' runat="server" ID="Label_CarDoors" /><br />
+                                    </div>
+                                </div>                                
+                            </div>
+                        </div>
+                        <br />
+                    </ItemTemplate>
+                </asp:DataList>
+                <asp:SqlDataSource runat="server" ID="SqlDataSourceCarsCatalog" ConnectionString='<%$ ConnectionStrings:ConnectionString %>' 
+                    SelectCommand="SELECT [IMG], [name], [category], [descrip], [price], [automaticTransmission], [doors] FROM [T_Car]"></asp:SqlDataSource>
+            </asp:Panel>
+            </div>
+            <div class="col-xs-3"></div>
         </div>       
     </div>
 </asp:Content>
