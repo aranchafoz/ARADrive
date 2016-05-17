@@ -16,6 +16,7 @@
 (16,'Mérida','C/ Melinda, n1','Mérida',38.92085525,-6.34408951),
 (17,'Tarragona','C/ Portaventura n3','Tarragona',41.11550805,1.25244141),
 (18,'Mallorca Aeropuerto','C/ Azafato Santos, n5','Mallorca',39.55488306,2.72014618),
+(19,'Melilla','Av. Marina Española, 1','Melilla',35.291319,-2.937344),
 (20,'Ibiza Aeropuerto','Aeropuerto de Ibiza','Ibiza',38.88328296,1.37578011),
 (21,'Gran Canaria','Centro, n2','Palma de Gran Canaria',28.12089288,-15.43622017),
 (22,'Tenerife','Av. del Teide, s/n','Tenerife',28.46791791,-16.24691248),
