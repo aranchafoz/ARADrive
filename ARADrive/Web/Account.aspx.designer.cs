@@ -67,6 +67,15 @@ namespace Web {
         protected global::System.Web.UI.WebControls.Label Label_UserPhone;
         
         /// <summary>
+        /// Control Text_UserPhone.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Text_UserPhone;
+        
+        /// <summary>
         /// Control TextBox_UserBirth.
         /// </summary>
         /// <remarks>
@@ -83,6 +92,15 @@ namespace Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label_UserBirth;
+        
+        /// <summary>
+        /// Control Text_UserBirth.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Text_UserBirth;
         
         /// <summary>
         /// Control TextBox_UserCity.
@@ -103,6 +121,15 @@ namespace Web {
         protected global::System.Web.UI.WebControls.Label Label_UserCity;
         
         /// <summary>
+        /// Control Text_UserCity.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Text_UserCity;
+        
+        /// <summary>
         /// Control TextBox_UserAddress.
         /// </summary>
         /// <remarks>
@@ -119,6 +146,15 @@ namespace Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label_UserAddress;
+        
+        /// <summary>
+        /// Control Text_UserAddress.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Text_UserAddress;
         
         /// <summary>
         /// Control TextBox_UserNIF.
@@ -139,6 +175,15 @@ namespace Web {
         protected global::System.Web.UI.WebControls.Label Label_UserNIF;
         
         /// <summary>
+        /// Control Text_UserNIF.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Text_UserNIF;
+        
+        /// <summary>
         /// Control TextBox_UserDrivingLicense.
         /// </summary>
         /// <remarks>
@@ -155,6 +200,15 @@ namespace Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label_UserDrivingLicense;
+        
+        /// <summary>
+        /// Control Text_UserDrivingLicense.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Text_UserDrivingLicense;
         
         /// <summary>
         /// Control Button_Save.
