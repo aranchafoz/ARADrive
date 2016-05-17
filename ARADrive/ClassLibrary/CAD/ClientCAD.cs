@@ -48,10 +48,10 @@ namespace ClientCADNS{
                 t = bdvirtual.Tables["user"];
                 DataRow dr = t.Rows[0];
 
-                //int[] date = new int[3];
+                int[] date = new int[3];
                 String birthDate = dr[9].ToString();
-                String dLIss = dr[11].ToString();  // Añadidos datos de carnet
-                String dLExp = dr[12].ToString();
+                //String dLIss = dr[11].ToString();  // Añadidos datos de carnet
+                //String dLExp = dr[12].ToString();
                 /*int j = 0;
                 for (int i = 0; i < birthDate.Length; i++)
                 {
@@ -65,12 +65,13 @@ namespace ClientCADNS{
                 }
                 Date bd = new Date(date[0], date[1], date[2]);*/
 
-                int dayB = Int32.Parse(birthDate.Substring(0, 2));
-                int monthB = Int32.Parse(birthDate.Substring(3, 2));
-                int yearB = Int32.Parse(birthDate.Substring(6, 4));
-                Date bd = new Date(dayB, monthB, yearB);
+                int day = Int32.Parse(birthDate.Substring(0, 2));
+                int month = Int32.Parse(birthDate.Substring(3, 2));
+                int year = Int32.Parse(birthDate.Substring(6, 4));
+                Date bd = new Date(day, month, year);
 
-                int dayI = Int32.Parse(dLIss.Substring(0, 2));   // Añadidos datos de carnet
+
+                /*int dayI = Int32.Parse(dLIss.Substring(0, 2));   // Añadidos datos de carnet
                 int monthI = Int32.Parse(dLIss.Substring(3, 2));
                 int yearI = Int32.Parse(dLIss.Substring(6, 4));
                 Date Iss = new Date(dayI, monthI, yearI);
@@ -78,9 +79,9 @@ namespace ClientCADNS{
                 int dayE = Int32.Parse(dLExp.Substring(0, 2));   // Añadidos datos de carnet
                 int monthE = Int32.Parse(dLExp.Substring(3, 2));
                 int yearE = Int32.Parse(dLExp.Substring(6, 4));
-                Date Exp = new Date(dayE, monthE, yearE);
+                Date Exp = new Date(dayE, monthE, yearE);*/
 
-                aux = new ClientEN(dr[0].ToString(), dr[1].ToString(), (bool)dr[2], dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), (int)dr[6], dr[7].ToString(), dr[8].ToString(), bd, (bool)dr[10], Iss, Exp);  // Añadidos datos de carnet
+                aux = new ClientEN(dr[0].ToString(), dr[1].ToString(), (bool)dr[2], dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), (int)dr[6], dr[7].ToString(), dr[8].ToString(), bd, (bool)dr[10]);  // Añadidos datos de carnet
             }
             catch (Exception ex)
             {
@@ -112,8 +113,8 @@ namespace ClientCADNS{
           nuevafila[8] = cl.City;
           nuevafila[9] = cl.BirthDate;
           nuevafila[10] = cl.DrivingLicence;
-          nuevafila[11] = cl.DLIss;        // Añadidos datos de carnet
-          nuevafila[12] = cl.DLExp;
+          //nuevafila[11] = cl.DLIss;        // Añadidos datos de carnet
+          //nuevafila[12] = cl.DLExp;
           t.Rows.Add(nuevafila);
           SqlCommandBuilder cbuilder = new SqlCommandBuilder(sql);
           sql.Update(bdvirtual, "user");
@@ -187,12 +188,12 @@ namespace ClientCADNS{
                 nuevafila[10] = cl.DrivingLicence;
                 dataTable.Rows.Add(nuevafila);
 
-                DateTime Iss = new DateTime(cl.DLIss.GetYear(), cl.DLIss.GetMonth(), cl.DLIss.GetDay()); // Añadidos datos de carnet
+                /*DateTime Iss = new DateTime(cl.DLIss.GetYear(), cl.DLIss.GetMonth(), cl.DLIss.GetDay()); // Añadidos datos de carnet
                 nuevafila[11] = ISs;
 
 
                 DateTime Exp = new DateTime(cl.DLExp.GetYear(), cl.DLExp.GetMonth(), cl.DLExp.GetDay()); // Añadidos datos de carnet
-                nuevafila[12] = Exp;
+                nuevafila[12] = Exp;*/
 
                 SqlCommandBuilder cbuilder = new SqlCommandBuilder(dataAdapter);
                 dataAdapter.Update((DataTable)dataTable);
