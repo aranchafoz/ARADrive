@@ -49,7 +49,7 @@ namespace Web
                 if (payment.User != "user")
                 {
                     client.Premium = true;
-                    nuevoPremium = ClientCAD.updateClient(client);
+                    //nuevoPremium = ClientCAD.updateClient(client);
                 }
             }
         }

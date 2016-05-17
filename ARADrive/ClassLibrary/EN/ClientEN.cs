@@ -12,7 +12,7 @@ namespace ClientENns
         private string dni;
         private string name;
         private string surname;
-        private int phone;
+        private long phone;
         private string address;
         private string city;
         private Date birthDate;
@@ -20,7 +20,7 @@ namespace ClientENns
 
         // Constructor
         public ClientEN(string email, string pass, bool premium, string dni, string name, string surname,
-            int phone, string address, string city, Date birthDate, bool drivingLicense)
+            long phone, string address, string city, Date birthDate, bool drivingLicense)
         {
             this.email = email;
             this.pass = pass;
@@ -72,7 +72,7 @@ namespace ClientENns
             get { return surname; }
         }
 
-        public int Phone
+        public long Phone
         {
             set { this.phone = value; }
             get { return phone; }

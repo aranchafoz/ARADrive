@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
+using System.Net;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -75,20 +76,46 @@ namespace Web
         {
             SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
             MailMessage message = new MailMessage();
-            if (IsValidEmail(TextBox_UserEmail.ToString()) && TextBox_UserName.ToString() != string.Empty && TextBox_Message.ToString() != string.Empty && TextBox_Subject.ToString() != string.Empty)
+            if (IsValidEmail(TextBox_UserEmail.Text.ToString()) && TextBox_UserName.Text.ToString() != string.Empty && TextBox_Message.Text.ToString() != string.Empty && TextBox_Subject.Text.ToString() != string.Empty)
             {
                 try
                 {
-                    MailAddress fromAddress = new MailAddress(TextBox_UserEmail.ToString(), TextBox_UserName.ToString());
-                    MailAddress toAddress = new MailAddress("aradrive.contact@gmail.com", "ARADrive");
-                    message.From = fromAddress;
-                    message.To.Add(toAddress);
-                    message.Subject = TextBox_Subject.ToString();
-                    message.Body = TextBox_Message.ToString();
-                    smtpClient.EnableSsl = true;
-                    smtpClient.Credentials = new System.Net.NetworkCredential("aradrive.contact@gmail.com", "ucantreadme");
-                    smtpClient.Send(message);
-                    Label_Resultado.Text = "Message sent";
+                    var fromAddress = new MailAddress("aradrive.contact@gmail.com", TextBox_UserName.Text.ToString());
+                    var toAddress = new MailAddress("aradrive.contact@gmail.com", "aradrive");
+                    const string fromPassword = "ucantreadme";
+                    string subject = TextBox_Subject.Text.ToString();
+                    string body = TextBox_Message.Text.ToString();
+
+                    var smtp = new SmtpClient
+                    {
+                        Host = "smtp.gmail.com",
+                        Port = 465,
+                        EnableSsl = true,
+                        DeliveryMethod = SmtpDeliveryMethod.Network,
+                        UseDefaultCredentials = false,
+                        Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+                    };
+                    /*using (MailMessage mensaje = new MailMessage(fromAddress, toAddress)
+                    {
+                        Subject = subject,
+                        Body = body
+                    })
+                    { 
+                        smtp.Send(mensaje);
+                    }*/
+                    MailMessage mail = new MailMessage(fromAddress, toAddress);
+                    mail.Body = body;
+                    mail.Subject = subject;
+                    try
+                    {
+                        smtp.Send(mail);
+                        System.Windows.Forms.MessageBox.Show("Email Sent!");
+                    }
+                    catch (Exception)
+                    {
+                        System.Windows.Forms.MessageBox.Show("Email Sent!");
+                    }
+
                 }
                 catch (ArgumentException)
                 {

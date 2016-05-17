@@ -115,7 +115,7 @@ namespace Web
                 {
                     if (email.Equals(emailConfirm) && password.Equals(passwordConfirm))
                     {
-                        int telefono = Int32.Parse(telephone);
+                        long telefono = Convert.ToInt64(telephone);
                         Date birthdate = BookingCAD.ConvertDate(bd);
                         ClientEN clientEN = new ClientEN(email, password, false, dni, name, surname, telefono, 
                             address, location, birthdate, drivingLicense);
