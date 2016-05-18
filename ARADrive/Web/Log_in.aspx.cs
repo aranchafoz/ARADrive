@@ -16,6 +16,7 @@ namespace Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack) 
             Button_Submit.Click += new EventHandler(this.Button_Submit_Click);
         }
 
@@ -24,20 +25,26 @@ namespace Web
             // get email and password of fields
             this.email = TextBox_Email.Text.ToString();
             this.password = TextBox_Password.Text.ToString();
-
-            ClientCAD clientCAD = new ClientCAD();
-            ClientEN client = clientCAD.getClient(email);
-            //System.Windows.Forms.MessageBox.Show("Llego");
-            if (client.Pass.Equals(password))
+            try
             {
-                Session.Add(client.Email, client);
-                System.Windows.Forms.MessageBox.Show("Login was successful");
-                TextBox_Email.Text = "";
-                TextBox_Password.Text = "";
+                ClientCAD clientCAD = new ClientCAD();
+                ClientEN client = clientCAD.getClient(email);
+                //System.Windows.Forms.MessageBox.Show("Llego");
+                if (client.Pass.Equals(password))
+                {
+                    Session.Add(client.Email, client);
+                    System.Windows.Forms.MessageBox.Show("Login was successful");
+                    TextBox_Email.Text = "";
+                    TextBox_Password.Text = "";
+                }
+                else
+                {
+                    System.Windows.Forms.MessageBox.Show("Incorrect password");
+                }
             }
-            else
+            catch (Exception)
             {
-
+                System.Windows.Forms.MessageBox.Show("Mail not in database");
             }
         }
     }

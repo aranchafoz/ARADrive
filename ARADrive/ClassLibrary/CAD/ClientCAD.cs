@@ -95,7 +95,8 @@ namespace ClientCADNS{
 
       public void updateClient(ClientEN cl){
         try{
-          c.Open();
+                c = new SqlConnection(s);
+                c.Open();
           SqlCommand com = new SqlCommand("UPDATE T_User set pass='"+cl.Pass+"', premium="+cl.Premium+", DNI='"+cl.DNI+"', name='"+cl.Name+"', surname='"+cl.Surname+"', phone="+cl.Phone+", address='"+cl.Address+"', city='"+cl.City+"', birthDate='"+cl.BirthDate+"', drivingLicence="+cl.DrivingLicence + " WHERE email='"+cl.Email, c);
           com.ExecuteNonQuery();
         }finally{
@@ -105,7 +106,8 @@ namespace ClientCADNS{
 
       public void deleteClient(String email){
         try{
-          c.Open();
+                c = new SqlConnection(s);
+                c.Open();
           SqlCommand com = new SqlCommand("DELETE FROM T_User WHERE email='"+email+"'", c);
           com.ExecuteNonQuery();
         }finally{
@@ -117,10 +119,14 @@ namespace ClientCADNS{
         try{    
                 int premium = 0;
                 if (cl.Premium == true) premium = 1;
+                int license = 0;
+                if (cl.DrivingLicence == true) license = 1;
+                //Date birthda = BookingCADNS.BookingCAD.ConvertDate(cl.BirthDate.ToString());
+                DateTime birthdate = new DateTime(cl.BirthDate.GetYear(), cl.BirthDate.GetMonth(), cl.BirthDate.GetDay());
                 //string birthdate = cl.BirthDate.GetDay() + "-" + cl.BirthDate.GetMonth() + "-" + cl.BirthDate.GetYear();
-                
-          c.Open();
-          SqlCommand com = new SqlCommand("INSERT INTO T_User VALUES('"+cl.Email+"', '"+cl.Pass+"', "+premium+",'"+cl.DNI+"', '"+cl.Name+"', '"+cl.Surname+"', "+cl.Phone+", '"+cl.Address+"', '"+cl.City+"', '"+cl.BirthDate+"', "+cl.DrivingLicence+")", c);
+                c = new SqlConnection(s);
+                c.Open();
+          SqlCommand com = new SqlCommand("INSERT INTO T_User VALUES('"+cl.Email+"', '"+cl.Pass+"', "+premium+",'"+cl.DNI+"', '"+cl.Name+"', '"+cl.Surname+"', "+cl.Phone+", '"+cl.Address+"', '"+cl.City+"', '"+birthdate+"', "+license+")", c);
           com.ExecuteNonQuery();
         }//catch(SqlException e) {}
         finally {

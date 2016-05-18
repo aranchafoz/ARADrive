@@ -39,7 +39,7 @@ namespace Web
         protected void Button_Submit_Click(object sender, EventArgs e)
         {
             string mail = (string)(Session[0]);
-            bool nuevoPremium = false;
+            //bool nuevoPremium = false;
 
             ClientCAD clientCAD = new ClientCAD();
             ClientEN client = clientCAD.getClient(mail);

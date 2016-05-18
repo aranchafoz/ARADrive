@@ -19,6 +19,7 @@ namespace Web
         bool invalid = false;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(!IsPostBack)
             Button_Submit.Click += new EventHandler(this.Button_Submit_Click);
         }
 
@@ -124,7 +125,7 @@ namespace Web
             string dni = "394583H";
             string name = "Brunner";
             string surname = "Tina";
-            string bd = "1993-05-26";
+            //string bd = "1993-05-26";
             string telephone = "659448372";
             string address = "Street 1";
             string country = "Germany";
@@ -145,19 +146,14 @@ namespace Web
                     {
                         if (email.Equals(emailConfirm) && password.Equals(passwordConfirm))
                         {
-                            //try {
                                 long telefono = Convert.ToInt64(telephone);
                                 Date birthdate = BookingCAD.ConvertDate(bd);
-                                System.Windows.Forms.MessageBox.Show(birthdate.ToString());
+                                //System.Windows.Forms.MessageBox.Show(birthdate.ToString());
                                 ClientEN clientEN = new ClientEN(email, password, false, dni, name, surname, telefono,
                                     address, location, birthdate, drivingLicense);
                                 ClientCAD clientCAD = new ClientCAD();
                                 clientCAD.insertCliente(clientEN);
-                           // }
-                           /* catch (Exception)
-                            {
-                                System.Windows.Forms.MessageBox.Show("Couldn't register m8");
-                            }*/
+                                Label_Error.Text = "Welcome to ARADrive!";
                         }
                         else
                         {
