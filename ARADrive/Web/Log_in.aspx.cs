@@ -32,7 +32,7 @@ namespace Web
                 //System.Windows.Forms.MessageBox.Show("Llego");
                 if (client.Pass.Equals(password))
                 {
-                    Session.Add(client.Email, client);
+                    Session.Add(client.Email, client.Name);
                     System.Windows.Forms.MessageBox.Show("Login was successful");
                     TextBox_Email.Text = "";
                     TextBox_Password.Text = "";

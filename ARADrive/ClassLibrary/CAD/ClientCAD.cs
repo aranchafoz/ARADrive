@@ -12,6 +12,7 @@ using System.Collections;
 using System.Configuration;
 using ClientENns;
 using BookingENns;
+using System.Globalization;
 
 namespace ClientCADNS{
     public class ClientCAD {
@@ -49,7 +50,7 @@ namespace ClientCADNS{
         }
 
       public ClientEN getClient(String email){
-        ClientEN aux;
+        ClientEN aux = new ClientEN();
         try
         {
                 c = new SqlConnection(s);
@@ -58,33 +59,64 @@ namespace ClientCADNS{
 
             SqlCommand com = new SqlCommand(query, c);
             SqlDataReader dr = com.ExecuteReader();
-                dr.Read();
-            // Date cast
-            int[] date = new int[3];
-            string startDate = dr["birthDate"].ToString();
-            int j = 0;
-            for (int i = 0; i < startDate.Length; i++)
-            {
-                String s = "";
-                while (startDate[i] != '-')
+
+                //string startDate = null;
+                DateTime startDate = DateTime.MinValue; ;
+                while (dr.Read())
                 {
-                    
+                    // Date cast
+                    // int[] date = new int[3];
+                    startDate = (DateTime)dr["birthDate"];//.ToString();
+                                                          //DateTime birth = (DateTime)dr["birthDate"];
+
+                    /*int j = 0;
+                        for (int i = 0; i < startDate.Length; i++)
+                        {
+                            String s = "";
+                            if (startDate[i].Equals("-"))
+                            {
+
+                            } else { 
+                            date[j] = int.Parse(s);
+                            j++;
+                        }
+                    }
+                    Date sd = new Date(date[0], date[1], date[2]);*/
+
+                    Date date = new Date(startDate.Day, startDate.Month, startDate.Year); //BookingCADNS.BookingCAD.ConvertDate(startDate);
+                                                                                          //DateTime datetime = DateTime.ParseExact(startDate, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                                                                                          //DateTime birth = new DateTime(date.GetYear(), date.GetMonth(), date.GetDay());
+
+                    bool premium = false;
+                    try
+                    {
+                        if ((dr["premium"].ToString()) == (1 + ""))
+                        {
+                            premium = true;
+                        }
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+
+
+
+
+                    // Driving license cast
+                    bool license = false;
+                    try
+                    {
+                        if (dr["drivingLicence"].ToString() == (1 + "")) license = true;
+                    }
+                    catch
+                    {
+
+                    }
+
+
+                    aux = new ClientEN(dr["email"].ToString(), dr["pass"].ToString(), premium, dr["DNI"].ToString(), dr["name"].ToString(), dr["surname"].ToString(), (int)dr["phone"], dr["address"].ToString(), dr["city"].ToString(), date, license);
                 }
-                date[j] = int.Parse(s);
-                j++;
-            }
-            Date sd = new Date(date[0], date[1], date[2]);
-
-            // Premium cast
-            bool premium = false;
-            if (dr["premium"].ToString() == (1+"")) premium = true;
-
-            // Driving license cast
-            bool license = false;
-            if (dr["drivingLicence"].ToString() == (1 + "")) license = true;
-
-            aux = new ClientEN(dr["email"].ToString(), dr["pass"].ToString(), premium, dr["DNI"].ToString(), dr["name"].ToString(), dr["surname"].ToString(), (int)dr["phone"], dr["address"].ToString(), dr["city"].ToString(), sd, license);
-                
             dr.Close();
         }finally{
             c.Close();         
@@ -97,7 +129,8 @@ namespace ClientCADNS{
         try{
                 c = new SqlConnection(s);
                 c.Open();
-          SqlCommand com = new SqlCommand("UPDATE T_User set pass='"+cl.Pass+"', premium="+cl.Premium+", DNI='"+cl.DNI+"', name='"+cl.Name+"', surname='"+cl.Surname+"', phone="+cl.Phone+", address='"+cl.Address+"', city='"+cl.City+"', birthDate='"+cl.BirthDate+"', drivingLicence="+cl.DrivingLicence + " WHERE email='"+cl.Email, c);
+                DateTime birth = new DateTime(cl.BirthDate.GetYear(), cl.BirthDate.GetMonth(), cl.BirthDate.GetDay());
+          SqlCommand com = new SqlCommand("UPDATE T_User set pass='"+cl.Pass+"', premium="+cl.Premium+", DNI='"+cl.DNI+"', name='"+cl.Name+"', surname='"+cl.Surname+"', phone="+cl.Phone+", address='"+cl.Address+"', city='"+cl.City+"', birthDate='"+birth+"', drivingLicence="+cl.DrivingLicence + " WHERE email='"+cl.Email, c);
           com.ExecuteNonQuery();
         }finally{
           c.Close();

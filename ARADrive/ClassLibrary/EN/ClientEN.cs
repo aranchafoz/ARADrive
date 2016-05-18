@@ -35,6 +35,20 @@ namespace ClientENns
             this.drivingLicence = drivingLicense;
         }
 
+        public ClientEN()
+        {
+            email = "";
+            pass = "";
+            premium = false;
+            dni = "";
+            name = "";
+            surname = "";
+            phone = -1;
+            address = "";
+            birthDate = new Date(0,0,0);
+            drivingLicence = false;
+        }
+
         // Properties
         public string Email
         {
