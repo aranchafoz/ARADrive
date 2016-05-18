@@ -44,6 +44,7 @@
                                   Text="PROFILE" />
 
                         </li>
+                        <li><a href="Product.aspx">PRODUCT</a></li>
                         <li><a href="Catalog.aspx">CATALOG</a></li>
                         <li><a href="Contact.aspx">CONTACT</a></li>
                         <li><a href="About.aspx">ABOUT US</a></li>
