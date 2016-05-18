@@ -18,7 +18,9 @@
                     <div class="form-group">
                         <label for="">Password</label>
                         <asp:TextBox ID="TextBox_Password" type="password" class="form-control" runat="server"></asp:TextBox>
-                    </div>                  
+                    </div>                         
+                    <asp:Label ID="Label_Error" runat="server" Text="" Font-Italic="true" Font-Size="Small" ForeColor="Red"></asp:Label>
+                    <br />               
                     
                     <br />
                     <asp:Button ID="Button_Submit" class="btn btn-primary" Width="26%" style="margin-left:37%;" runat="server" Text="Log in" OnClick="Button_Submit_Click" />                

@@ -54,23 +54,30 @@
                             <div class="panel-body"  >
                                 <div class="row" >
                                     <div class="col-xs-4">
-                                        <img class="img-responsive" style="crop:inherit" src="assets/img/coche-prueba.jpg" />
+                                        <img class="img-responsive" style="crop:inherit" src="assets/img/carPics/<%# Eval("IMG") %>" />  
                                     </div>
-                                    <div class="col-xs-8">
+                                    <div class="col-xs-4">
                                         <label for=""><em>Category:</em> &nbsp;</label>
                                         <asp:Label Text='<%# Eval("category") %>' runat="server" ID="Label_CarCategory" /><br />                            
                                         <label for=""><em>Description:</em></label><br />
-                                        <p style="padding-left:20px;padding-bottom:0"><asp:Label Text='<%# Eval("descrip") %>' runat="server" ID="Label_CarDescription" /></p>
-                                        <div class="container-fluid" style="margin-left:0;padding-left:0;height:40px">
-                                            <div class="col-xs-6" style="margin-left:0;padding-left:0;vertical-align:sub;height:inherit">
-                                                <label for=""><em>Price per day:</em>&nbsp;</label>                
-                                                <asp:Label Text='<%# Eval("price") %>' runat="server" ID="Label_CarPrice" />
-                                            </div>
-                                            <div class="col-xs-6" style="text-align:right;height:inherit;padding-top:10%">
-                                                <label for=""><small><strong>Total price:</strong></small></label>
-                                                <asp:Label Text="10 $" runat="server" ID="Label_TotalPrice" Font-Size="X-Large" style="text-align:right"/>
-                                            </div>
-                                        </div>
+                                        <p style="padding-left:20px;padding-bottom:0">
+                                            <asp:Label Text='<%# Eval("descrip") %>' runat="server" ID="Label_CarDescription" />
+                                        </p>
+                                        <label for=""><em>Price per day:</em>&nbsp;</label>                
+                                        <asp:Label Text='<%# Eval("price") %>' runat="server" ID="Label_CarPrice" />
+                                    </div>
+                                    <div class="col-xs-1"></div>
+                                    <div class="col-xs-2">
+                                        <label for=""><small><strong>Total price: &nbsp;</strong></small></label>
+                                        <asp:Label Text="$ 10" runat="server" ID="Label_TotalPrice" Font-Size="X-Large" Font-Bold="true"/>
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <asp:Button ID="Button_SeeMore" class="btn btn-primary" runat="server" Width="100%"  Text="See more" />
+                                        <br />
                                     </div>
                                 </div>                                
                             </div>
@@ -78,7 +85,8 @@
                         <br />
                     </ItemTemplate>
                 </asp:DataList>
-                <asp:SqlDataSource runat="server" ID="SqlDataSourceCarsDays" ConnectionString='<%$ ConnectionStrings:ConnectionString %>' SelectCommand="SELECT [name], [category], [descrip], [price] FROM [T_Car]"></asp:SqlDataSource>
+                <asp:SqlDataSource runat="server" ID="SqlDataSourceCarsDays" ConnectionString='<%$ ConnectionStrings:ConnectionString %>' 
+                    SelectCommand="SELECT [IMG], [name], [category], [descrip], [price] FROM [T_Car]"></asp:SqlDataSource>
             </asp:Panel>
             </div>
             <div class="col-xs-3"></div>

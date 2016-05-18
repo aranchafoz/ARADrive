@@ -41,6 +41,10 @@
                                         <asp:Label Text='<%# Eval("automaticTransmission") %>' runat="server" ID="Label_CarTransmission" /><br />
                                         <label for=""><em>Doors:</em></label><br />
                                         <asp:Label Text='<%# Eval("doors") %>' runat="server" ID="Label_CarDoors" /><br />
+                                        <br />
+                                        <br />
+                                        <asp:Button ID="Button_SeeMore" class="btn btn-primary" runat="server" Width="60%" style="margin-left:20%" Text="See more" />
+                                        <br />
                                     </div>
                                 </div>                                
                             </div>
