@@ -33,9 +33,13 @@ namespace Web
                 if (client.Pass.Equals(password))
                 {
                     Session.Add(client.Email, client.Name);
+                    // Session variables
+                    Session["user"] = client;
+
                     System.Windows.Forms.MessageBox.Show("Login was successful");
                     TextBox_Email.Text = "";
                     TextBox_Password.Text = "";
+                    Response.Redirect("Home.aspx");
                 }
                 else
                 {

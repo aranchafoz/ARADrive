@@ -7,6 +7,7 @@ using PaymentMethodENns;
 using PaymentMethodCADNS;
 using System;
 using System.Linq;
+using System.Web.SessionState;
 
 namespace Web
 
@@ -15,6 +16,11 @@ namespace Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Check if user is logged, in other case it's redirect to home
+            if (Session["user"] == null)
+            {
+                Response.Redirect("Home.aspx");
+            }
             // Se ha añadido try/catch en el CAD, mirar porque se produce Exception
             try {
                 string mail = (string)(Session[0]);

@@ -51,8 +51,17 @@
                         <li><a href="About.aspx">ABOUT US</a></li>
                         <li class="divider-vertical"></li>
                         <li class="divider-vertical"></li>
-                        <li><a href="Log_in.aspx">Log in</a></li>
-                        <li><a href="Register.aspx">Register</a></li>
+                        <li>
+                            <asp:HyperLink ID="lnkLog_in" runat="server" NavigateUrl="Log_in.aspx"
+                                  Text="Log in" />
+                        </li>
+                        <li>
+                            <asp:HyperLink ID="lnkRegister" runat="server" NavigateUrl="Register.aspx"
+                                  Text="Register" />
+                        </li>
+                        <li>
+                            <asp:Label ID="Label_HelloUser" runat="server" Text=""></asp:Label>
+                        </li>
                     
                     </ul>
                 </div>

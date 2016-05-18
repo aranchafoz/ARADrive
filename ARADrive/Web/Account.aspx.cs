@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.SessionState;
 
 namespace Web
 {
@@ -16,6 +17,11 @@ namespace Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Check if user is logged, in other case it's redirect to home
+            if(Session["user"] == null)
+            {
+                Response.Redirect("Home.aspx");
+            }
             if (!IsPostBack)
                 Button_Edit.Click += new EventHandler(this.Button_Edit_Click);
         }

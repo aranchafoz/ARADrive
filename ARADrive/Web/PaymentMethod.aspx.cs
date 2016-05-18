@@ -8,6 +8,7 @@ using ClientCADNS;
 using ClientENns;
 using PaymentMethodENns;
 using PaymentMethodCADNS;
+using System.Web.SessionState;
 
 namespace Web
 {
@@ -15,7 +16,11 @@ namespace Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            // Check if user is logged, in other case it's redirect to home
+            if (Session["user"] == null)
+            {
+                Response.Redirect("Home.aspx");
+            }
         }
 
         protected void Button_Submit_Click(object sender, EventArgs e)
