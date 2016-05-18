@@ -27,7 +27,7 @@ namespace Web
 
             ClientCAD clientCAD = new ClientCAD();
             ClientEN client = clientCAD.getClient(email);
-
+            //System.Windows.Forms.MessageBox.Show("Llego");
             if (client.Pass.Equals(password))
             {
                 Session.Add(client.Email, client);

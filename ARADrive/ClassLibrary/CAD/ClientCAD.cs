@@ -49,24 +49,47 @@ namespace ClientCADNS{
         }
 
       public ClientEN getClient(String email){
-            ClientEN aux;
+        ClientEN aux;
         try
+        {
+                c = new SqlConnection(s);
+                c.Open();
+                String query = "SELECT * FROM T_User WHERE email='" + email + "';";
+
+            SqlCommand com = new SqlCommand(query, c);
+            SqlDataReader dr = com.ExecuteReader();
+                dr.Read();
+            // Date cast
+            int[] date = new int[3];
+            string startDate = dr["birthDate"].ToString();
+            int j = 0;
+            for (int i = 0; i < startDate.Length; i++)
             {
-          c.Open();
-          SqlCommand com = new SqlCommand("Select * from T_User WHERE email='"+email+"'", c);
-          SqlDataReader dr = com.ExecuteReader();
+                String s = "";
+                while (startDate[i] != '-')
+                {
+                    
+                }
+                date[j] = int.Parse(s);
+                j++;
+            }
+            Date sd = new Date(date[0], date[1], date[2]);
 
+            // Premium cast
+            bool premium = false;
+            if (dr["premium"].ToString() == (1+"")) premium = true;
 
-          aux = new ClientEN(dr["email"].ToString(), dr["pass"].ToString(), (bool)dr["premium"], dr["DNI"].ToString(), dr["name"].ToString(), dr["surname"].ToString(), (int)dr["phone"], dr["address"].ToString(), dr["city"].ToString(), (Date)dr["birthDate"], (bool)dr["drivingLicence"]);
+            // Driving license cast
+            bool license = false;
+            if (dr["drivingLicence"].ToString() == (1 + "")) license = true;
 
-
-                dr.Close();
+            aux = new ClientEN(dr["email"].ToString(), dr["pass"].ToString(), premium, dr["DNI"].ToString(), dr["name"].ToString(), dr["surname"].ToString(), (int)dr["phone"], dr["address"].ToString(), dr["city"].ToString(), sd, license);
+                
+            dr.Close();
         }finally{
-          c.Close();
-
-         
+            c.Close();         
         }
-            return (aux);
+        return (aux);
         }
 
 
@@ -91,11 +114,16 @@ namespace ClientCADNS{
       }
 
       public void insertCliente(ClientEN cl){
-        try{
+        try{    
+                int premium = 0;
+                if (cl.Premium == true) premium = 1;
+                //string birthdate = cl.BirthDate.GetDay() + "-" + cl.BirthDate.GetMonth() + "-" + cl.BirthDate.GetYear();
+                
           c.Open();
-          SqlCommand com = new SqlCommand("INSERT INTO T_User VALUES('"+cl.Email+"', '"+cl.Pass+"', "+cl.Premium+",'"+cl.DNI+"', '"+cl.Name+"', '"+cl.Surname+"', "+cl.Phone+", '"+cl.Address+"', '"+cl.City+"', '"+cl.BirthDate+"', "+cl.DrivingLicence+")", c);
+          SqlCommand com = new SqlCommand("INSERT INTO T_User VALUES('"+cl.Email+"', '"+cl.Pass+"', "+premium+",'"+cl.DNI+"', '"+cl.Name+"', '"+cl.Surname+"', "+cl.Phone+", '"+cl.Address+"', '"+cl.City+"', '"+cl.BirthDate+"', "+cl.DrivingLicence+")", c);
           com.ExecuteNonQuery();
-        }finally{
+        }//catch(SqlException e) {}
+        finally {
           c.Close();
         }
       }

@@ -145,12 +145,19 @@ namespace Web
                     {
                         if (email.Equals(emailConfirm) && password.Equals(passwordConfirm))
                         {
-                            long telefono = Convert.ToInt64(telephone);
-                            Date birthdate = BookingCAD.ConvertDate(bd);
-                            ClientEN clientEN = new ClientEN(email, password, false, dni, name, surname, telefono,
-                                address, location, birthdate, drivingLicense);
-                            ClientCAD clientCAD = new ClientCAD();
-                            clientCAD.insertCliente(clientEN);
+                            //try {
+                                long telefono = Convert.ToInt64(telephone);
+                                Date birthdate = BookingCAD.ConvertDate(bd);
+                                System.Windows.Forms.MessageBox.Show(birthdate.ToString());
+                                ClientEN clientEN = new ClientEN(email, password, false, dni, name, surname, telefono,
+                                    address, location, birthdate, drivingLicense);
+                                ClientCAD clientCAD = new ClientCAD();
+                                clientCAD.insertCliente(clientEN);
+                           // }
+                           /* catch (Exception)
+                            {
+                                System.Windows.Forms.MessageBox.Show("Couldn't register m8");
+                            }*/
                         }
                         else
                         {
