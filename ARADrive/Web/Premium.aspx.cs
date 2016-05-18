@@ -16,19 +16,24 @@ namespace Web
         protected void Page_Load(object sender, EventArgs e)
         {
             // Se ha añadido try/catch en el CAD, mirar porque se produce Exception
-            string mail = (string)(Session[0]);
+            try {
+                string mail = (string)(Session[0]);
 
 
-            ClientCAD clientCAD = new ClientCAD();
-            ClientEN client = clientCAD.getClient(mail);
-            PaymentMethodCAD paymentCAD = new PaymentMethodCAD();
-            PaymentMethodEN payment = paymentCAD.getPaymentMethod(mail);
+                ClientCAD clientCAD = new ClientCAD();
+                ClientEN client = clientCAD.getClient(mail);
+                PaymentMethodCAD paymentCAD = new PaymentMethodCAD();
+                PaymentMethodEN payment = paymentCAD.getPaymentMethod(mail);
 
-            if (client.Premium == true)
+                if (client.Premium == true)
+                {
+                    Button_PremiumUser.Text = "Selected";
+                    Button_PremiumUser.Enabled = false;
+
+                }
+            }catch(ArgumentOutOfRangeException)
             {
-                Button_PremiumUser.Text = "Selected";
-                Button_PremiumUser.Enabled = false;
-
+                System.Windows.Forms.MessageBox.Show("Mail not registered, please log in");
             }
         }
         protected void Button_Submit_Click(object sender, EventArgs e)

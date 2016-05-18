@@ -16,17 +16,16 @@ using BookingENns;
 namespace ClientCADNS{
     public class ClientCAD {
 
-      private string s = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString ();
-      private ClientEN client;
-      private SqlConnection c;
-      private ArrayList allClients;
+        private string s = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
+        private ClientEN client;
+        private SqlConnection c;
+        private ArrayList allClients;
 
-      public ClientCAD(){
-        c = new SqlConnection(s);
-      }
+        public ClientCAD() {
+            c = new SqlConnection(s);
+        }
 
-
-
+       
 
       public ArrayList getAllClients(){
         try{
@@ -36,7 +35,7 @@ namespace ClientCADNS{
           SqlDataReader dr = com.ExecuteReader();
 
           while(dr.Read()){
-            ClientEN aux = new ClientEN(dr["email"], dr["pass"], dr["premium"], dr["DNI"], dr["name"], dr["surname"], dr["phone"], dr["address"], dr["city"], dr["birthDate"], dr["drivingLicence"]);
+            ClientEN aux = new ClientEN(dr["email"].ToString(), dr["pass"].ToString(), (bool)dr["premium"], dr["DNI"].ToString(), dr["name"].ToString(), dr["surname"].ToString(), (int)dr["phone"], dr["address"].ToString(), dr["city"].ToString(), (Date)dr["birthDate"], (bool)dr["drivingLicence"]);
             allClients.Add(aux);
           }
 
@@ -44,27 +43,31 @@ namespace ClientCADNS{
         }finally{
           c.Close();
 
-          return(allClients);
+          
         }
-      }
+            return (allClients);
+        }
 
       public ClientEN getClient(String email){
-        try{
+            ClientEN aux;
+        try
+            {
           c.Open();
           SqlCommand com = new SqlCommand("Select * from T_User WHERE email='"+email+"'", c);
           SqlDataReader dr = com.ExecuteReader();
 
 
-          ClientEN aux = new ClientEN(dr["email"], dr["pass"], dr["premium"], dr["DNI"], dr["name"], dr["surname"], dr["phone"], dr["address"], dr["city"], dr["birthDate"], dr["drivingLicence"]);
+          aux = new ClientEN(dr["email"].ToString(), dr["pass"].ToString(), (bool)dr["premium"], dr["DNI"].ToString(), dr["name"].ToString(), dr["surname"].ToString(), (int)dr["phone"], dr["address"].ToString(), dr["city"].ToString(), (Date)dr["birthDate"], (bool)dr["drivingLicence"]);
 
 
-          dr.Close();
+                dr.Close();
         }finally{
           c.Close();
 
-          return(aux);
+         
         }
-      }
+            return (aux);
+        }
 
 
       public void updateClient(ClientEN cl){
