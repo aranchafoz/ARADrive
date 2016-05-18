@@ -21,6 +21,34 @@ namespace Web
         {
             Button_Submit.Click += new EventHandler(this.Button_Submit_Click);
         }
+
+        static bool ValidatePassword(string password)
+        {
+            const int MIN_LENGTH = 8;
+            const int MAX_LENGTH = 15;
+
+            if (password == null) throw new ArgumentNullException();
+
+            bool meetsLengthRequirements = password.Length >= MIN_LENGTH && password.Length <= MAX_LENGTH;
+            bool hasLowerCaseLetter = false;
+            bool hasDecimalDigit = false;
+
+            if (meetsLengthRequirements)
+            {
+                foreach (char c in password)
+                {
+                    if (char.IsLower(c)) hasLowerCaseLetter = true;
+                    else if (char.IsDigit(c)) hasDecimalDigit = true;
+                }
+            }
+
+            bool isValid = meetsLengthRequirements
+                        && hasLowerCaseLetter
+                        && hasDecimalDigit
+                        ;
+            return isValid;
+
+        }
         // This functions verifies the email is in a valid format
         public bool IsValidEmail(string strIn)
         {
@@ -113,18 +141,25 @@ namespace Web
                     && password != string.Empty     && passwordConfirm != string.Empty
                     && location != string.Empty)
                 {
-                    if (email.Equals(emailConfirm) && password.Equals(passwordConfirm))
+                    if (ValidatePassword(password))
                     {
-                        long telefono = Convert.ToInt64(telephone);
-                        Date birthdate = BookingCAD.ConvertDate(bd);
-                        ClientEN clientEN = new ClientEN(email, password, false, dni, name, surname, telefono, 
-                            address, location, birthdate, drivingLicense);
-                        ClientCAD clientCAD = new ClientCAD();
-                        clientCAD.insertCliente(clientEN);
-                }
+                        if (email.Equals(emailConfirm) && password.Equals(passwordConfirm))
+                        {
+                            long telefono = Convert.ToInt64(telephone);
+                            Date birthdate = BookingCAD.ConvertDate(bd);
+                            ClientEN clientEN = new ClientEN(email, password, false, dni, name, surname, telefono,
+                                address, location, birthdate, drivingLicense);
+                            ClientCAD clientCAD = new ClientCAD();
+                            clientCAD.insertCliente(clientEN);
+                        }
+                        else
+                        {
+                            Label_Error.Text = "Confirmation fields mismatch";
+                        }
+                    }
                     else
                     {
-                        Label_Error.Text = "Confirmation fields mismatch";
+                        Label_Error.Text = "Your password is not strong enough";
                     }
                 }
                 else
