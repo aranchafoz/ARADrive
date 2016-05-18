@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.SessionState;
 using ClientENns;
+using ClientCADNS;
 
 namespace Web
 {
@@ -19,6 +20,7 @@ namespace Web
                 lnkProfile.Visible = false;
                 lnkLog_in.Visible = true;
                 lnkRegister.Visible = true;
+                HyperLinkHello.Visible = false;
             }
             // User is logged
             else
@@ -26,8 +28,9 @@ namespace Web
                 lnkProfile.Visible = true;
                 lnkLog_in.Visible = false;
                 lnkRegister.Visible = false;
-                //ClientEN client = new ClientEN((ClientEN)Session["user"]);
-                //Label_HelloUser.Text = "Hello, " + client.Name;
+                HyperLinkHello.Visible = true;
+                ClientEN client = new ClientEN((ClientEN)Session["user"]);
+                HyperLinkHello.Text = "Hello, " + client.Name.ToString();
 
             }
         }

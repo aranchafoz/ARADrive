@@ -18,7 +18,21 @@ namespace ClientENns
         private Date birthDate;
         private bool drivingLicence;
 
-        // Constructor
+        // Constructors
+        public ClientEN()
+        {
+            email = "";
+            pass = "";
+            premium = false;
+            dni = "";
+            name = "";
+            surname = "";
+            phone = -1;
+            address = "";
+            birthDate = new Date(0, 0, 0);
+            drivingLicence = false;
+        }
+
         public ClientEN(string email, string pass, bool premium, string dni, string name, string surname,
             long phone, string address, string city, Date birthDate, bool drivingLicense)
         {
@@ -35,18 +49,19 @@ namespace ClientENns
             this.drivingLicence = drivingLicense;
         }
 
-        public ClientEN()
+        public ClientEN(ClientEN c)
         {
-            email = "";
-            pass = "";
-            premium = false;
-            dni = "";
-            name = "";
-            surname = "";
-            phone = -1;
-            address = "";
-            birthDate = new Date(0,0,0);
-            drivingLicence = false;
+            this.email = c.Email;
+            this.pass = c.Pass;
+            this.premium = c.Premium;
+            this.dni = c.DNI;
+            this.name = c.Name;
+            this.surname = c.Surname;
+            this.phone = c.Phone;
+            this.address = c.Address;
+            this.city = c.City;
+            this.birthDate = c.BirthDate;
+            this.drivingLicence = c.DrivingLicence;
         }
 
         // Properties

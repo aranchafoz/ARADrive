@@ -10,6 +10,12 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.SessionState;
+using System.Drawing;
+using System.Drawing.Configuration;
+using System.Drawing.Design;
+using System.Drawing.Text;
+using System.Drawing.Printing;
+using System.Drawing.Imaging;
 
 namespace Web
 {
@@ -22,6 +28,7 @@ namespace Web
             {
                 Response.Redirect("Home.aspx");
             }
+
             if (!IsPostBack)
                 Button_Edit.Click += new EventHandler(this.Button_Edit_Click);
         }
@@ -36,7 +43,11 @@ namespace Web
 
         protected void Button_Edit_Click(object sender, EventArgs e)
         {
+            // Saving client of user logged
+            ClientEN client = new ClientEN((ClientEN)Session["user"]);
+
             string buttonText = Button_Edit.Text;
+            // Edit mode
             if (buttonText.Equals("Save"))
             {
                 if (Text_UserPhone.Text != "" && Text_UserBirth.Text != "" && Text_UserCity.Text != "" &&
@@ -65,16 +76,47 @@ namespace Web
 
                 }
             }
+            // Showing mode
             else if (buttonText.Equals("Edit"))
             {
                 Button_Edit.Text = "Save";
 
+                // Non-editable fields
+                Label_UserName.Text = client.Name.ToString();
+                Label_UserSurname.Text = client.Surname.ToString();
+                Label_UserEmail.Text = client.Email.ToString();
+                if(client.Premium == false)
+                {
+                    Label_UserPremium.Text = "Regular User";
+                    //Label_UserPremium.ForeColor = new System.Drawing.ColorTranslator.FromHtml("#996600");
+                }
+                else
+                {
+                    Label_UserPremium.Text = "Premium User";
+                    //Label_UserPremium.ForeColor = new System.Drawing.ColorTranslator.Green;
+                }
+
+                // Editable fields
+                Text_UserPhone.Text = client.Phone.ToString();
+                Text_UserBirth.Text = client.BirthDate.ToString();
+                Text_UserCity.Text = client.City.ToString();
+                Text_UserAddress.Text = client.Address.ToString();
+                Text_UserNIF.Text = client.DNI.ToString();
+                if (client.DrivingLicence == false)
+                {
+                    Text_UserDrivingLicense.Text = "None";
+                }
+                else
+                {
+                    Text_UserDrivingLicense.Text = "Valid";
+                }
+                /*
                 Label2TextBox(Text_UserPhone);
                 Label2TextBox(Text_UserBirth);
                 Label2TextBox(Text_UserCity);
                 Label2TextBox(Text_UserAddress);
                 Label2TextBox(Text_UserNIF);
-                Label2TextBox(Text_UserDrivingLicense);
+                Label2TextBox(Text_UserDrivingLicense);*/
             }
 
         }

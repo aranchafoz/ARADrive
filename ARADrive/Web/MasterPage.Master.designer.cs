@@ -58,13 +58,13 @@ namespace Web {
         protected global::System.Web.UI.WebControls.HyperLink lnkRegister;
         
         /// <summary>
-        /// Control Label_HelloUser.
+        /// Control HyperLinkHello.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label_HelloUser;
+        protected global::System.Web.UI.WebControls.HyperLink HyperLinkHello;
         
         /// <summary>
         /// Control ContentPlaceHolder1.

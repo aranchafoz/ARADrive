@@ -109,7 +109,7 @@
         <div class="row" style="text-align:right">
             <div class="col-xs-12">
                 <!--<asp:Button ID="Button_Save" class="btn btn-success" Width="20%" runat="server" Text="Save"/>-->
-                <asp:Button ID="Button_Edit" CssClass="btn btn-info" Width="20%" runat="server" Text="Edit"/>
+                <asp:Button ID="Button_Edit" CssClass="btn btn-info" Width="20%" runat="server" Text="Edit" OnClick="Button_Edit_Click"/>
             </div>  
         </div>
     </div>

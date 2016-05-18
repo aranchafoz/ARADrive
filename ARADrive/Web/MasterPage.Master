@@ -60,7 +60,8 @@
                                   Text="Register" />
                         </li>
                         <li>
-                            <asp:Label ID="Label_HelloUser" runat="server" Text=""></asp:Label>
+                            <asp:HyperLink ID="HyperLinkHello" runat="server"
+                                  Text="" />
                         </li>
                     
                     </ul>
