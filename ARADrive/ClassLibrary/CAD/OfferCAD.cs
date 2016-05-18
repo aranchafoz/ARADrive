@@ -12,27 +12,35 @@ using System.Collections;
 using System.Configuration;
 using OfferENns;
 using BookingENns;
-
+// specific namespace for the CAD
 namespace OfferCADNS
 {
     public class OfferCAD
     {
+      // the connection string is specified in the web.config file, this way it acts like a constant
       private string s = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString ();
+
+      // ENs to be returned in some functions
       private OfferEN offer;
       private ArrayList offers;
+
+      // Connection variable
       private SqlConnection conn;
 
+
+      // initializes the connection in the constructor
       public OfferCAD() {
-        conn = new SqlConnection(s); // FALTA POR PONER BIEN LO DEL STRING 's' !!
+        conn = new SqlConnection(s);
       }
 
+      // returns an arraylist with all the offers stored in the DataBase
       public ArrayList getAllOffers() {
         try {
           offers = new ArrayList();
           conn.Open();
           SqlCommand query = new SqlCommand("SELECT * FROM T_Offer", conn);
           SqlDataReader dr = query.ExecuteReader();
-
+          // loop for reading all the records
           while (dr.Read()) {
               int[] date = new int[3];
               String startDate = dr["startDate"].ToString();
@@ -64,7 +72,7 @@ namespace OfferCADNS
               }
               Date fd = new Date(date[0], date[1], date[2]);
 
-
+              // adds to the returning array an offer
                   offers.Add(new OfferEN((int)dr["code"], (int)dr["car"], sd, fd, dr["IMG"].ToString(), (double)dr["newPrice"], dr["title"].ToString(), dr["description"].ToString()));
           }
 
@@ -76,13 +84,14 @@ namespace OfferCADNS
         }
       }
 
+      // returns a specific offer identified by its code
       public OfferEN getOffer(int code) {
         try {
           conn.Open();
           SqlCommand query = new SqlCommand("SELECT * FROM T_Offer WHERE code=" + code, conn);
           SqlDataReader dr = query.ExecuteReader();
 
-          if (dr.Read()) {
+          if (dr.Read()) {  // if an offer is found we create the offer EN
               String startDate = dr["startDate"].ToString();
               int j = 0;
               int[] date = new int[3];
@@ -112,7 +121,7 @@ namespace OfferCADNS
                   j++;
               }
               Date fd = new Date(date[0], date[1], date[2]);
-
+            // offer to be returned
             offer = new OfferEN((int)dr["code"],(int)dr["car"],sd,fd,dr["IMG"].ToString(),(double)dr["newPrice"],dr["title"].ToString(),dr["description"].ToString());
           }
 
@@ -125,6 +134,7 @@ namespace OfferCADNS
         }
       }
 
+      // updates an existing offer given itself
       public void updateOffer(OfferEN c) {
         try {
           conn.Open();
@@ -135,6 +145,7 @@ namespace OfferCADNS
         }
       }
 
+      // inserts a new offer into the DataBase given an Offer Business Entity
       public void insertOffer(OfferEN c) {
         try {
           conn.Open();
@@ -145,6 +156,7 @@ namespace OfferCADNS
         }
       }
 
+      // deletes an already existing offer given its code as identifier
       public void deleteOffer(int code) {
         try {
           conn.Open();

@@ -14,22 +14,29 @@ using System.Collections;
 using System.Configuration;
 using System.Globalization;
 using BookingENns;
-
+// Namespace specific for this CAD
 namespace BookingCADNS
 {
     public class BookingCAD
     {
+      // the connection string is specified in the web.config file, this way it acts like a constant
       private string s = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString ();
+
+      // ENs to be returned in some functions
       private BookingEN booking;
       private ArrayList bookings;
+
+      // Connection variable
       private SqlConnection conn;
 
+        // this function converts a given string formatted like an MySQL date to a Date object
         public static Date ConvertDate(string text)
         {
             DateTime datetime = DateTime.ParseExact(text, "yyyy-MM-dd", CultureInfo.InvariantCulture);
             return new Date(datetime.Day, datetime.Month, datetime.Year);
         }
 
+        // computes the difference in days between two given dates
         public static double DayDifference(Date date1, Date date2)
         {
             DateTime dateTime1 = new DateTime(date1.GetYear(), date1.GetMonth(), date1.GetDay());
@@ -37,18 +44,20 @@ namespace BookingCADNS
             return (dateTime1 - dateTime2).TotalDays;
         }
 
+        // constructor in which we initialize the connection
         public BookingCAD() {
-        conn = new SqlConnection(s); // FALTA POR PONER BIEN LO DEL STRING 's' !!
+        conn = new SqlConnection(s);
       }
 
+      // getter for all the bookings
       public ArrayList getAllBookings() {
         try {
           bookings = new ArrayList();
-          conn.Open();
-          SqlCommand query = new SqlCommand("SELECT * FROM T_Booking", conn);
-          SqlDataReader dr = query.ExecuteReader();
+          conn.Open();  // opens the connection
+          SqlCommand query = new SqlCommand("SELECT * FROM T_Booking", conn); // prepares the query
+          SqlDataReader dr = query.ExecuteReader(); // executes the query
 
-          while (dr.Read()) {
+          while (dr.Read()) {  // reads the result of the query
               int[] date = new int[3];
               String startDate = dr["startDate"].ToString();
               int j = 0;
@@ -78,24 +87,26 @@ namespace BookingCADNS
                   j++;
               }
               Date fd = new Date(date[0], date[1], date[2]);
+              // adds the read booking to the array which will be returned at the end of this function
             bookings.Add(new BookingEN((int)dr["code"],dr["usr"].ToString(),(int)dr["car"],sd,fd,(bool)dr["driver"],(bool)dr["satNav"],(bool)dr["babyChair"],(bool)dr["childChair"],(bool)dr["baca"],(bool)dr["insurance"],(bool)dr["youngDriver"],(int)dr["pickUp"],(int)dr["delivery"],(double)dr["totPrice"]));
           }
 
-          dr.Close();
+          dr.Close(); // we close the datareader
 
           return bookings;
         } finally {
-          conn.Close();
+          conn.Close(); // we close the connection
         }
       }
 
+      // gets a specific booking given its code
       public BookingEN getBooking(int code) {
         try {
           conn.Open();
           SqlCommand query = new SqlCommand("SELECT * FROM T_Booking WHERE code=" + code, conn);
           SqlDataReader dr = query.ExecuteReader();
 
-          if (dr.Read()) {
+          if (dr.Read()) {  // if there is some data found
               int[] date = new int[3];
               String startDate = dr["startDate"].ToString();
               int j = 0;
@@ -125,6 +136,7 @@ namespace BookingCADNS
                   j++;
               }
               Date fd = new Date(date[0], date[1], date[2]);
+              // we return the data found inside an object of type BookingEN
             booking = new BookingEN((int)dr["code"],dr["usr"].ToString(),(int)dr["car"],sd,fd,(bool)dr["driver"],(bool)dr["satNav"],(bool)dr["babyChair"],(bool)dr["childChair"],(bool)dr["baca"],(bool)dr["insurance"],(bool)dr["youngDriver"],(int)dr["pickUp"],(int)dr["delivery"],(double)dr["totPrice"]);
           }
 
@@ -137,6 +149,7 @@ namespace BookingCADNS
         }
       }
 
+      // Changes an already existing booking given itself
       public void updateBooking(BookingEN c) {
         try {
           conn.Open();
@@ -147,6 +160,7 @@ namespace BookingCADNS
         }
       }
 
+      // creates a new booking
       public void insertBooking(BookingEN c) {
         try {
           conn.Open();
@@ -157,6 +171,7 @@ namespace BookingCADNS
         }
       }
 
+      // deletes/cancels an already existing booking given its code
       public void deleteBooking(int code) {
         try {
           conn.Open();

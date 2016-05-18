@@ -13,42 +13,50 @@ using System.Configuration;
 using ClientENns;
 using BookingENns;
 using System.Globalization;
-
+// specific namespace of the CAD
 namespace ClientCADNS{
     public class ClientCAD {
-
+        // the connection string is specified in the web.config file, this way it acts like a constant
         private string s = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
+
+        // ENs to be returned in some functions
         private ClientEN client;
         private SqlConnection c;
+
+
         private ArrayList allClients;
 
+        // constructor where we initialize the connection
         public ClientCAD() {
             c = new SqlConnection(s);
         }
 
-       
 
+      // returns an arraylist with all the clients
       public ArrayList getAllClients(){
         try{
-          c.Open();
+          c.Open(); // opens the connection
           allClients = new ArrayList();
           SqlCommand com = new SqlCommand("Select * from T_User", c);
           SqlDataReader dr = com.ExecuteReader();
 
+          // reads all the clients received from the DataBase
           while(dr.Read()){
+            // creates a client entity and adds it to the array which will be returned
             ClientEN aux = new ClientEN(dr["email"].ToString(), dr["pass"].ToString(), (bool)dr["premium"], dr["DNI"].ToString(), dr["name"].ToString(), dr["surname"].ToString(), (int)dr["phone"], dr["address"].ToString(), dr["city"].ToString(), (Date)dr["birthDate"], (bool)dr["drivingLicence"]);
             allClients.Add(aux);
           }
 
-          dr.Close();
+          dr.Close(); // closes the data reader
         }finally{
-          c.Close();
+          c.Close(); // closes the connection
 
-          
+
         }
             return (allClients);
         }
 
+      // returns a specific client given its email (the identifier)
       public ClientEN getClient(String email){
         ClientEN aux = new ClientEN();
         try
@@ -76,7 +84,7 @@ namespace ClientCADNS{
                             if (startDate[i].Equals("-"))
                             {
 
-                            } else { 
+                            } else {
                             date[j] = int.Parse(s);
                             j++;
                         }
@@ -114,17 +122,17 @@ namespace ClientCADNS{
 
                     }
 
-
+                    // creates the client EN to be returned at the end of this method
                     aux = new ClientEN(dr["email"].ToString(), dr["pass"].ToString(), premium, dr["DNI"].ToString(), dr["name"].ToString(), dr["surname"].ToString(), (int)dr["phone"], dr["address"].ToString(), dr["city"].ToString(), date, license);
                 }
             dr.Close();
         }finally{
-            c.Close();         
+            c.Close();
         }
         return (aux);
         }
 
-
+      // updates an already existing client given itself
       public void updateClient(ClientEN cl){
         try{
                 c = new SqlConnection(s);
@@ -137,6 +145,7 @@ namespace ClientCADNS{
         }
       }
 
+      // deletes an already existing client given its email
       public void deleteClient(String email){
         try{
                 c = new SqlConnection(s);
@@ -148,8 +157,9 @@ namespace ClientCADNS{
         }
       }
 
+      // creates a new client record in the database given the client entity
       public void insertCliente(ClientEN cl){
-        try{    
+        try{
                 int premium = 0;
                 if (cl.Premium == true) premium = 1;
                 int license = 0;
