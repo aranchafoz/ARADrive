@@ -15,6 +15,7 @@ namespace Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Se ha añadido try/catch en el CAD, mirar porque se produce Exception
             string mail = (string)(Session[0]);
 
 

@@ -10,7 +10,7 @@
 namespace Web {
     
     
-    public partial class Formulario_web1 {
+    public partial class Account {
         
         /// <summary>
         /// Control Label_UserName.

@@ -32,7 +32,7 @@
                                     <asp:Label ID="Label_TotalPrice" runat="server" Text="$ 156" Font-Size="Medium" Font-Bold="true"></asp:Label>
                                 </div>
                                 <div class="col-xs-5">
-                                    <asp:Button ID="Button_Rent" class="btn btn-danger" runat="server" Text="Delete" Width="90%"/>
+                                    <asp:Button ID="Button_Delete" class="btn btn-danger" runat="server" Text="Delete" Width="90%"/>
                                 </div>
                             </div>                            
                         </div>
