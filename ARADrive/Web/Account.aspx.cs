@@ -60,23 +60,8 @@ namespace Web
             if (Text_UserPhone.Text != "" && Text_UserBirth.Text != "" && Text_UserCity.Text != "" &&
                     Text_UserAddress.Text != "" && Text_UserNIF.Text != "" && Text_UserDrivingLicense.Text != "")
             {
-                // client.Phone(TextBox_UserPhone.Text.ToString());
-                //Button_Edit.Text = "Edit";
-                /*
-                Label2TextBox(Text_UserPhone);
-                Label2TextBox(Text_UserBirth);
-                Label2TextBox(Text_UserCity);
-                Label2TextBox(Text_UserAddress);
-                Label2TextBox(Text_UserNIF);
-                Label2TextBox(Text_UserDrivingLicense);
-                /*
-                TextBox2Label(Text_UserPhone);
-                TextBox2Label(Text_UserBirth);
-                TextBox2Label(Text_UserCity);
-                TextBox2Label(Text_UserAddress);
-                TextBox2Label(Text_UserNIF);
-                TextBox2Label(Text_UserDrivingLicense);
-                */
+                
+                
 
                 //Date birthdate = ConvertDate(Text_UserBirth.Text);
 
@@ -92,6 +77,12 @@ namespace Web
 
                     Button_Edit.Visible = true;
                     Button_Save.Visible = false;
+                    TextBox2Label(Text_UserPhone);
+                    TextBox2Label(Text_UserBirth);
+                    TextBox2Label(Text_UserCity);
+                    TextBox2Label(Text_UserAddress);
+                    TextBox2Label(Text_UserNIF);
+                    TextBox2Label(Text_UserDrivingLicense);
                     showUserData(client);
                 }
                 else
@@ -146,10 +137,10 @@ namespace Web
             string address, string city, bool drivingLicense)
         {
             ClientCAD clientCAD = new ClientCAD();
-            ClientEN cl = null;
             //try
             //{
-            cl = clientCAD.getClient(email);
+
+            ClientEN cl = new ClientEN(clientCAD.getClient(email));
 
             cl.Address = address;
             cl.BirthDate = birthDate;

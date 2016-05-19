@@ -138,8 +138,12 @@ namespace ClientCADNS
             {
                 c = new SqlConnection(s);
                 c.Open();
+                int premium = 0;
+                if (cl.Premium == true) premium = 1;
+                int license = 0;
+                if (cl.DrivingLicence == true) license = 1;
                 DateTime birth = new DateTime(cl.BirthDate.GetYear(), cl.BirthDate.GetMonth(), cl.BirthDate.GetDay());
-                SqlCommand com = new SqlCommand("UPDATE T_User set pass='" + cl.Pass + "', premium=" + cl.Premium + ", DNI='" + cl.DNI + "', name='" + cl.Name + "', surname='" + cl.Surname + "', phone=" + cl.Phone + ", address='" + cl.Address + "', city='" + cl.City + "', birthDate='" + birth + "', drivingLicence=" + cl.DrivingLicence + " WHERE email='" + cl.Email, c);
+                SqlCommand com = new SqlCommand("UPDATE T_User set pass='" + cl.Pass + "', premium=" + premium + ", DNI='" + cl.DNI + "', name='" + cl.Name + "', surname='" + cl.Surname + "', phone=" + cl.Phone + ", address='" + cl.Address + "', city='" + cl.City + "', birthDate='" + birth + "', drivingLicense=" + license + " WHERE email='" + cl.Email + "'", c);
                 com.ExecuteNonQuery();
             }
             finally
