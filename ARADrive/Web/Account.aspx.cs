@@ -29,8 +29,16 @@ namespace Web
                 Response.Redirect("Home.aspx");
             }
 
-            if (!IsPostBack)
+            if (!IsPostBack) {
                 Button_Edit.Click += new EventHandler(this.Button_Edit_Click);
+                Button_Save.Click += new EventHandler(this.Button_Save_Click);
+            }
+            // Disable at page load 'save button'
+            Button_Save.Visible = false;
+
+            // Load user logged from session variable
+            ClientEN client = new ClientEN((ClientEN)Session["user"]);
+            showUserData(client);
         }
 
         // editable fields:
@@ -46,70 +54,21 @@ namespace Web
             // Saving client of user logged
             ClientEN client = new ClientEN((ClientEN)Session["user"]);
 
-            string buttonText = Button_Edit.Text;
+            Button_Edit.Visible = false;
+            Button_Save.Visible = true;
+
+            //string buttonText = Button_Edit.Text;
             // Edit mode
-            if (buttonText.Equals("Save"))
-            {
-                if (Text_UserPhone.Text != "" && Text_UserBirth.Text != "" && Text_UserCity.Text != "" &&
-                    Text_UserAddress.Text != "" && Text_UserNIF.Text != "" && Text_UserDrivingLicense.Text != "")
-                {
-                    Button_Edit.Text = "Edit";
-
-                    TextBox2Label(Text_UserPhone);
-                    TextBox2Label(Text_UserBirth);
-                    TextBox2Label(Text_UserCity);
-                    TextBox2Label(Text_UserAddress);
-                    TextBox2Label(Text_UserNIF);
-                    TextBox2Label(Text_UserDrivingLicense);
-
-
-                    Date birthdate = ConvertDate(Text_UserBirth.Text);
-
-                    bool drivingLicense = true;
-                    if (Text_UserDrivingLicense.Text.Equals(""))
-                        drivingLicense = false;
-
-                    long telephone = ConvertPhonenumber(Text_UserPhone.Text);
-
-                    SaveChanges(Label_UserEmail.Text, telephone, Text_UserNIF.Text,
-                          birthdate, Text_UserAddress.Text, Text_UserCity.Text, drivingLicense);
-
-                }
-            }
+            //if (buttonText.Equals("Save"))
+            //{
+                
+            //}
             // Showing mode
-            else if (buttonText.Equals("Edit"))
-            {
+            //else if (buttonText.Equals("Edit"))
+            //{
                 Button_Edit.Text = "Save";
 
-                // Non-editable fields
-                Label_UserName.Text = client.Name.ToString();
-                Label_UserSurname.Text = client.Surname.ToString();
-                Label_UserEmail.Text = client.Email.ToString();
-                if(client.Premium == false)
-                {
-                    Label_UserPremium.Text = "Regular User";
-                    //Label_UserPremium.ForeColor = new System.Drawing.ColorTranslator.FromHtml("#996600");
-                }
-                else
-                {
-                    Label_UserPremium.Text = "Premium User";
-                    //Label_UserPremium.ForeColor = new System.Drawing.ColorTranslator.Green;
-                }
-
-                // Editable fields
-                Text_UserPhone.Text = client.Phone.ToString();
-                Text_UserBirth.Text = client.BirthDate.ToString();
-                Text_UserCity.Text = client.City.ToString();
-                Text_UserAddress.Text = client.Address.ToString();
-                Text_UserNIF.Text = client.DNI.ToString();
-                if (client.DrivingLicence == false)
-                {
-                    Text_UserDrivingLicense.Text = "None";
-                }
-                else
-                {
-                    Text_UserDrivingLicense.Text = "Valid";
-                }
+                showUserData(client);
                 /*
                 Label2TextBox(Text_UserPhone);
                 Label2TextBox(Text_UserBirth);
@@ -117,10 +76,44 @@ namespace Web
                 Label2TextBox(Text_UserAddress);
                 Label2TextBox(Text_UserNIF);
                 Label2TextBox(Text_UserDrivingLicense);*/
-            }
+            //}
 
         }
 
+        protected void Button_Save_Click(object sender, EventArgs e)
+        {
+            Button_Save.Visible = false;
+            Button_Edit.Visible = true;
+
+            if (Text_UserPhone.Text != "" && Text_UserBirth.Text != "" && Text_UserCity.Text != "" &&
+                    Text_UserAddress.Text != "" && Text_UserNIF.Text != "" && Text_UserDrivingLicense.Text != "")
+            {
+                //Button_Edit.Text = "Edit";
+
+                TextBox_UserPhone.ReadOnly = false;
+                /*
+                TextBox2Label(Text_UserPhone);
+                TextBox2Label(Text_UserBirth);
+                TextBox2Label(Text_UserCity);
+                TextBox2Label(Text_UserAddress);
+                TextBox2Label(Text_UserNIF);
+                TextBox2Label(Text_UserDrivingLicense);
+                */
+
+                Date birthdate = ConvertDate(Text_UserBirth.Text);
+
+                bool drivingLicense = true;
+                if (Text_UserDrivingLicense.Text.Equals(""))
+                    drivingLicense = false;
+
+                long telephone = ConvertPhonenumber(Text_UserPhone.Text);
+
+                SaveChanges(Label_UserEmail.Text, telephone, Text_UserNIF.Text,
+                      birthdate, Text_UserAddress.Text, Text_UserCity.Text, drivingLicense);
+
+            }
+
+        }
 
         protected void SaveChanges(string email, long phone, string pass, Date birthDate,
             string address, string city, bool drivingLicense)
@@ -188,5 +181,39 @@ namespace Web
             return Int64.Parse(phoneNumber);
         }
 
+        protected void showUserData(ClientEN client)
+        {
+            // Non-editable fields
+            Label_UserName.Text = client.Name.ToString();
+            Label_UserSurname.Text = client.Surname.ToString();
+            Label_UserEmail.Text = client.Email.ToString();
+            if (client.Premium == false)
+            {
+                Label_UserPremium.Text = "Regular User";
+                //Label_UserPremium.ForeColor = new System.Drawing.ColorTranslator.FromHtml("#996600");
+            }
+            else
+            {
+                Label_UserPremium.Text = "Premium User";
+                //Label_UserPremium.ForeColor = new System.Drawing.ColorTranslator.Green;
+            }
+
+            // Editable fields
+            Text_UserPhone.Text = client.Phone.ToString();
+            Text_UserBirth.Text = client.BirthDate.ToString();
+            Text_UserCity.Text = client.City.ToString();
+            Text_UserAddress.Text = client.Address.ToString();
+            Text_UserNIF.Text = client.DNI.ToString();
+            if (client.DrivingLicence == false)
+            {
+                Text_UserDrivingLicense.Text = "None";
+            }
+            else
+            {
+                Text_UserDrivingLicense.Text = "Valid";
+            }
+        }
+
+        
     }
 }

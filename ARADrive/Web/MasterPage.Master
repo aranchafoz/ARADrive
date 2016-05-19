@@ -60,6 +60,7 @@
                                   Text="Register" />
                         </li>
                         <li>
+                            <!--Add dropdown for Log out (put Session["user"] to null)-->
                             <asp:HyperLink ID="HyperLinkHello" runat="server"
                                   Text="" />
                         </li>

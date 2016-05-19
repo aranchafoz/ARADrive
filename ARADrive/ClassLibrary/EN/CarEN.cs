@@ -75,7 +75,7 @@ namespace CarENns
         public string IMG
         {
             set { this.IMG = value; }
-            get { return IMG; }
+            get { return img; }
         }
 
     }

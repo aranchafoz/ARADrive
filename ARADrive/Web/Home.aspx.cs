@@ -17,18 +17,23 @@ namespace Web
         private Date date_today;
         private double dayDifference;
 
+        int carCode = -1;
+
+        // hidden panel -> true
+        // showed panel -> false
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            Button_Search.Click += new EventHandler(this.OnClick_Search);
+            CollapsiblePanelExtender_Result.Collapsed = true;
+            CollapsiblePanelExtender_Result.ClientState = "true";
+
+            if (!IsPostBack)
+                Button_Search.Click += new EventHandler(this.OnClick_Search);
         }
 
 
         protected void OnClick_Search(Object sender, EventArgs e)
         {
-            Label_Error.Text = "MOSTRANDO!!";
-            CollapsiblePanelExtender_Result.Collapsed = true;
-            CollapsiblePanelExtender_Result.Collapsed = false;
-
 
             // Check if dates are the correct format
             if (IsCorrectDateFormat(Calendar_PickUp1.Text) && IsCorrectDateFormat(Calendar_DropOff1.Text))
@@ -39,23 +44,37 @@ namespace Web
                 date_today = new Date(DateTime.Today.Day, DateTime.Today.Month, DateTime.Today.Year);
 
                 // Date_DropOff has to be at least Date_PickUp  &  Date_PickUp has to be at least today
-                if ((Date.CompareDates(date_PickUp, date_DropOff) < 1) && (Date.CompareDates(date_today, date_PickUp) < 1))
-                { 
+                if ((Date.CompareDates(date_PickUp, date_DropOff) == 1) && (Date.CompareDates(date_today, date_PickUp) == 1))
+                {
+                    CollapsiblePanelExtender_Result.ExpandControlID = Button_Search.Text;
+                    Label_Error.Text = "";
+                    CollapsiblePanelExtender_Result.Collapsed = false;
+                    CollapsiblePanelExtender_Result.ClientState = "false";
+
+
+
                     // calculate difference of the two dates
-                    dayDifference = BookingCADNS.BookingCAD.DayDifference(date_DropOff, date_PickUp) + 1.0 ;
+                    dayDifference = BookingCADNS.BookingCAD.DayDifference(date_DropOff, date_PickUp) + 1.0;
 
                     ShowCategoryAndTotalPrice();
                 }
                 else
                 {
+                    CollapsiblePanelExtender_Result.ExpandControlID = null;
+                    CollapsiblePanelExtender_Result.Collapsed = true;
+                    CollapsiblePanelExtender_Result.ClientState = "true";
+
                     Label_Error.Text = "Please check the dates!";
                 }
             }
             else
             {
-                Label_Error.Text = "Please check the format of your date!";
+                CollapsiblePanelExtender_Result.ExpandControlID = null;
+                CollapsiblePanelExtender_Result.Collapsed = true;
+                CollapsiblePanelExtender_Result.ClientState = "true";
+                System.Windows.Forms.MessageBox.Show("Please insert valid dates");
             }
-            
+
         }
 
 
@@ -116,7 +135,7 @@ namespace Web
 
         }
 
-        public bool IsCorrectDateFormat (string date)
+        public bool IsCorrectDateFormat(string date)
         {
             // correct format: "yyyy-MM-dd"
 
@@ -133,5 +152,20 @@ namespace Web
             }
         }
 
+        protected void Catalog_ItemDataBound(Object sender, DataListCommandEventArgs e)
+        {
+            switch (e.CommandName)
+            {
+                case "ClickSeeMore":
+                    
+                    Label labelCarCode = e.Item.FindControl("Label_CarCode") as Label;
+                    carCode = Int32.Parse(labelCarCode.Text);
+
+                    Server.Transfer("Product.aspx?code=" + carCode + "&pageOrigin=catalog");
+                    Response.Redirect("Product.aspx");
+                    break;
+            }
+
+        }
     }
 }

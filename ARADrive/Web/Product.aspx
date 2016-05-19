@@ -17,7 +17,8 @@
                     <div class="row">
                         <div class="col-xs-6">
                             <!-- Foto -->
-                            <img class="img-responsive" style="crop:inherit" src="assets/img/carPics/polo.png" />                                                              
+                            <asp:Image ID="CarImage" CssClass="img-responsive" style="crop:inherit" ImageUrl="~/assets/img/carPics/polo.png" runat="server" />  
+                            <!--<img id="CarImage" class="img-responsive" style="crop:inherit" src="assets/img/carPics/polo.png" />-->                                                              
                         </div>
                         <div class="col-xs-6">
                             <div class="page-header">

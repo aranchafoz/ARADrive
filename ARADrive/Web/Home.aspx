@@ -32,9 +32,8 @@
                                 OnClick="OnClick_Search" OnClientClick="OnClick_Search"/> 
                         </asp:Panel>               
                         <br />                        
-                        <asp:Button ID="Button_Format" class="btn btn-danger" runat="server" Width="26%" style="margin-left:37%;"  Text="Format" 
-                                />
-                        <br />
+                        <!--<asp:Button ID="Button_Format" class="btn btn-danger" runat="server" Width="26%" style="margin-left:37%;"  Text="Format" 
+                                />-->
                     </form>
                 </div>
                 <div class="col-xs-4"></div>
@@ -57,6 +56,7 @@
                                         <img class="img-responsive" style="crop:inherit" src="assets/img/carPics/<%# Eval("IMG") %>" />  
                                     </div>
                                     <div class="col-xs-4">
+                                        <asp:Label ID="Label_CarCode" runat="server" Text='<%# Eval("category") %>' Visible="false"></asp:Label>
                                         <label for=""><em>Category:</em> &nbsp;</label>
                                         <asp:Label Text='<%# Eval("category") %>' runat="server" ID="Label_CarCategory" /><br />                            
                                         <label for=""><em>Description:</em></label><br />
@@ -76,7 +76,7 @@
                                         <br />
                                         <br />
                                         <br />
-                                        <asp:Button ID="Button_SeeMore" class="btn btn-primary" runat="server" Width="100%"  Text="See more" />
+                                        <asp:Button ID="Button_SeeMore" class="btn btn-primary" runat="server" Width="100%"  Text="See more" CommandName="ClickSeeMore"/>
                                         <br />
                                     </div>
                                 </div>                                
@@ -86,13 +86,13 @@
                     </ItemTemplate>
                 </asp:DataList>
                 <asp:SqlDataSource runat="server" ID="SqlDataSourceCarsDays" ConnectionString='<%$ ConnectionStrings:ConnectionString %>' 
-                    SelectCommand="SELECT [IMG], [name], [category], [descrip], [price] FROM [T_Car]"></asp:SqlDataSource>
+                    SelectCommand="SELECT [code], [IMG], [name], [category], [descrip], [price] FROM [T_Car]"></asp:SqlDataSource>
             </asp:Panel>
             </div>
             <div class="col-xs-3"></div>
         </div>
         <ajaxToolkit:CollapsiblePanelExtender ID="CollapsiblePanelExtender_Result" runat="server" Enabled="true"
-            TargetControlID="Panel_SearchResult" ExpandControlID="Button_Search" CollapseControlID="Button_Format"
+            TargetControlID="Panel_SearchResult" ExpandControlID="Button_Search" CollapseControlID="Button_Format" 
             Collapsed="true" 
             SuppressPostBack="false">
         </ajaxToolkit:CollapsiblePanelExtender> 
