@@ -10,7 +10,7 @@
 namespace Web {
     
     
-    public partial class Formulario_web2 {
+    public partial class PaymentMethod {
         
         /// <summary>
         /// Control Label_Info.

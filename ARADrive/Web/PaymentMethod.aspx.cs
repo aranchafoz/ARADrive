@@ -12,7 +12,7 @@ using System.Web.SessionState;
 
 namespace Web
 {
-    public partial class Formulario_web2 : System.Web.UI.Page
+    public partial class PaymentMethod : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -30,24 +30,39 @@ namespace Web
             PaymentMethodCAD aux = new PaymentMethodCAD();
             PaymentMethodEN comprobacion = aux.getPaymentMethod(mail);
 
-            if(comprobacion.User == "user") {
+            if (comprobacion.User == "user")
+            {
                 string user = TextBox_PaypalUser.Text.ToString();
                 string pass = TextBox_PaypalPassword.Text.ToString();
 
                 if (user != string.Empty && pass != string.Empty)
                 {
-                    PaymentMethodEN pago = new PaymentMethodEN(user, pass, mail);
+                    //PaymentMethodEN pago = new PaymentMethodEN(user, pass, mail);
                     PaymentMethodCAD insercion = new PaymentMethodCAD();
-                    insercion.insertPaymentMethod(pago);
+                    ClientEN client = new ClientEN((ClientEN)Session["user"]);
+                    string Mail1 = client.Email.ToString();
+                    PaymentMethodEN pago = new PaymentMethodEN(user, pass, Mail1);
+
+                    PaymentMethodCAD paymentCAD = new PaymentMethodCAD();
+                    PaymentMethodEN payment = paymentCAD.getPaymentMethod(Mail1);
+
+                    if (payment.User == "user")
+                    {
+                        insercion.insertPaymentMethod(pago);
+                    }
+                    else
+                    {
+                        insercion.updatePaymentMethod(pago);
+                    }
                 }
                 else
                 { }
             }
             else
-            { 
+            {
                 TextBox_PaypalUser.Text = comprobacion.Client;
                 TextBox_PaypalPassword.Text = comprobacion.Pass;
             }
         }
-        }
+    }
 }

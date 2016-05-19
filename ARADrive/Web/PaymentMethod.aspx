@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ProfileNestedMasterPage.master" AutoEventWireup="true" CodeBehind="PaymentMethod.aspx.cs" Inherits="Web.Formulario_web2" EnableEventValidation="false"%>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ProfileNestedMasterPage.master" AutoEventWireup="true" CodeBehind="PaymentMethod.aspx.cs" Inherits="Web.PaymentMethod" EnableEventValidation="false"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolderProfile" runat="server">
     <div class="container-fluid">
         <div class="panel panel-default">

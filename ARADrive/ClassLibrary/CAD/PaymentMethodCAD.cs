@@ -132,7 +132,11 @@ namespace PaymentMethodCADNS{
           // This is the SQL sentence used to insert a new PaymentMethod with the information provided in the passes parameter (a PaymentMethodEN)
           SqlCommand com = new SqlCommand("INSERT INTO T_PaymentMethod VALUES('"+pm.User+"', '"+pm.Pass+"', '"+pm.Client+"')", c);
           com.ExecuteNonQuery();
-        }finally{
+        }catch(SqlException e)
+            {
+                System.Windows.Forms.MessageBox.Show("You cant insert more than 1 payment method");
+            }
+            finally {
           c.Close();
         }
       }
