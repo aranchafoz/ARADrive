@@ -14,8 +14,10 @@ using ClientENns;
 using BookingENns;
 using System.Globalization;
 // specific namespace of the CAD
-namespace ClientCADNS{
-    public class ClientCAD {
+namespace ClientCADNS
+{
+    public class ClientCAD
+    {
         // the connection string is specified in the web.config file, this way it acts like a constant
         private string s = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
 
@@ -27,46 +29,53 @@ namespace ClientCADNS{
         private ArrayList allClients;
 
         // constructor where we initialize the connection
-        public ClientCAD() {
+        public ClientCAD()
+        {
             c = new SqlConnection(s);
         }
 
 
-      // returns an arraylist with all the clients
-      public ArrayList getAllClients(){
-        try{
-          c.Open(); // opens the connection
-          allClients = new ArrayList();
-          SqlCommand com = new SqlCommand("Select * from T_User", c);
-          SqlDataReader dr = com.ExecuteReader();
+        // returns an arraylist with all the clients
+        public ArrayList getAllClients()
+        {
+            try
+            {
+                c.Open(); // opens the connection
+                allClients = new ArrayList();
+                SqlCommand com = new SqlCommand("Select * from T_User", c);
+                SqlDataReader dr = com.ExecuteReader();
 
-          // reads all the clients received from the DataBase
-          while(dr.Read()){
-            // creates a client entity and adds it to the array which will be returned
-            ClientEN aux = new ClientEN(dr["email"].ToString(), dr["pass"].ToString(), (bool)dr["premium"], dr["DNI"].ToString(), dr["name"].ToString(), dr["surname"].ToString(), (int)dr["phone"], dr["address"].ToString(), dr["city"].ToString(), (Date)dr["birthDate"], (bool)dr["drivingLicence"]);
-            allClients.Add(aux);
-          }
+                // reads all the clients received from the DataBase
+                while (dr.Read())
+                {
+                    // creates a client entity and adds it to the array which will be returned
+                    ClientEN aux = new ClientEN(dr["email"].ToString(), dr["pass"].ToString(), (bool)dr["premium"], dr["DNI"].ToString(), dr["name"].ToString(), dr["surname"].ToString(), (int)dr["phone"], dr["address"].ToString(), dr["city"].ToString(), (Date)dr["birthDate"], (bool)dr["drivingLicence"]);
+                    allClients.Add(aux);
+                }
 
-          dr.Close(); // closes the data reader
-        }finally{
-          c.Close(); // closes the connection
+                dr.Close(); // closes the data reader
+            }
+            finally
+            {
+                c.Close(); // closes the connection
 
 
-        }
+            }
             return (allClients);
         }
 
-      // returns a specific client given its email (the identifier)
-      public ClientEN getClient(String email){
-        ClientEN aux = new ClientEN();
-        try
+        // returns a specific client given its email (the identifier)
+        public ClientEN getClient(String email)
         {
+            ClientEN aux = new ClientEN();
+            try
+            {
                 c = new SqlConnection(s);
                 c.Open();
                 String query = "SELECT * FROM T_User WHERE email='" + email + "';";
 
-            SqlCommand com = new SqlCommand(query, c);
-            SqlDataReader dr = com.ExecuteReader();
+                SqlCommand com = new SqlCommand(query, c);
+                SqlDataReader dr = com.ExecuteReader();
 
                 //string startDate = null;
                 DateTime startDate = DateTime.MinValue; ;
@@ -125,41 +134,53 @@ namespace ClientCADNS{
                     // creates the client EN to be returned at the end of this method
                     aux = new ClientEN(dr["email"].ToString(), dr["pass"].ToString(), premium, dr["DNI"].ToString(), dr["name"].ToString(), dr["surname"].ToString(), (int)dr["phone"], dr["address"].ToString(), dr["city"].ToString(), date, license);
                 }
-            dr.Close();
-        }finally{
-            c.Close();
-        }
-        return (aux);
+                dr.Close();
+            }
+            finally
+            {
+                c.Close();
+            }
+            return (aux);
         }
 
-      // updates an already existing client given itself
-      public void updateClient(ClientEN cl){
-        try{
+        // updates an already existing client given itself
+        public void updateClient(ClientEN cl)
+        {
+            try
+            {
                 c = new SqlConnection(s);
                 c.Open();
                 DateTime birth = new DateTime(cl.BirthDate.GetYear(), cl.BirthDate.GetMonth(), cl.BirthDate.GetDay());
-          SqlCommand com = new SqlCommand("UPDATE T_User set pass='"+cl.Pass+"', premium="+cl.Premium+", DNI='"+cl.DNI+"', name='"+cl.Name+"', surname='"+cl.Surname+"', phone="+cl.Phone+", address='"+cl.Address+"', city='"+cl.City+"', birthDate='"+birth+"', drivingLicence="+cl.DrivingLicence + " WHERE email='"+cl.Email, c);
-          com.ExecuteNonQuery();
-        }finally{
-          c.Close();
+                SqlCommand com = new SqlCommand("UPDATE T_User set pass='" + cl.Pass + "', premium=" + cl.Premium + ", DNI='" + cl.DNI + "', name='" + cl.Name + "', surname='" + cl.Surname + "', phone=" + cl.Phone + ", address='" + cl.Address + "', city='" + cl.City + "', birthDate='" + birth + "', drivingLicence=" + cl.DrivingLicence + " WHERE email='" + cl.Email, c);
+                com.ExecuteNonQuery();
+            }
+            finally
+            {
+                c.Close();
+            }
         }
-      }
 
-      // deletes an already existing client given its email
-      public void deleteClient(String email){
-        try{
+        // deletes an already existing client given its email
+        public void deleteClient(String email)
+        {
+            try
+            {
                 c = new SqlConnection(s);
                 c.Open();
-          SqlCommand com = new SqlCommand("DELETE FROM T_User WHERE email='"+email+"'", c);
-          com.ExecuteNonQuery();
-        }finally{
-          c.Close();
+                SqlCommand com = new SqlCommand("DELETE FROM T_User WHERE email='" + email + "'", c);
+                com.ExecuteNonQuery();
+            }
+            finally
+            {
+                c.Close();
+            }
         }
-      }
 
-      // creates a new client record in the database given the client entity
-      public void insertCliente(ClientEN cl){
-        try{
+        // creates a new client record in the database given the client entity
+        public void insertCliente(ClientEN cl)
+        {
+            try
+            {
                 int premium = 0;
                 if (cl.Premium == true) premium = 1;
                 int license = 0;
@@ -169,12 +190,13 @@ namespace ClientCADNS{
                 //string birthdate = cl.BirthDate.GetDay() + "-" + cl.BirthDate.GetMonth() + "-" + cl.BirthDate.GetYear();
                 c = new SqlConnection(s);
                 c.Open();
-          SqlCommand com = new SqlCommand("INSERT INTO T_User VALUES('"+cl.Email+"', '"+cl.Pass+"', "+premium+",'"+cl.DNI+"', '"+cl.Name+"', '"+cl.Surname+"', "+cl.Phone+", '"+cl.Address+"', '"+cl.City+"', '"+birthdate+"', "+license+")", c);
-          com.ExecuteNonQuery();
-        }//catch(SqlException e) {}
-        finally {
-          c.Close();
+                SqlCommand com = new SqlCommand("INSERT INTO T_User VALUES('" + cl.Email + "', '" + cl.Pass + "', " + premium + ",'" + cl.DNI + "', '" + cl.Name + "', '" + cl.Surname + "', " + cl.Phone + ", '" + cl.Address + "', '" + cl.City + "', '" + birthdate + "', " + license + ")", c);
+                com.ExecuteNonQuery();
+            }//catch(SqlException e) {}
+            finally
+            {
+                c.Close();
+            }
         }
-      }
     }
 }

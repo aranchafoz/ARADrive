@@ -17,8 +17,6 @@ namespace Web
         private Date date_today;
         private double dayDifference;
 
-        int carCode = -1;
-
         // hidden panel -> true
         // showed panel -> false
 
@@ -152,20 +150,5 @@ namespace Web
             }
         }
 
-        protected void Catalog_ItemDataBound(Object sender, DataListCommandEventArgs e)
-        {
-            switch (e.CommandName)
-            {
-                case "ClickSeeMore":
-                    
-                    Label labelCarCode = e.Item.FindControl("Label_CarCode") as Label;
-                    carCode = Int32.Parse(labelCarCode.Text);
-
-                    Server.Transfer("Product.aspx?code=" + carCode + "&pageOrigin=catalog");
-                    Response.Redirect("Product.aspx");
-                    break;
-            }
-
-        }
     }
 }
