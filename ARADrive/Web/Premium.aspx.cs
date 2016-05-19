@@ -23,14 +23,13 @@ namespace Web
             }
             // Se ha añadido try/catch en el CAD, mirar porque se produce Exception
             try {
-                string mail = (string)(Session[0]);
-
-
+                ClientEN client = new ClientEN((ClientEN)Session["user"]);
+                string Mail1 = client.Email.ToString();
                 ClientCAD clientCAD = new ClientCAD();
-                ClientEN client = clientCAD.getClient(mail);
+                ClientEN client2 = clientCAD.getClient(Mail1);
                 PaymentMethodCAD paymentCAD = new PaymentMethodCAD();
-                PaymentMethodEN payment = paymentCAD.getPaymentMethod(mail);
-
+                PaymentMethodEN payment = paymentCAD.getPaymentMethod(Mail1);
+            
                 if (client.Premium == true)
                 {
                     Button_PremiumUser.Text = "Selected";
@@ -44,13 +43,14 @@ namespace Web
         }
         protected void Button_Submit_Click(object sender, EventArgs e)
         {
-            string mail = (string)(Session[0]);
-         
+           
 
+            ClientEN client = new ClientEN((ClientEN)Session["user"]);
+            string Mail1 = client.Email.ToString();
             ClientCAD clientCAD = new ClientCAD();
-            ClientEN client = clientCAD.getClient(mail);
+            ClientEN client2 = clientCAD.getClient(Mail1);
             PaymentMethodCAD paymentCAD = new PaymentMethodCAD();
-            PaymentMethodEN payment = paymentCAD.getPaymentMethod(mail);
+            PaymentMethodEN payment = paymentCAD.getPaymentMethod(Mail1);
 
             if (client.Premium == true)
             {
@@ -62,6 +62,10 @@ namespace Web
                 {
                     client.Premium = true;
                     clientCAD.updateClient(client);
+                }
+                else
+                {
+                    System.Windows.Forms.MessageBox.Show("Check payment method");
                 }
             }
         }

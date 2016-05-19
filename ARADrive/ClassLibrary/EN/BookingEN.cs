@@ -54,6 +54,11 @@ namespace BookingENns{
         {
             return GetDay() + "." + GetMonth() + "." + GetYear();
         }
+        public string ToStringAccount()
+        {
+            return GetDay() + "/" + GetMonth() + "/" + GetYear();
+        }
+
     }
 
     public class BookingEN
@@ -188,9 +193,9 @@ namespace BookingENns{
             this.delivery = delivery;
             this.totPrice = tprice;
         }
-
-
+       
     }
 
+  
 
 }

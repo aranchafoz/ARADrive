@@ -108,13 +108,17 @@ namespace PaymentMethodCADNS{
 
       // Method used to delete a PaymentMethod identified by a client's identifier
       public void deletePaymentMethod(String client){
-        try{
-          c.Open();
+            try {
+                c.Open();
 
-          // This is the SQL sentence used to delete a PaymentMethod identified by the information in the passes paramater
-          SqlCommand com = new SqlCommand("DELETE FROM T_PaymentMethod WHERE client='"+client+"'", c);
-          com.ExecuteNonQuery();
-        }finally{
+                // This is the SQL sentence used to delete a PaymentMethod identified by the information in the passes paramater
+                SqlCommand com = new SqlCommand("DELETE FROM T_PaymentMethod WHERE client='" + client + "'", c);
+                com.ExecuteNonQuery();
+            }catch (SqlException e) { 
+
+            System.Windows.Forms.MessageBox.Show("Email not valid.");
+        
+    }finally{
           c.Close();
         }
       }

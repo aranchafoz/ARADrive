@@ -24,12 +24,13 @@ namespace Web
         protected void Page_Load(object sender, EventArgs e)
         {
             // Check if user is logged, in other case it's redirect to home
-            if(Session["user"] == null)
+            if (Session["user"] == null)
             {
                 Response.Redirect("Home.aspx");
             }
 
-            if (!IsPostBack) {
+            if (!IsPostBack)
+            {
                 Button_Edit.Click += new EventHandler(this.Button_Edit_Click);
                 Button_Save.Click += new EventHandler(this.Button_Save_Click);
             }
@@ -49,47 +50,19 @@ namespace Web
         // Text_UserNIF
         // Text_UserDrivingLicense
 
-        protected void Button_Edit_Click(object sender, EventArgs e)
-        {
-            // Saving client of user logged
-            ClientEN client = new ClientEN((ClientEN)Session["user"]);
-
-            Button_Edit.Visible = false;
-            Button_Save.Visible = true;
-
-            //string buttonText = Button_Edit.Text;
-            // Edit mode
-            //if (buttonText.Equals("Save"))
-            //{
-                
-            //}
-            // Showing mode
-            //else if (buttonText.Equals("Edit"))
-            //{
-                Button_Edit.Text = "Save";
-
-                showUserData(client);
-                /*
-                Label2TextBox(Text_UserPhone);
-                Label2TextBox(Text_UserBirth);
-                Label2TextBox(Text_UserCity);
-                Label2TextBox(Text_UserAddress);
-                Label2TextBox(Text_UserNIF);
-                Label2TextBox(Text_UserDrivingLicense);*/
-            //}
-
-        }
-
         protected void Button_Save_Click(object sender, EventArgs e)
         {
-            Button_Save.Visible = false;
-            Button_Edit.Visible = true;
+            // Loading client of user logged
+            ClientEN client = new ClientEN((ClientEN)Session["user"]);
+
+
 
             if (Text_UserPhone.Text != "" && Text_UserBirth.Text != "" && Text_UserCity.Text != "" &&
                     Text_UserAddress.Text != "" && Text_UserNIF.Text != "" && Text_UserDrivingLicense.Text != "")
             {
+                // client.Phone(TextBox_UserPhone.Text.ToString());
                 //Button_Edit.Text = "Edit";
-
+                /*
                 Label2TextBox(Text_UserPhone);
                 Label2TextBox(Text_UserBirth);
                 Label2TextBox(Text_UserCity);
@@ -105,7 +78,7 @@ namespace Web
                 TextBox2Label(Text_UserDrivingLicense);
                 */
 
-                Date birthdate = ConvertDate(Text_UserBirth.Text);
+                //Date birthdate = ConvertDate(Text_UserBirth.Text);
 
                 bool drivingLicense = true;
                 if (Text_UserDrivingLicense.Text.Equals(""))
@@ -113,40 +86,91 @@ namespace Web
 
                 long telephone = ConvertPhonenumber(Text_UserPhone.Text);
 
-                SaveChanges(Label_UserEmail.Text, telephone, Text_UserNIF.Text,
-                      birthdate, Text_UserAddress.Text, Text_UserCity.Text, drivingLicense);
+                if (SaveChanges(Label_UserEmail.Text, telephone, Text_UserNIF.Text,
+                      client.BirthDate, Text_UserAddress.Text, Text_UserCity.Text, drivingLicense))
+                {
+
+                    Button_Edit.Visible = true;
+                    Button_Save.Visible = false;
+                    showUserData(client);
+                }
+                else
+                {
+
+                    Button_Save.Visible = true;
+                }
+
 
             }
 
+            //string buttonText = Button_Edit.Text;
+            // Edit mode
+            //if (buttonText.Equals("Save"))
+            //{
+
+            //}
+            // Showing mode
+            //else if (buttonText.Equals("Edit"))
+            //{
+            //Button_Edit.Text = "Save";
+
+            /*
+            Label2TextBox(Text_UserPhone);
+            Label2TextBox(Text_UserBirth);
+            Label2TextBox(Text_UserCity);
+            Label2TextBox(Text_UserAddress);
+            Label2TextBox(Text_UserNIF);
+            Label2TextBox(Text_UserDrivingLicense);*/
+            //}
+
         }
 
-        protected void SaveChanges(string email, long phone, string pass, Date birthDate,
+        protected void Button_Edit_Click(object sender, EventArgs e)
+        {
+            // Saving client of user logged
+            ClientEN client = new ClientEN((ClientEN)Session["user"]);
+
+            Button_Save.Visible = true;
+            Button_Edit.Visible = false;
+
+            Label2TextBox(Text_UserPhone);
+            Label2TextBox(Text_UserBirth);
+            Label2TextBox(Text_UserCity);
+            Label2TextBox(Text_UserAddress);
+            Label2TextBox(Text_UserNIF);
+            Label2TextBox(Text_UserDrivingLicense);
+
+        }
+
+        protected bool SaveChanges(string email, long phone, string pass, Date birthDate,
             string address, string city, bool drivingLicense)
         {
             ClientCAD clientCAD = new ClientCAD();
             ClientEN cl = null;
-            try
-            {
-                cl = clientCAD.getClient(email);
+            //try
+            //{
+            cl = clientCAD.getClient(email);
 
-                cl.Address = address;
-                cl.BirthDate = birthDate;
-                cl.City = city;
-                cl.DrivingLicence = drivingLicense;
-                cl.Pass = pass;
-                cl.Phone = phone;
+            cl.Address = address;
+            cl.BirthDate = birthDate;
+            cl.City = city;
+            cl.DrivingLicence = drivingLicense;
+            cl.Pass = pass;
+            cl.Phone = phone;
 
-                clientCAD.updateClient(cl);
-                Session["user"] = cl;
+            clientCAD.updateClient(cl);
+            Session["user"] = cl;
+            return true;
 
-            }
-            catch (Exception ex)
+            //}
+            /*catch (Exception ex)
             {
                 System.Windows.Forms.MessageBox.Show("Changes could not be saved!");
+                return false;
                 // possible reasons for fail:
                 // -> email could not be found in DB
                 // -> Errors at updateClient
-            }
+            }*/
 
         }
 
@@ -169,6 +193,17 @@ namespace Web
         // "27/04/1982"
         protected static Date ConvertDate(string text)
         {
+            //string format = "dd/MM/yyyy";
+            //DateTime dateTime;
+            /*if (DateTime.ParseExact(text, format, CultureInfo.InvariantCulture,
+                DateTimeStyles.None, out dateTime))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }*/
             DateTime datetime = DateTime.ParseExact(text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             return new Date(datetime.Day, datetime.Month, datetime.Year);
         }
@@ -206,7 +241,7 @@ namespace Web
 
             // Editable fields
             Text_UserPhone.Text = client.Phone.ToString();
-            Text_UserBirth.Text = client.BirthDate.ToString();
+            Text_UserBirth.Text = client.BirthDate.ToStringAccount();
             Text_UserCity.Text = client.City.ToString();
             Text_UserAddress.Text = client.Address.ToString();
             Text_UserNIF.Text = client.DNI.ToString();
@@ -220,6 +255,6 @@ namespace Web
             }
         }
 
-        
+
     }
 }
