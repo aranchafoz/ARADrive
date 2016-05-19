@@ -13,6 +13,7 @@ using System.Configuration;
 using ClientENns;
 using BookingENns;
 using System.Globalization;
+using System.Windows.Forms;
 // specific namespace of the CAD
 namespace ClientCADNS
 {
@@ -67,7 +68,10 @@ namespace ClientCADNS
         // returns a specific client given its email (the identifier)
         public ClientEN getClient(String email)
         {
+
             ClientEN aux = new ClientEN();
+            SqlDataReader dr = null;
+
             try
             {
                 c = new SqlConnection(s);
@@ -75,71 +79,55 @@ namespace ClientCADNS
                 String query = "SELECT * FROM T_User WHERE email='" + email + "';";
 
                 SqlCommand com = new SqlCommand(query, c);
-                SqlDataReader dr = com.ExecuteReader();
+                dr = com.ExecuteReader();
 
-                //string startDate = null;
-                DateTime startDate = DateTime.MinValue; ;
+                DateTime startDate;
+                Date date = null;
+
                 while (dr.Read())
                 {
-                    // Date cast
-                    // int[] date = new int[3];
-                    startDate = (DateTime)dr["birthDate"];//.ToString();
-                                                          //DateTime birth = (DateTime)dr["birthDate"];
+                    startDate = (DateTime)dr["birthDate"];
 
-                    /*int j = 0;
-                        for (int i = 0; i < startDate.Length; i++)
-                        {
-                            String s = "";
-                            if (startDate[i].Equals("-"))
-                            {
-
-                            } else {
-                            date[j] = int.Parse(s);
-                            j++;
-                        }
-                    }
-                    Date sd = new Date(date[0], date[1], date[2]);*/
-
-                    Date date = new Date(startDate.Day, startDate.Month, startDate.Year); //BookingCADNS.BookingCAD.ConvertDate(startDate);
-                                                                                          //DateTime datetime = DateTime.ParseExact(startDate, "dd-MM-yyyy", CultureInfo.InvariantCulture);
-                                                                                          //DateTime birth = new DateTime(date.GetYear(), date.GetMonth(), date.GetDay());
-
-                    bool premium = false;
-                    try
-                    {
-                        if ((dr["premium"].ToString()) == (1 + ""))
-                        {
-                            premium = true;
-                        }
-                    }
-                    catch (Exception)
-                    {
-
-                    }
+                    date = new Date(startDate.Day, startDate.Month, startDate.Year); //BookingCADNS.BookingCAD.ConvertDate(startDate);
+                                                                                     //DateTime datetime = DateTime.ParseExact(startDate, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                                                                                     //DateTime birth = new DateTime(date.GetYear(), date.GetMonth(), date.GetDay());
+                                                                                     /*bool premium = (bool)dr["premium"];
+                                                                                     try {
+                                                                                         if ((dr["premium"].ToString()) == (1 + ""))
+                                                                                         {
+                                                                                             premium = true;
+                                                                                         }
+                                                                                     } catch (Exception) { }
 
 
+                                                                                     // Driving license cast
+                                                                                     bool license = (bool)dr["drivingLicense"];
+                                                                                     try {
+                                                                                         if (dr["drivingLicence"].ToString() == (1 + "")) license = true;
+                                                                                     } catch
+                                                                                     { }*/
 
-
-                    // Driving license cast
-                    bool license = false;
-                    try
-                    {
-                        if (dr["drivingLicence"].ToString() == (1 + "")) license = true;
-                    }
-                    catch
-                    {
-
-                    }
 
                     // creates the client EN to be returned at the end of this method
-                    aux = new ClientEN(dr["email"].ToString(), dr["pass"].ToString(), premium, dr["DNI"].ToString(), dr["name"].ToString(), dr["surname"].ToString(), (int)dr["phone"], dr["address"].ToString(), dr["city"].ToString(), date, license);
+                    aux = new ClientEN(dr["email"].ToString(), dr["pass"].ToString(), (bool)dr["premium"],
+                        dr["DNI"].ToString(), dr["name"].ToString(), dr["surname"].ToString(), (int)dr["phone"],
+                        dr["address"].ToString(), dr["city"].ToString(), date, (bool)dr["drivingLicense"]);
                 }
-                dr.Close();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
             }
             finally
             {
-                c.Close();
+                if (dr != null)
+                    dr.Close();
+
+                if (c.State == ConnectionState.Open)
+                    c.Close();
             }
+
             return (aux);
         }
 
