@@ -34,5 +34,13 @@ namespace Web
 
             }
         }
+
+        protected void Button_LogOut_Click(object sender, EventArgs e)
+        {
+            ClientEN client = null;
+            // Session variables
+            Session["user"] = client;
+            Response.Redirect("Home.aspx");
+        }
     }
 }

@@ -61,11 +61,18 @@
                         </li>
                         <li>
                             <!--Add dropdown for Log out (put Session["user"] to null)-->
-                            <asp:HyperLink ID="HyperLinkHello" runat="server"
-                                  Text="" />
-                        </li>
-                    
-                    </ul>
+                            
+                            <!--<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            -->
+                                <asp:HyperLink ID="HyperLinkHello" runat="server"
+                                      Text="" />
+                            <!--<span class="caret"></span>
+                            </button>
+                              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                  <li>
+                                      <asp:Button ID="Button_LogOut" runat="server" Text="Log out" OnClick="Button_LogOut_Click"/>
+                                  </li>
+                              </ul>-->
                 </div>
            
             </div>
