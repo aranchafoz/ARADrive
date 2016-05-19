@@ -90,7 +90,12 @@ namespace Web
             {
                 //Button_Edit.Text = "Edit";
 
-                TextBox_UserPhone.ReadOnly = false;
+                Label2TextBox(Text_UserPhone);
+                Label2TextBox(Text_UserBirth);
+                Label2TextBox(Text_UserCity);
+                Label2TextBox(Text_UserAddress);
+                Label2TextBox(Text_UserNIF);
+                Label2TextBox(Text_UserDrivingLicense);
                 /*
                 TextBox2Label(Text_UserPhone);
                 TextBox2Label(Text_UserBirth);
@@ -132,6 +137,7 @@ namespace Web
                 cl.Phone = phone;
 
                 clientCAD.updateClient(cl);
+                Session["user"] = cl;
 
             }
             catch (Exception ex)

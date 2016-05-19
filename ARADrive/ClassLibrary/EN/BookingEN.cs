@@ -36,41 +36,18 @@ namespace BookingENns{
         public static int CompareDates(Date date_PickUp, Date date_DropOff)
         {
             int ret = 0;
-            if (date_PickUp.GetYear() == date_DropOff.GetYear())
-            {
-                if (date_PickUp.GetMonth() == date_DropOff.GetMonth())
-                {
-                    if (date_PickUp.GetDay() == date_DropOff.GetDay())
-                    {
-                        ret = 0;
-                    }
-                    else if (date_PickUp.GetDay() < date_DropOff.GetDay())
-                    {
-                        ret = -1;
-                    }
-                    else if (date_PickUp.GetDay() > date_DropOff.GetDay())
-                    {
-                        ret = 1;
-                    }
-                }
-                else if (date_PickUp.GetMonth() < date_DropOff.GetMonth())
-                {
-                    ret = -1;
-                }
-                else if (date_PickUp.GetMonth() > date_DropOff.GetMonth())
-                {
-                    ret = 1;
-                }
-            }
-            else if (date_PickUp.GetYear() < date_DropOff.GetYear())
-            {
-                ret = -1;
-            }
-            else if (date_PickUp.GetYear() > date_DropOff.GetYear())
+            int dropoffint = date_DropOff.GetDay() + date_DropOff.GetMonth() * 100 + date_DropOff.GetYear() * 10000;
+            int pickupint = date_PickUp.GetDay() + date_PickUp.GetMonth() * 100 + date_PickUp.GetYear() * 10000;
+            if (pickupint <= dropoffint)
             {
                 ret = 1;
             }
+            else
+            {
+                ret = -1;
+            }
             return ret;
+
         }
 
         public override string ToString()
