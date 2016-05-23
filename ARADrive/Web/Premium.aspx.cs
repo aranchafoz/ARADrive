@@ -60,26 +60,30 @@ namespace Web
             }
             else
             {
-                if (payment.User != "user")
+                if(payment != null)
                 {
+                    Button_PremiumUser.Text = "Selected";
+                    Button_PremiumUser.Enabled = false;
                     client.Premium = true;
                     clientCAD.updateClient(client);
-                }
-                else
+                    
+
+                } else
                 {
-                    if (payment.User == "user")
-                    {
-                        System.Windows.Forms.MessageBox.Show("You upgrade was successfull");
-                    }
-                    else
-                    {
+                    System.Windows.Forms.MessageBox.Show("Something was wrong");
+                }
+                    /*
+                        client.Premium = true;
+                        clientCAD.updateClient(client);
+                        
+                    
                         Button_PremiumUser.Text = "Selected";
                         Button_PremiumUser.Enabled = false;
                         client.Premium = true;
                         clientCAD.updateClient(client);
-
-                    }
-                }
+                        */
+                    
+                
             }
         }
     }
