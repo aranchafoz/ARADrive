@@ -54,6 +54,10 @@ namespace BookingENns{
         {
             return GetDay() + "-" + GetMonth() + "-" + GetYear();
         }
+        public string DateToString_YearMonthDay()
+        {
+            return GetYear() + "-" + GetMonth() + "-" + GetDay();
+        }
         public string ToStringAccount()
         {
             return GetDay() + "/" + GetMonth() + "/" + GetYear();

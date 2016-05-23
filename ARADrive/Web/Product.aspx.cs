@@ -12,6 +12,8 @@ namespace Web
     {
         int carCode;
         string userID;
+        string dropOff;
+        string pickUp;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -36,6 +38,8 @@ namespace Web
                 else if (Request.Params["pageOrigin"].Equals("home"))
                 {
                     carCode = Int32.Parse(Request.Params["code"]);
+                    dropOff = Request.Params["dateDropOff"];
+                    pickUp = Request.Params["datePickUp"];
                     LoadData_ToCar(carCode);
                 }
 
@@ -61,8 +65,8 @@ namespace Web
                 !Text_PickUp.Text.Equals("") && !Text_DropOff.Text.Equals("") &&
                 !Label_TotalPrice.Text.Equals("-"))
                 {
-                    try
-                    {
+                    //try
+                    //{
                         DateTime today = DateTime.Today;
                         Date dateInicio = new Date(today.Day, today.Month, today.Year);
 
@@ -82,13 +86,13 @@ namespace Web
                         bookingCode++;
 
                         System.Windows.Forms.MessageBox.Show("Booking saved!");
-                    }
-                    catch (Exception ex)
-                    {
-                        System.Windows.Forms.MessageBox.Show("Something went wrong at storing the booking! - " + ex.Message);
-                    }
+                        /*}
+                        catch (Exception ex)
+                        {
+                            System.Windows.Forms.MessageBox.Show("Something went wrong at storing the booking! - " + ex.Message);
+                        }*/
 
-                }
+                    }
                 else
                 {
                     System.Windows.Forms.MessageBox.Show("Please select the dates first!");
@@ -161,7 +165,7 @@ namespace Web
             else if (cat == 2)
                 result = "Larger Vehicle";
             else if (cat == 3)
-                result = "Enterprice Vehicle";
+                result = "Enterprise Vehicle";
 
             return result;
         }
@@ -175,7 +179,7 @@ namespace Web
                 result = 1;
             else if (labelCategory.Equals("Larger Vehicle"))
                 result = 2;
-            else if (labelCategory.Equals("Enterprice Vehicle"))
+            else if (labelCategory.Equals("Enterprise Vehicle"))
                 result = 3;
 
             return result;

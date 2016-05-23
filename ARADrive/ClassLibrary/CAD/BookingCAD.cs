@@ -112,17 +112,21 @@ namespace BookingCADNS
 
         // creates a new booking
         public void insertBooking(BookingEN c) {
+            int code = 4;
             try {
                 conn.Open();
 
+                int driver = fromBooltoInt(c.Driver);
                 int satNav = fromBooltoInt(c.SatNav);
                 int babyChair = fromBooltoInt(c.BabyChair);
                 int childChair = fromBooltoInt(c.ChildChair);
                 int baca = fromBooltoInt(c.Baca);
                 int insurance = fromBooltoInt(c.Insurance);
                 int youngDriver = fromBooltoInt(c.YoungDriver);
+                string startDate = c.Date.DateToString_YearMonthDay();
+                string finishDate = c.Date.DateToString_YearMonthDay();
 
-                SqlCommand sql = new SqlCommand("INSERT INTO T_Booking VALUES ('" + c.User + "'," + c.Car + ",'" + c.Date + "','" + c.FinishDate + "'," + c.Driver + "," + satNav + "," + babyChair + "," + childChair + "," + baca + "," + insurance + "," + youngDriver + "," + c.PickUp + "," + c.Delivery + "," + c.TotPrice + ")", conn);
+                SqlCommand sql = new SqlCommand("INSERT INTO T_Booking VALUES (" + code + ",'" + c.User + "'," + c.Car + ",'" + startDate + "','" + finishDate + "'," + driver + "," + satNav + "," + babyChair + "," + childChair + "," + baca + "," + insurance + "," + youngDriver + "," + c.PickUp + "," + c.Delivery + "," + c.TotPrice + ")", conn);
                 sql.ExecuteNonQuery();
             } finally {
                 conn.Close();

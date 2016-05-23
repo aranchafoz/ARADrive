@@ -17,7 +17,7 @@ namespace Web
         private Date date_today;
         private double dayDifference;
 
-        string carCode = "";
+        int carCode = -1;
 
         // hidden panel -> true
         // showed panel -> false
@@ -82,14 +82,18 @@ namespace Web
             switch (e.CommandName)
             {
                 case "ClickSeeMore":
-
+                    string dropOff = Calendar_DropOff1.Text;
+                    string pickUp = Calendar_PickUp1.Text;
                     Label labelCarCode = e.Item.FindControl("Label_CarCode") as Label;
-                    carCode = labelCarCode.Text;
+                    carCode = Int32.Parse(labelCarCode.Text);
 
-                    string totalPrice = (e.Item.FindControl("Label_TotalPrice") as Label).ToString();
+                    string totalPrice = (e.Item.FindControl("Label_TotalPrice") as Label).Text;
 
-                    Server.Transfer("Product.aspx?code=" + carCode + "&pageOrigin=home" +
-                                        "&totalPrice=" + totalPrice);
+                    Server.Transfer("Product.aspx?code=" + carCode +
+                                    "&pageOrigin=home" +
+                                    "&totalPrice=" + totalPrice +
+                                    "&datePickUp=" + pickUp +
+                                    "&dateDropOff=" + dropOff);
                     Response.Redirect("Product.aspx");
                     break;
             }
