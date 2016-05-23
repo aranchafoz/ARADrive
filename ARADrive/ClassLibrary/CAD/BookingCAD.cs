@@ -117,11 +117,12 @@ namespace BookingCADNS
 
                 int satNav = fromBooltoInt(c.SatNav);
                 int babyChair = fromBooltoInt(c.BabyChair);
+                int childChair = fromBooltoInt(c.ChildChair);
                 int baca = fromBooltoInt(c.Baca);
                 int insurance = fromBooltoInt(c.Insurance);
                 int youngDriver = fromBooltoInt(c.YoungDriver);
 
-                SqlCommand sql = new SqlCommand("INSERT INTO T_Booking VALUES '" + c.User + "', car=" + c.Car + ", startDate='" + c.Date + "', finishDate='" + c.FinishDate + "', driver=" + c.Driver + ", satNav=" + satNav + ", babyChair=" + babyChair + ", baca=" + baca + ", insurance=" + insurance + ", youngDriver=" + youngDriver + ", pickUp=" + c.PickUp + ", delivery=" + c.Delivery + ", totPrice=" + c.TotPrice + ")", conn);
+                SqlCommand sql = new SqlCommand("INSERT INTO T_Booking VALUES ('" + c.User + "'," + c.Car + ",'" + c.Date + "','" + c.FinishDate + "'," + c.Driver + "," + satNav + "," + babyChair + "," + childChair + "," + baca + "," + insurance + "," + youngDriver + "," + c.PickUp + "," + c.Delivery + "," + c.TotPrice + ")", conn);
                 sql.ExecuteNonQuery();
             } finally {
                 conn.Close();
