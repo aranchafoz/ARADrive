@@ -1,4 +1,5 @@
 ﻿using BookingENns;
+using BookingCADNS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,7 +52,7 @@ namespace Web
 
         protected void Button_Rent_Click(object sender, EventArgs e)
         {
-            int bookingCode = 1;
+            
             if (Session["user"] == null)
                 System.Windows.Forms.MessageBox.Show("Please login first!");
             else
@@ -65,32 +66,27 @@ namespace Web
                 !Text_PickUp.Text.Equals("") && !Text_DropOff.Text.Equals("") &&
                 !Label_TotalPrice.Text.Equals("-"))
                 {
-                    //try
-                    //{
-                        DateTime today = DateTime.Today;
-                        Date dateInicio = new Date(today.Day, today.Month, today.Year);
+                    
+                    DateTime today = DateTime.Today;
+                    Date dateInicio = new Date(today.Day, today.Month, today.Year);
 
-                        //Date birthdate = BookingCADNS.BookingCAD.ConvertDate()
-                        //bool youngDriver 
+                    BookingCAD aux = new BookingCAD();
 
-                        // DatePickUp
+                    int bookingCode = aux.getLastBookingCode() + 1;
+                    double price = Double.Parse(Label_TotalPrice.Text);
 
-                        // DateDelivery
+                    BookingCADNS.BookingCAD bookingCAD = new BookingCADNS.BookingCAD();
+                    BookingEN myBooking = new BookingEN
+                        (bookingCode, userID, carCode, dateInicio, dateInicio, false, false, false, false, false, false, false, 1, 1, price);
+                    bookingCAD.insertBooking(myBooking);
+                    bookingCode++;
 
-                        double price = Double.Parse(Label_TotalPrice.Text);
-
-                        BookingCADNS.BookingCAD bookingCAD = new BookingCADNS.BookingCAD();
-                        BookingEN myBooking = new BookingEN
-                            (bookingCode, userID, carCode, dateInicio, dateInicio, false, false, false, false, false, false, false, 1, 1, price);
-                        bookingCAD.insertBooking(myBooking);
-                        bookingCode++;
-
-                        System.Windows.Forms.MessageBox.Show("Booking saved!");
-                        /*}
-                        catch (Exception ex)
-                        {
-                            System.Windows.Forms.MessageBox.Show("Something went wrong at storing the booking! - " + ex.Message);
-                        }*/
+                    System.Windows.Forms.MessageBox.Show("Booking saved!");
+                    /*}
+                    catch (Exception ex)
+                    {
+                        System.Windows.Forms.MessageBox.Show("Something went wrong at storing the booking! - " + ex.Message);
+                    }*/
 
                     }
                 else

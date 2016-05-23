@@ -37,9 +37,8 @@ namespace Web
             // Disable at page load 'save button'
             Button_Save.Visible = false;
 
-            // Load user logged from session variable
-            ClientEN client = new ClientEN((ClientEN)Session["user"]);
-            showUserData(client);
+            
+            showUserData();
         }
 
         // editable fields:
@@ -54,8 +53,6 @@ namespace Web
         {
             // Loading client of user logged
             ClientEN client = new ClientEN((ClientEN)Session["user"]);
-
-
 
             if (Text_UserPhone.Text != "" && Text_UserBirth.Text != "" && Text_UserCity.Text != "" &&
                     Text_UserAddress.Text != "" && Text_UserNIF.Text != "" && Text_UserDrivingLicense.Text != "")
@@ -83,7 +80,7 @@ namespace Web
                     TextBox2Label(Text_UserAddress);
                     TextBox2Label(Text_UserNIF);
                     TextBox2Label(Text_UserDrivingLicense);
-                    showUserData(client);
+                    showUserData();
                 }
                 else
                 {
@@ -133,7 +130,7 @@ namespace Web
 
         }
 
-        protected bool SaveChanges(string email, long phone, string pass, Date birthDate,
+        protected bool SaveChanges(string email, long phone, string dni, Date birthDate,
             string address, string city, bool drivingLicense)
         {
             ClientCAD clientCAD = new ClientCAD();
@@ -146,7 +143,7 @@ namespace Web
             cl.BirthDate = birthDate;
             cl.City = city;
             cl.DrivingLicence = drivingLicense;
-            cl.Pass = pass;
+            cl.DNI = dni;
             cl.Phone = phone;
 
             clientCAD.updateClient(cl);
@@ -213,8 +210,10 @@ namespace Web
             return Int64.Parse(phoneNumber);
         }
 
-        protected void showUserData(ClientEN client)
+        protected void showUserData()
         {
+            // Load user logged from session variable
+            ClientEN client = new ClientEN((ClientEN)Session["user"]);
             // Non-editable fields
             Label_UserName.Text = client.Name.ToString();
             Label_UserSurname.Text = client.Surname.ToString();

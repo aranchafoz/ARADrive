@@ -65,7 +65,8 @@ namespace Web
                     Button_PremiumUser.Text = "Selected";
                     Button_PremiumUser.Enabled = false;
                     client.Premium = true;
-                    clientCAD.updateClient(client);    
+                    clientCAD.updateClient(client);
+                    Session["user"] = client;  
                 }
                 else
                 {

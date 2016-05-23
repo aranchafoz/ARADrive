@@ -143,8 +143,8 @@ namespace ClientCADNS
                 int license = 0;
                 if (cl.DrivingLicence == true) license = 1;
                 //DateTime date = cl.BirthDate.ToStringAccount();
-                DateTime birth = new DateTime(cl.BirthDate.GetYear(), cl.BirthDate.GetMonth(), cl.BirthDate.GetDay());
-                SqlCommand com = new SqlCommand("UPDATE T_User set pass='" + cl.Pass + "', premium=" + premium + ", DNI='" + cl.DNI + "', name='" + cl.Name + "', surname='" + cl.Surname + "', phone=" + cl.Phone + ", address='" + cl.Address + "', city='" + cl.City + "', birthDate='" + birth + "', drivingLicense=" + license + " WHERE email='" + cl.Email + "'", c);
+                //DateTime birth = new DateTime(cl.BirthDate.GetYear(), cl.BirthDate.GetMonth(), cl.BirthDate.GetDay());
+                SqlCommand com = new SqlCommand("UPDATE T_User set pass='" + cl.Pass + "', premium=" + premium + ", DNI='" + cl.DNI + "', name='" + cl.Name + "', surname='" + cl.Surname + "', phone=" + cl.Phone + ", address='" + cl.Address + "', city='" + cl.City + "', birthDate='" + cl.BirthDate.DateToString_YearMonthDay() + "', drivingLicense=" + license + " WHERE email='" + cl.Email + "'", c);
                 com.ExecuteNonQuery();
             }
             finally

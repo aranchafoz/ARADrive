@@ -68,6 +68,35 @@ namespace BookingCADNS
             }
         }
 
+        public int getLastBookingCode()
+        {
+            int code = 0;
+            try
+            {
+                conn.Open();
+                SqlCommand query = new SqlCommand("SELECT max(code) codigo FROM T_Booking", conn);
+                SqlDataReader dr = query.ExecuteReader();
+
+                if (dr.Read())
+                {
+                    string aux = dr["codigo"].ToString();
+                    if (aux != "")
+                        code = (Int32)dr["codigo"];
+                    else
+                        code = 0;
+                }
+
+                dr.Close();
+
+                return code;
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
         // gets a specific booking given its code
         public BookingEN getBooking(int code) {
             try {
@@ -112,10 +141,10 @@ namespace BookingCADNS
 
         // creates a new booking
         public void insertBooking(BookingEN c) {
-            int code = 4;
+            
             try {
                 conn.Open();
-
+                int code = c.Code;
                 int driver = fromBooltoInt(c.Driver);
                 int satNav = fromBooltoInt(c.SatNav);
                 int babyChair = fromBooltoInt(c.BabyChair);
