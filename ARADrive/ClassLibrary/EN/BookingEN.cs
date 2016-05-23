@@ -48,11 +48,11 @@ namespace BookingENns{
             }
             return ret;
 
-        }
+        }        
 
         public override string ToString()
         {
-            return GetDay() + "." + GetMonth() + "." + GetYear();
+            return GetDay() + "-" + GetMonth() + "-" + GetYear();
         }
         public string ToStringAccount()
         {
@@ -193,7 +193,8 @@ namespace BookingENns{
             this.delivery = delivery;
             this.totPrice = tprice;
         }
-       
+
+
     }
 
   
