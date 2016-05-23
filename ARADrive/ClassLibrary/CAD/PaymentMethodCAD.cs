@@ -62,34 +62,29 @@ namespace PaymentMethodCADNS{
       }
 
 
-      // Method that gets a concrete PaymentMethod identified by the client's identifier
-      public PaymentMethodEN getPaymentMethod(String client)
-      {
-        try{
-          c.Open();
+        // Method that gets a concrete PaymentMethod identified by the client's identifier
+        public PaymentMethodEN getPaymentMethod(String client)
+        {
+            PaymentMethodEN aux = new PaymentMethodEN();
+            try{
+                c.Open();
 
-          // First we select all the information about the paymentMethod identified by the client idetificator passed as a parameter
-          SqlCommand com = new SqlCommand("Select * from T_PaymentMethod WHERE client='"+client+"'", c);
-          SqlDataReader dr = com.ExecuteReader();
+                // First we select all the information about the paymentMethod identified by the client idetificator passed as a parameter
+                SqlCommand com = new SqlCommand("Select * from T_PaymentMethod WHERE client='"+client+"'", c);
+                SqlDataReader dr = com.ExecuteReader();
 
-
-          // The result is saved into a PaymentMethodEN instance which will be returned later
-          PaymentMethodEN aux = new PaymentMethodEN(dr["usr"].ToString(), dr["pass"].ToString(), dr["client"].ToString());
-
-          dr.Close();
-          return (aux);
-            }
-            catch
-            {
-                PaymentMethodEN aux = new PaymentMethodEN();
+                while (dr.Read())
+                {
+                    // The result is saved into a PaymentMethodEN instance which will be returned later
+                    aux = new PaymentMethodEN(dr["usr"].ToString(), dr["pass"].ToString(), dr["client"].ToString());
+                }
+                dr.Close();
                 return (aux);
             }
-
-        finally {
-          c.Close();
+            finally {
+                c.Close();
+            }
         }
-
-      }
 
 
       // Method that updated a PaymentMethod from the information of a PaymentMethodEN
@@ -132,11 +127,8 @@ namespace PaymentMethodCADNS{
           // This is the SQL sentence used to insert a new PaymentMethod with the information provided in the passes parameter (a PaymentMethodEN)
           SqlCommand com = new SqlCommand("INSERT INTO T_PaymentMethod VALUES('"+pm.User+"', '"+pm.Pass+"', '"+pm.Client+"')", c);
           com.ExecuteNonQuery();
-        }catch(SqlException e)
-            {
-                System.Windows.Forms.MessageBox.Show("You cant insert more than 1 payment method");
-            }
-            finally {
+        }
+        finally {
           c.Close();
         }
       }

@@ -21,32 +21,48 @@ namespace Web
             {
                 Response.Redirect("Home.aspx");
             }
+            else
+            {
+                // Load user logged from session variable
+                ClientEN client = new ClientEN((ClientEN)Session["user"]);
+
+                PaymentMethodCAD aux = new PaymentMethodCAD();
+                PaymentMethodEN comprobacion = aux.getPaymentMethod(client.Email);
+
+                if(!(comprobacion.Client.Equals("")))
+                {
+                    TextBox_PaypalUser.Text = comprobacion.Client;
+                    TextBox_PaypalPassword.Text = comprobacion.Pass;
+                }                
+            }
+
         }
 
         protected void Button_Submit_Click(object sender, EventArgs e)
         {
 
-            string mail = (string)(Session[0]);
-            PaymentMethodCAD aux = new PaymentMethodCAD();
-            PaymentMethodEN comprobacion = aux.getPaymentMethod(mail);
+            // Load user logged from session variable
+            ClientEN client = new ClientEN((ClientEN)Session["user"]);
 
-            if (comprobacion.User == "user")
-            {
-                string user = TextBox_PaypalUser.Text.ToString();
-                string pass = TextBox_PaypalPassword.Text.ToString();
+            string mail = client.Email;
+
+
+            // User dont have a payment method yet
+            //if (comprobacion.User == null)
+            //{
+                string user = TextBox_PaypalUser.Text;
+                string pass = TextBox_PaypalPassword.Text;
 
                 if (user != string.Empty && pass != string.Empty)
                 {
                     //PaymentMethodEN pago = new PaymentMethodEN(user, pass, mail);
                     PaymentMethodCAD insercion = new PaymentMethodCAD();
-                    ClientEN client = new ClientEN((ClientEN)Session["user"]);
-                    string Mail1 = client.Email.ToString();
-                    PaymentMethodEN pago = new PaymentMethodEN(user, pass, Mail1);
+                    PaymentMethodEN pago = new PaymentMethodEN(user, pass, mail);
 
                     PaymentMethodCAD paymentCAD = new PaymentMethodCAD();
-                    PaymentMethodEN payment = paymentCAD.getPaymentMethod(Mail1);
+                    PaymentMethodEN payment = paymentCAD.getPaymentMethod(mail);
 
-                    if (payment.User == "user")
+                    if (payment.Client.Equals(""))
                     {
                         insercion.insertPaymentMethod(pago);
                     }
@@ -56,13 +72,19 @@ namespace Web
                     }
                 }
                 else
-                { }
-            }
-            else
-            {
+                {
+                    System.Windows.Forms.MessageBox.Show("Some fields are not completed");
+                }
+            //}
+            // User already have a payment method
+            //else
+            //{
+                //System.Windows.Forms.MessageBox.Show("You already have a payment method registed!");
+                /*
                 TextBox_PaypalUser.Text = comprobacion.Client;
                 TextBox_PaypalPassword.Text = comprobacion.Pass;
-            }
+                */
+            //}
         }
     }
 }

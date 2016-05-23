@@ -17,9 +17,9 @@ namespace PaymentMethodENns
 
         public PaymentMethodEN()
         {
-            user = "user";
-            pass = "password";
-            client = "client";
+            user = "";
+            pass = "";
+            client = "";
         }
 
         public PaymentMethodEN(string user, string password, string cliente)
