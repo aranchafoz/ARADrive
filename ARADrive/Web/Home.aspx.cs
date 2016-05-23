@@ -17,6 +17,8 @@ namespace Web
         private Date date_today;
         private double dayDifference;
 
+        string carCode = "";
+
         // hidden panel -> true
         // showed panel -> false
 
@@ -71,6 +73,25 @@ namespace Web
                 CollapsiblePanelExtender_Result.Collapsed = true;
                 CollapsiblePanelExtender_Result.ClientState = "true";
                 System.Windows.Forms.MessageBox.Show("Please insert valid dates");
+            }
+
+        }
+
+        protected void Home_ItemDataBound(Object sender, DataListCommandEventArgs e)
+        {
+            switch (e.CommandName)
+            {
+                case "ClickSeeMore":
+
+                    Label labelCarCode = e.Item.FindControl("Label_CarCode") as Label;
+                    carCode = labelCarCode.Text;
+
+                    string totalPrice = (e.Item.FindControl("Label_TotalPrice") as Label).ToString();
+
+                    Server.Transfer("Product.aspx?code=" + carCode + "&pageOrigin=home" +
+                                        "&totalPrice=" + totalPrice);
+                    Response.Redirect("Product.aspx");
+                    break;
             }
 
         }
