@@ -56,7 +56,7 @@
                                         <img class="img-responsive" style="crop:inherit" src="assets/img/carPics/<%# Eval("IMG") %>" />  
                                     </div>
                                     <div class="col-xs-4">
-                                        <asp:Label ID="Label_CarCode" runat="server" Text='<%# Eval("category") %>' Visible="false"></asp:Label>
+                                        <asp:Label ID="Label_CarCode" runat="server" Text='<%# Eval("code") %>' Visible="false"></asp:Label>
                                         <label for=""><em>Category:</em> &nbsp;</label>
                                         <asp:Label Text='<%# Eval("category") %>' runat="server" ID="Label_CarCategory" /><br />                            
                                         <label for=""><em>Description:</em></label><br />
