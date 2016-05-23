@@ -60,17 +60,16 @@ namespace Web
             }
             else
             {
-                if(payment != null)
+                if(!(payment.Client.Equals("")))
                 {
                     Button_PremiumUser.Text = "Selected";
                     Button_PremiumUser.Enabled = false;
                     client.Premium = true;
-                    clientCAD.updateClient(client);
-                    
-
-                } else
+                    clientCAD.updateClient(client);    
+                }
+                else
                 {
-                    System.Windows.Forms.MessageBox.Show("Something was wrong");
+                    System.Windows.Forms.MessageBox.Show("There is any payment method sudmited");
                 }
                     /*
                         client.Premium = true;
