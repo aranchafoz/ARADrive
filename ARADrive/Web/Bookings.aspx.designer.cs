@@ -22,48 +22,21 @@ namespace Web {
         protected global::System.Web.UI.WebControls.Label Label_Title;
         
         /// <summary>
-        /// Control Label_BookingCode.
+        /// Control DataListBookings.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label_BookingCode;
+        protected global::System.Web.UI.WebControls.DataList DataListBookings;
         
         /// <summary>
-        /// Control Label_PickUp.
+        /// Control SqlDataSourceBookings.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label_PickUp;
-        
-        /// <summary>
-        /// Control Label_DropOff.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label_DropOff;
-        
-        /// <summary>
-        /// Control Label_TotalPrice.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label_TotalPrice;
-        
-        /// <summary>
-        /// Control Button_Delete.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button_Delete;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceBookings;
     }
 }
