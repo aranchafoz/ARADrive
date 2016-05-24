@@ -20,7 +20,7 @@ namespace BookingCADNS
     public class BookingCAD
     {
         // the connection string is specified in the web.config file, this way it acts like a constant
-        private string s = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString ();
+        private string s = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
 
         // ENs to be returned in some functions
         private BookingEN booking;
@@ -99,12 +99,19 @@ namespace BookingCADNS
 
         // gets a specific booking given its code
         public BookingEN getBooking(int code) {
-            try {
-                conn.Open();
-                SqlCommand query = new SqlCommand("SELECT * FROM T_Booking WHERE code=" + code, conn);
-                SqlDataReader dr = query.ExecuteReader();
+            BookingEN booking = new BookingEN();
+            SqlDataReader dr = null;
 
-                if (dr.Read()) {  // if there is some data found
+            try {
+                conn = new SqlConnection(s);
+                conn.Open();
+                String query = "SELECT * FROM T_Booking WHERE code = " + code + ";";
+
+                SqlCommand com = new SqlCommand(query, conn);
+                dr = com.ExecuteReader();
+
+                // Devuelve Empty
+                while (dr.Read()) {  // if there is some data found
                     Date sd = fromDateTimeStringtoDate(dr["startDate"].ToString());
                     Date fd = fromDateTimeStringtoDate(dr["finishDate"].ToString());
 
@@ -112,12 +119,14 @@ namespace BookingCADNS
                     booking = new BookingEN((int)dr["code"],dr["usr"].ToString(),(int)dr["car"],sd,fd,(bool)dr["driver"],(bool)dr["satNav"],(bool)dr["babyChair"],(bool)dr["childChair"],(bool)dr["baca"],(bool)dr["insurance"],(bool)dr["youngDriver"],(int)dr["pickUp"],(int)dr["delivery"],(double)dr["totPrice"]);
                 }
 
-                dr.Close();
 
                 return booking;
 
             } finally {
-                conn.Close();
+                if (dr != null)
+                    dr.Close();
+                if (conn.State == ConnectionState.Open)
+                    conn.Close();
             }
         }
 

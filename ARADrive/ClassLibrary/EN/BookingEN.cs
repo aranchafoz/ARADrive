@@ -181,7 +181,7 @@ namespace BookingENns{
         public BookingEN(int code, string name, int coche, Date inicio, Date fin, bool driver, bool satNav, bool BChair, bool CChair, bool baca, bool insurance, bool yngdriver, int pickup, int delivery, double tprice)
 
         {
-            this.car = coche;
+            this.car = -1;
             this.code = code;
             this.user = name;
             this.Date = inicio;
@@ -197,7 +197,25 @@ namespace BookingENns{
             this.delivery = delivery;
             this.totPrice = tprice;
         }
+        public BookingEN()
 
+        {
+            this.car = -1;
+            this.code = -1;
+            this.user = "";
+            this.Date = null;
+            this.finishDate = null;
+            this.driver = false;
+            this.satNav = false;
+            this.babyChair = false;
+            this.childChair = false;
+            this.baca = false;
+            this.insurance = false;
+            this.youngDriver = false;
+            this.pickUp = -1;
+            this.delivery = -1;
+            this.totPrice = -1;
+        }
 
     }
 
