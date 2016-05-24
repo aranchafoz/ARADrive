@@ -17,10 +17,27 @@ namespace Web
     public partial class Register : System.Web.UI.Page
     {
         bool invalid = false;
+        Date today = new Date(DateTime.Today.Day, DateTime.Today.Month, DateTime.Today.Year);
+        Date minima = new Date(DateTime.Today.Day, DateTime.Today.Month, DateTime.Today.Year - 12);
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
             Button_Submit.Click += new EventHandler(this.Button_Submit_Click);
+        }
+
+        static bool ValidateNumber(string number)
+        {
+            bool adevolver = true;
+            for (int i = 0; i < number.Length; i++)
+            {
+                if(number[i] < 48 || number[i] > 57)
+                {
+                    adevolver = false;
+                    break;
+                }
+            }
+            return adevolver;
         }
 
         static bool ValidatePassword(string password)
@@ -135,34 +152,103 @@ namespace Web
 
 
             try {
-                if (IsValidEmail(email)             && IsValidEmail(emailConfirm)
-                    && address != string.Empty      && country != string.Empty          && postalcode != string.Empty
+                if (address != string.Empty      && country != string.Empty          && postalcode != string.Empty
                     && name != string.Empty         && surname != string.Empty          && bd != string.Empty
                     && telephone != string.Empty    && email != string.Empty            && dni != string.Empty
                     && password != string.Empty     && passwordConfirm != string.Empty
                     && location != string.Empty)
                 {
-                    if (ValidatePassword(password))
+                    Date birthdate = BookingCAD.ConvertDate(bd);
+                    if (email.Equals(emailConfirm))
                     {
-                        if (email.Equals(emailConfirm) && password.Equals(passwordConfirm))
+                        if (IsValidEmail(email))
                         {
-                                long telefono = Convert.ToInt64(telephone);
-                                Date birthdate = BookingCAD.ConvertDate(bd);
-                                //System.Windows.Forms.MessageBox.Show(birthdate.ToString());
-                                ClientEN clientEN = new ClientEN(email, password, false, dni, name, surname, telefono,
-                                    address, location, birthdate, drivingLicense);
-                                ClientCAD clientCAD = new ClientCAD();
-                                clientCAD.insertCliente(clientEN);
-                                Label_Error.Text = "Welcome to ARADrive!";
+                            if (password.Equals(passwordConfirm))
+                            {
+                                if (ValidatePassword(password))
+                                {
+                                    if (ValidateNumber(postalcode))
+                                    {
+                                        if (ValidateNumber(telephone))
+                                        {
+                                            if (Date.CompareDates(birthdate, today) == 1)
+                                            {
+                                                if (Date.CompareDates(birthdate, minima) == 1)
+                                                {
+                                                    if (CheckBox_DrivingLicense.Checked)
+                                                    {
+                                                        if (ValidateNumber(TextBox_DrivingLicenseNumber.ToString()))
+                                                        {
+                                                            Date licencia = BookingCAD.ConvertDate(TextBox_DrivingLicenseDueDate.ToString());
+                                                            if (Date.CompareDates(licencia, today) == 1)
+                                                            {
+                                                                long telefono = Convert.ToInt64(telephone);
+                                                                //System.Windows.Forms.MessageBox.Show(birthdate.ToString());
+                                                                ClientEN clientEN = new ClientEN(email, password, false, dni, name, surname, telefono,
+                                                                    address, location, birthdate, drivingLicense);
+                                                                ClientCAD clientCAD = new ClientCAD();
+                                                                clientCAD.insertCliente(clientEN);
+                                                                Label_Error.Text = "Welcome to ARADrive!";
+                                                            }
+                                                            else
+                                                            {
+                                                                Label_Error.Text = "Driving license due date not valid";
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            Label_Error.Text = "Driving license not valid";
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        long telefono = Convert.ToInt64(telephone);
+                                                        //System.Windows.Forms.MessageBox.Show(birthdate.ToString());
+                                                        ClientEN clientEN = new ClientEN(email, password, false, dni, name, surname, telefono,
+                                                            address, location, birthdate, drivingLicense);
+                                                        ClientCAD clientCAD = new ClientCAD();
+                                                        clientCAD.insertCliente(clientEN);
+                                                        Label_Error.Text = "Welcome to ARADrive!";
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    Label_Error.Text = "You have to be at least 15";
+                                                }
+                                            }
+                                            else
+                                            {
+                                                Label_Error.Text = "Invalid birthdate";
+                                            }
+                                        }
+                                        else
+                                        {
+                                            Label_Error.Text = "Telephone can only have numbers";
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Label_Error.Text = "Postal code not valid";
+                                    }
+                                }
+                                else
+                                {
+                                    Label_Error.Text = "Password not strong enough";
+                                }
+                            }
+                            else
+                            {
+                                Label_Error.Text = "Password fields mismatch";
+                            }  
                         }
                         else
                         {
-                            Label_Error.Text = "Confirmation fields mismatch";
+                            Label_Error.Text = "Mail not valid";
                         }
                     }
                     else
                     {
-                        Label_Error.Text = "Your password is not strong enough";
+                        Label_Error.Text = "Mail fields mismatch";
                     }
                 }
                 else
