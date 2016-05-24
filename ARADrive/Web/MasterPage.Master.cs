@@ -21,6 +21,7 @@ namespace Web
                 lnkLog_in.Visible = true;
                 lnkRegister.Visible = true;
                 HyperLinkHello.Visible = false;
+                ImageButton_Log_out.Visible = false;
             }
             // User is logged
             else
@@ -31,11 +32,12 @@ namespace Web
                 HyperLinkHello.Visible = true;
                 ClientEN client = new ClientEN((ClientEN)Session["user"]);
                 HyperLinkHello.Text = "Hello, " + client.Name.ToString();
+                ImageButton_Log_out.Visible = true;
 
             }
         }
 
-        protected void Button_LogOut_Click(object sender, EventArgs e)
+        protected void ImageButton_Log_out_Click(object sender, ImageClickEventArgs e)
         {
             ClientEN client = null;
             // Session variables

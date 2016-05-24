@@ -109,6 +109,7 @@
     <Content Include="assets\img\Driver_License_Card-20.png" />
     <Content Include="assets\img\Home-20.png" />
     <Content Include="assets\img\ID_Card-20.png" />
+    <Content Include="assets\img\Logout-50.png" />
     <Content Include="assets\img\Phone-20.png" />
     <Content Include="assets\img\type-me.jpg" />
     <Content Include="About.aspx" />
