@@ -46,5 +46,23 @@ namespace Web
 
             }
         }
+                
+
+        protected void DataListBookings_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            switch (e.CommandName)
+            {
+                case "ClickDelete":
+
+                    Label labelBookingCode = e.Item.FindControl("Label_BookingCode") as Label;
+                    int bookingCode = Int32.Parse(labelBookingCode.Text);
+
+                    BookingCADNS.BookingCAD aux = new BookingCADNS.BookingCAD();
+                    aux.deleteBooking(bookingCode);
+
+                    Response.Redirect("Bookings.aspx");
+                    break;
+            }
+        }
     }
 }

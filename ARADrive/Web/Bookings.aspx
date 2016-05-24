@@ -7,7 +7,7 @@
         </div>
 
         
-        <asp:DataList ID="DataListBookings" runat="server" DataKeyField="code" DataSourceID="SqlDataSourceBookings">
+        <asp:DataList ID="DataListBookings" runat="server" DataKeyField="code" DataSourceID="SqlDataSourceBookings" OnItemCommand="DataListBookings_ItemCommand">
 
             <ItemTemplate>
                 <asp:Label Text='<%# Eval("usr") %>' runat="server" ID="Label_User" Visible="false"/><br />
@@ -40,7 +40,7 @@
                                             <asp:Label ID="Label_TotalPrice" runat="server" Text='<%# Eval("totPrice") %>' Font-Size="Medium" Font-Bold="true"></asp:Label>
                                         </div>
                                         <div class="col-xs-5">
-                                            <asp:Button ID="Button_Delete" class="btn btn-danger" runat="server" Text="Delete" Width="90%"/>
+                                            <asp:Button ID="Button_Delete" class="btn btn-danger" runat="server" Text="Delete" Width="90%" CommandName="ClickDelete"/>
                                         </div>
                                     </div>                            
                                 </div>

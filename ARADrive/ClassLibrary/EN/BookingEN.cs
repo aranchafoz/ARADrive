@@ -181,7 +181,7 @@ namespace BookingENns{
         public BookingEN(int code, string name, int coche, Date inicio, Date fin, bool driver, bool satNav, bool BChair, bool CChair, bool baca, bool insurance, bool yngdriver, int pickup, int delivery, double tprice)
 
         {
-            this.car = -1;
+            this.car = coche;
             this.code = code;
             this.user = name;
             this.Date = inicio;

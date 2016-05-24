@@ -62,7 +62,7 @@
                             <asp:HyperLink ID="HyperLinkHello" runat="server" Text="" Visible="false"/>
                         </li>
                         <li>
-                            <asp:ImageButton ID="ImageButton_Log_out" runat="server" ImageUrl="~/assets/img/Logout-25.png" Visible="false" OnClick="ImageButton_Log_out_Click" style="margin:25% 10px"/>
+                            <asp:ImageButton ID="ImageButton_Log_out" runat="server" ImageUrl="~/assets/img/Logout-20.png" Visible="false" OnClick="ImageButton_Log_out_Click" style="margin:34% 10px"/>
                         </li>
                 </div>
            
