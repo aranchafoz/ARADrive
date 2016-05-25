@@ -134,7 +134,7 @@ namespace BookingCADNS
                     //totalprice = (double)dr["totPrice"];
                     // we return the data found inside an object of type BookingEN
 
-                    booking = new BookingEN(codeaux, dr["usr"].ToString(), caraux, startDate, finishDate, (bool)dr["driver"], (bool)dr["satNav"], (bool)dr["babyChair"], (bool)dr["childChair"], (bool)dr["baca"], (bool)dr["insurance"], (bool)dr["youngDriver"], (int)dr["pickUp"], (int)dr["delivery"], 100);
+                    booking = new BookingEN((int)dr["code"], dr["usr"].ToString(), (int)dr["car"], startDate, finishDate, (bool)dr["driver"], (bool)dr["satNav"], (bool)dr["babyChair"], (bool)dr["childChair"], (bool)dr["baca"], (bool)dr["insurance"], (bool)dr["youngDriver"], (int)dr["pickUp"], (int)dr["delivery"], 100);
                 }
                 return booking;
 

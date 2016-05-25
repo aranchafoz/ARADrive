@@ -12,7 +12,6 @@ namespace Web
     public partial class Product : System.Web.UI.Page
     {
         int carCode;
-        string userID;
         string dropOff;
         string pickUp;
 
@@ -26,7 +25,6 @@ namespace Web
             Label_CarTransmission.Text = "";
             Label_CarDoors.Text = "";
             CarImage.ImageUrl = "assets/img/carPics/polo.png";
-            Label_TotalPrice.Text = "10";
 
             // check if we came here from page CATALOG or HOME
             if (Request.Params.AllKeys.Contains("code") && Request.Params.AllKeys.Contains("pageOrigin"))
@@ -41,62 +39,51 @@ namespace Web
                     carCode = Int32.Parse(Request.Params["code"]);
                     dropOff = Request.Params["dateDropOff"];
                     pickUp = Request.Params["datePickUp"];
-                    LoadData_ToCar(carCode);
+                    LoadData_ToCar(carCode, pickUp, dropOff);
                 }
-
             }
 
             Button_Rent.Click += new EventHandler(Button_Rent_Click);
         }
 
 
+
         protected void Button_Rent_Click(object sender, EventArgs e)
         {
-            
-            if (Session["user"] == null)
-                System.Windows.Forms.MessageBox.Show("Please login first!");
-            else
-            {
-                //Improve
-                Response.Redirect("Rent.aspx");
-
-                ClientENns.ClientEN client = new ClientENns.ClientEN((ClientENns.ClientEN)Session["user"]);
-                userID = client.Email;
-
-                if (!Label_CarName.Text.Equals("no car selected") && !Label_CarPrice.Text.Equals("") &&
+            // Check if all the Data is complete
+            if (!Label_CarName.Text.Equals("no car selected") && !Label_CarPrice.Text.Equals("") &&
                 !Label_CarCategory.Text.Equals("") && !Label_CarDescription.Text.Equals("") &&
                 !Label_CarTransmission.Text.Equals("") && !Label_CarDoors.Text.Equals("") &&
-                !Text_PickUp.Text.Equals("") && !Text_DropOff.Text.Equals("") &&
-                !Label_TotalPrice.Text.Equals("-"))
+                !Text_PickUp.Text.Equals("") && !Text_DropOff.Text.Equals(""))
+            {
+                // Get the dates from the Interface and the date for today
+                Date date_PickUp = BookingCADNS.BookingCAD.ConvertDate(Text_PickUp.Text);
+                Date date_DropOff = BookingCADNS.BookingCAD.ConvertDate(Text_DropOff.Text);
+                DateTime dateTime_today = DateTime.Today;
+                Date today = new Date(dateTime_today.Day, dateTime_today.Month, dateTime_today.Year);
+
+                // Check if the PickUp-date is at least today and the DropOff-date not before the PickUp-date
+                if ((Date.CompareDates(today, date_PickUp) >= 0) && Date.CompareDates(date_PickUp, date_DropOff) >= 0)
                 {
-                    
-                    DateTime today = DateTime.Today;
-                    Date dateInicio = new Date(today.Day, today.Month, today.Year);
+                    // calculate actual total price
+                    double totalPrice = Double.Parse(Label_CarPrice.Text) * (1 + BookingCAD.DayDifference(date_DropOff, date_PickUp));
 
-                    BookingCAD aux = new BookingCAD();
-
-                    int bookingCode = aux.getLastBookingCode() + 1;
-                    double price = Double.Parse(Label_TotalPrice.Text);
-
-                    BookingCADNS.BookingCAD bookingCAD = new BookingCADNS.BookingCAD();
-                    BookingEN myBooking = new BookingEN
-                        (bookingCode, userID, carCode, dateInicio, dateInicio, false, false, false, false, false, false, false, 1, 1, price);
-                    bookingCAD.insertBooking(myBooking);
-                    bookingCode++;
-
-                    System.Windows.Forms.MessageBox.Show("Booking saved!");
-                    /*}
-                    catch (Exception ex)
-                    {
-                        System.Windows.Forms.MessageBox.Show("Something went wrong at storing the booking! - " + ex.Message);
-                    }*/
-
-                    }
+                    // transfer relevant data to page "Rent.aspx"
+                    Server.Transfer("Rent.aspx?code=" + carCode +
+                                    "&pageOrigin=product" +
+                                    "&totalPrice=" + totalPrice +
+                                    "&datePickUp=" + Text_PickUp.Text +
+                                    "&dateDropOff=" + Text_DropOff.Text);
+                    Response.Redirect("Rent.aspx");
+                }
                 else
                 {
-                    System.Windows.Forms.MessageBox.Show("Please select the dates first!");
-                    Response.Redirect("Home.aspx");
+                    System.Windows.Forms.MessageBox.Show("Please check the dates!");
                 }
+            }
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("Please select the dates first!");
             }
         }
 
@@ -113,45 +100,25 @@ namespace Web
             Label_CarTransmission.Text = car.AutomaticTransmission.ToString();
             Label_CarDoors.Text = car.Doors.ToString();
             CarImage.ImageUrl = "assets/img/carPics/" + car.IMG;
-            //Text_PickUp.Text = "2016-05-22";
-            //Text_DropOff.Text = "2016-05-24";
-            //Label_TotalPrice.Text = GetTotalPrice().ToString();
         }
 
 
-        protected double GetTotalPrice()
+        protected void LoadData_ToCar(int carCode, string pickUp, string dropOff)
         {
-            double totalPrice = 0.0;
+            CarCADNS.CarCAD carCAD = new CarCADNS.CarCAD();
+            CarENns.CarEN car = carCAD.getCar(carCode);
 
-            try
-            {
-                Date pickup_date = BookingCADNS.BookingCAD.ConvertDate(Text_PickUp.Text);
-                Date dropoff_date = BookingCADNS.BookingCAD.ConvertDate(Text_DropOff.Text);
-
-                try
-                {
-                    double pricePerDay = Double.Parse(Label_CarPrice.Text);
-
-                    // calculate difference of the two dates
-                    double dayDifference = BookingCADNS.BookingCAD.DayDifference(dropoff_date, pickup_date) + 1.0;
-
-                    totalPrice = dayDifference * pricePerDay;
-                }
-                catch (FormatException e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-
-            }
-            catch (Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show("Couldn't show all data correctly! \n" + ex.ToString());
-
-            }
-
-            return totalPrice;
-
+            Label_CarName.Text = car.Name;
+            Label_CarPrice.Text = car.Price.ToString();
+            Label_CarCategory.Text = GetCarCategoryText(car.Category);
+            Label_CarDescription.Text = car.Desc;
+            Label_CarTransmission.Text = car.AutomaticTransmission.ToString();
+            Label_CarDoors.Text = car.Doors.ToString();
+            CarImage.ImageUrl = "assets/img/carPics/" + car.IMG;
+            Text_PickUp.Text = pickUp;
+            Text_DropOff.Text = dropOff;
         }
+
 
 
         protected string GetCarCategoryText(int cat)
@@ -186,4 +153,3 @@ namespace Web
 
     }
 }
-          
