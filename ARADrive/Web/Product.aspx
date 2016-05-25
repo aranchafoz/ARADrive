@@ -77,35 +77,43 @@
                 </div>
                 <!-- END Car Card -->
                 <br />
-                <!-- Car Card -->
+                <!-- Dates Card -->
                 <div class="panel panel-default" style="padding:30px">
                     <div class="row">
-                        <div class="col-xs-6">
+                        <div class="col-xs-10">
                             <!-- Fechas -->     
                             <div class="row">
-                                <div class="col-xs-6">
-                                    <asp:TextBox ID="Text_PickUp" class="form-control" runat="server" TextMode="Date" Text="01/12/2016"   
-                                        BorderStyle="None" BackColor="Transparent" Wrap="true"></asp:TextBox>
+                                <div class="col-xs-2">
+                                    <label for="" style="margin-top:3px">Pick up date&nbsp;</label>
                                 </div>
-                                <div class="col-xs-6">
-                                    <asp:TextBox ID="Text_DropOff" class="form-control" runat="server" TextMode="Date" Text="08/12/2016"
-                                        BorderStyle="None" BackColor="Transparent" Wrap="true"></asp:TextBox>
+                                <div class="col-xs-4">
+                                    <asp:TextBox ID="Text_PickUp" class="form-control" runat="server" TextMode="Date"   
+                                        BorderStyle="None" BackColor="Transparent" Wrap="true"
+                                        type="date"></asp:TextBox>
+                                </div>
+                                <div class="col-xs-2">
+                                    <label for="" style="margin-top:3px">Drop off date&nbsp;</label>
+                                </div>
+                                <div class="col-xs-4">
+                                    <asp:TextBox ID="Text_DropOff" class="form-control" runat="server" TextMode="Date"
+                                        BorderStyle="None" BackColor="Transparent" Wrap="true"
+                                        type="date"></asp:TextBox>
                                 </div>
                             </div>                                                       
                         </div>
-                        <div class="col-xs-6">
+                        <div class="col-xs-2">
                             <!-- Rent -->
-                            <div class="row">
+                            <!--<div class="row">
                                 <div class="col-xs-3">
                                     <label for="">Total Price:&nbsp;</label>
                                 </div>
                                 <div class="col-xs-5">
                                     <asp:Label ID="Label_TotalPrice" runat="server" Text="$ 156" Font-Size="X-Large" Font-Bold="true"></asp:Label>
-                                </div>
-                                <div class="col-xs-4">
-                                    <asp:Button ID="Button_Rent" class="btn btn-success" runat="server" Text="Rent" Width="90%" Font-Bold="true"/>
-                                </div>
-                            </div>                            
+                                </div>-->
+                                <!--<div class="col-xs-4">-->
+                                    <asp:Button ID="Button_Rent" class="btn btn-primary" runat="server" Text="Next" Width="90%" Font-Bold="true"/>
+                                <!--</div>-->
+                            <!--</div>-->                           
                         </div>
                     </div>
                 </div>

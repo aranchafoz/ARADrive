@@ -26,7 +26,7 @@ namespace Web
             Label_CarTransmission.Text = "";
             Label_CarDoors.Text = "";
             CarImage.ImageUrl = "assets/img/carPics/polo.png";
-            Label_TotalPrice.Text = "-";
+            Label_TotalPrice.Text = "10";
 
             // check if we came here from page CATALOG or HOME
             if (Request.Params.AllKeys.Contains("code") && Request.Params.AllKeys.Contains("pageOrigin"))
@@ -57,6 +57,9 @@ namespace Web
                 System.Windows.Forms.MessageBox.Show("Please login first!");
             else
             {
+                //Improve
+                Response.Redirect("Rent.aspx");
+
                 ClientENns.ClientEN client = new ClientENns.ClientEN((ClientENns.ClientEN)Session["user"]);
                 userID = client.Email;
 
@@ -110,9 +113,9 @@ namespace Web
             Label_CarTransmission.Text = car.AutomaticTransmission.ToString();
             Label_CarDoors.Text = car.Doors.ToString();
             CarImage.ImageUrl = "assets/img/carPics/" + car.IMG;
-            Text_PickUp.Text = "2016-05-22";
-            Text_DropOff.Text = "2016-05-24";
-            Label_TotalPrice.Text = GetTotalPrice().ToString();
+            //Text_PickUp.Text = "2016-05-22";
+            //Text_DropOff.Text = "2016-05-24";
+            //Label_TotalPrice.Text = GetTotalPrice().ToString();
         }
 
 
