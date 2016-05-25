@@ -1,4 +1,4 @@
-﻿// v2.0
+﻿// Boys are back in town
 
 using System;
 using System.Collections.Generic;
@@ -50,14 +50,22 @@ namespace BookingCADNS
                 conn.Open();  // opens the connection
                 SqlCommand query = new SqlCommand("SELECT * FROM T_Booking", conn); // prepares the query
                 SqlDataReader dr = query.ExecuteReader(); // executes the query
+                DateTime startaux;
+                DateTime finishaux;
+                Date startDate;
+                Date finishDate;
 
                 while (dr.Read()) {  // reads the result of the query
-                            
-                    Date sd = fromDateTimeStringtoDate(dr["startDate"].ToString());
-                    Date fd = fromDateTimeStringtoDate(dr["finishDate"].ToString());
-              
+
+                    //System.Windows.Forms.MessageBox.Show(dr["startDate"].ToString());
+                    startaux = (DateTime)dr["startDate"];
+                    finishaux = (DateTime)dr["finishDate"];
+                    startDate = new Date(startaux.Day, startaux.Month, startaux.Year);
+                    finishDate = new Date(finishaux.Day, finishaux.Month, finishaux.Year);
+
                     // adds the read booking to the array which will be returned at the end of this function
-                    bookings.Add(new BookingEN((int)dr["code"],dr["usr"].ToString(),(int)dr["car"],sd,fd,(bool)dr["driver"],(bool)dr["satNav"],(bool)dr["babyChair"],(bool)dr["childChair"],(bool)dr["baca"],(bool)dr["insurance"],(bool)dr["youngDriver"],(int)dr["pickUp"],(int)dr["delivery"],(double)dr["totPrice"]));
+                    BookingEN aux = new BookingEN((int)dr["code"], dr["usr"].ToString(), (int)dr["car"], startDate, finishDate, (bool)dr["driver"], (bool)dr["satNav"], (bool)dr["babyChair"], (bool)dr["childChair"], (bool)dr["baca"], (bool)dr["insurance"], (bool)dr["youngDriver"], (int)dr["pickUp"], (int)dr["delivery"], 100);
+                    bookings.Add(aux);
                 }
 
                 dr.Close(); // we close the datareader
@@ -109,17 +117,25 @@ namespace BookingCADNS
 
                 SqlCommand com = new SqlCommand(query, conn);
                 dr = com.ExecuteReader();
+                DateTime startaux, finishaux;
+                Date startDate, finishDate;
+                int caraux, pickup, delivery, codeaux;
+                string user;
+                bool driver, satnav, babychair, childchair, baca, insurance, youngdriver;
+                double totalprice;
 
                 // Devuelve Empty
-                while (dr.Read()) {  // if there is some data found
-                    Date sd = fromDateTimeStringtoDate(dr["startDate"].ToString());
-                    Date fd = fromDateTimeStringtoDate(dr["finishDate"].ToString());
-
+                while (dr.Read())
+                {  // if there is some data found
+                    startaux = (DateTime)dr["startDate"];
+                    finishaux = (DateTime)dr["finishDate"];
+                    startDate = new Date(startaux.Day, startaux.Month, startaux.Year);
+                    finishDate = new Date(finishaux.Day, finishaux.Month, finishaux.Year);
+                    //totalprice = (double)dr["totPrice"];
                     // we return the data found inside an object of type BookingEN
-                    booking = new BookingEN((int)dr["code"],dr["usr"].ToString(),(int)dr["car"],sd,fd,(bool)dr["driver"],(bool)dr["satNav"],(bool)dr["babyChair"],(bool)dr["childChair"],(bool)dr["baca"],(bool)dr["insurance"],(bool)dr["youngDriver"],(int)dr["pickUp"],(int)dr["delivery"],(double)dr["totPrice"]);
+
+                    booking = new BookingEN(codeaux, dr["usr"].ToString(), caraux, startDate, finishDate, (bool)dr["driver"], (bool)dr["satNav"], (bool)dr["babyChair"], (bool)dr["childChair"], (bool)dr["baca"], (bool)dr["insurance"], (bool)dr["youngDriver"], (int)dr["pickUp"], (int)dr["delivery"], 100);
                 }
-
-
                 return booking;
 
             } finally {
@@ -180,28 +196,6 @@ namespace BookingCADNS
             } finally {
                 conn.Close();
             }
-        }
-
-
-        // Conversors
-        public Date fromDateTimeStringtoDate(String fecha)
-        {
-            int[] date = new int[3];
-            String datetime = fecha.ToString();
-            int j = 0;
-            for (int i = 0; i < datetime.Length; i++)
-            {
-                String s = "";
-                while (datetime[i] != '-')
-                {
-                    s += datetime[i];
-                }
-                date[j] = int.Parse(s);
-                j++;
-            }
-            Date output = new Date(date[0], date[1], date[2]);
-
-            return output;
         }
 
         // this function converts a given string formatted like an MySQL date to a Date object
