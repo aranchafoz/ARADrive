@@ -69,7 +69,7 @@ namespace Web
                         BookingCAD aux = new BookingCAD();
 
                         int bookingCode = aux.getLastBookingCode() + 1;
-                        double price = Double.Parse(Label_TotalPrice.Text);
+                        double price = computeFinalPrice();
 
                         BookingCADNS.BookingCAD bookingCAD = new BookingCADNS.BookingCAD();
                         BookingEN myBooking = new BookingEN
