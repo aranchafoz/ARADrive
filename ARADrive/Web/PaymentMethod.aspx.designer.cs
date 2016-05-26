@@ -22,6 +22,15 @@ namespace Web {
         protected global::System.Web.UI.WebControls.Label Label_Info;
         
         /// <summary>
+        /// Control Label_User.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label_User;
+        
+        /// <summary>
         /// Control TextBox_PaypalUser.
         /// </summary>
         /// <remarks>
@@ -29,6 +38,15 @@ namespace Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBox_PaypalUser;
+        
+        /// <summary>
+        /// Control Label_Password.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label_Password;
         
         /// <summary>
         /// Control TextBox_PaypalPassword.

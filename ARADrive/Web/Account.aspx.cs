@@ -37,8 +37,8 @@ namespace Web
             // Disable at page load 'save button'
             Button_Save.Visible = false;
 
-            
-            showUserData();
+            if(!IsPostBack)
+                showUserData();
         }
 
         // editable fields:
@@ -144,21 +144,22 @@ namespace Web
             cl.City = city;
             cl.DrivingLicence = drivingLicense;
             cl.DNI = dni;
-            cl.Phone = phone;
-
-            clientCAD.updateClient(cl);
-            Session["user"] = cl;
-            return true;
-
-            //}
-            /*catch (Exception ex)
+            if (ValidateNumber(phone.ToString()))
             {
-                System.Windows.Forms.MessageBox.Show("Changes could not be saved!");
+                cl.Phone = phone;
+
+                clientCAD.updateClient(cl);
+                Session["user"] = cl;
+                return true;
+            }                
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("Incorrect number phone");
                 return false;
-                // possible reasons for fail:
-                // -> email could not be found in DB
-                // -> Errors at updateClient
-            }*/
+            }
+
+            
+            
 
         }
 
@@ -245,6 +246,18 @@ namespace Web
             }
         }
 
-
+        static bool ValidateNumber(string number)
+        {
+            bool adevolver = true;
+            for (int i = 0; i < number.Length; i++)
+            {
+                if (number[i] < 48 || number[i] > 57)
+                {
+                    adevolver = false;
+                    break;
+                }
+            }
+            return adevolver;
+        }
     }
 }

@@ -31,8 +31,9 @@ namespace Web
 
                 if(!(comprobacion.Client.Equals("")))
                 {
-                    TextBox_PaypalUser.Text = comprobacion.Client;
-                    TextBox_PaypalPassword.Text = comprobacion.Pass;
+                    Label_User.Text = comprobacion.User;
+                    //TextBox_PaypalUser.Text = comprobacion.Client;
+                    //TextBox_PaypalPassword.Text = comprobacion.Pass;
                 }                
             }
 
@@ -65,10 +66,12 @@ namespace Web
                     if (payment.Client.Equals(""))
                     {
                         insercion.insertPaymentMethod(pago);
+                        Response.Redirect("PaymentMethod.aspx");
                     }
                     else
                     {
                         insercion.updatePaymentMethod(pago);
+                        Response.Redirect("PaymentMethod.aspx");
                     }
                 }
                 else

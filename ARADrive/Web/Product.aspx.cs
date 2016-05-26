@@ -41,6 +41,14 @@ namespace Web
                     pickUp = Request.Params["datePickUp"];
                     LoadData_ToCar(carCode, pickUp, dropOff);
                 }
+                else
+                {
+                    Response.Redirect("Home.aspx");
+                }
+            }
+            else
+            {
+                Response.Redirect("Home.aspx");
             }
 
             Button_Rent.Click += new EventHandler(Button_Rent_Click);

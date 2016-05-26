@@ -9,12 +9,18 @@
                 <h3>Login with <img src="assets/img/Paypal-64.png" /></h3><br />
                 <div class="col-xs-6">
                     <!-- User -->
+                    <label>User:&nbsp;&nbsp;</label>
+                    <asp:Label ID="Label_User" runat="server" Text=""></asp:Label>
+                    <br />
                     <div class="input-group">
                         <span class="input-group-addon" id="basic-addon1"><img src="assets/img/User-20.png" /></span>
                         <asp:TextBox ID="TextBox_PaypalUser" class="form-control" runat="server" placeholder="User" aria-describedby="basic-addon1"></asp:TextBox>
                     </div>
                 </div>
                 <div class="col-xs-6">
+                    <label>Password:&nbsp;&nbsp;</label>
+                    <asp:Label ID="Label_Password" runat="server" Text=""></asp:Label>
+                    <br />
                     <!-- Password -->
                     <div class="input-group">
                       <span class="input-group-addon" id="basic-addon2"><img src="assets/img/Key-20.png" /></span>

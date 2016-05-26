@@ -40,6 +40,15 @@ namespace Web {
         protected global::System.Web.UI.WebControls.TextBox TextBox_Password;
         
         /// <summary>
+        /// Control HyperLink_NotRegistered.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink_NotRegistered;
+        
+        /// <summary>
         /// Control Label_Error.
         /// </summary>
         /// <remarks>

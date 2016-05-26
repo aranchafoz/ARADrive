@@ -190,7 +190,7 @@ namespace BookingCADNS
                 int insurance = fromBooltoInt(c.Insurance);
                 int youngDriver = fromBooltoInt(c.YoungDriver);
                 string startDate = c.Date.DateToString_YearMonthDay();
-                string finishDate = c.Date.DateToString_YearMonthDay();
+                string finishDate = c.FinishDate.DateToString_YearMonthDay();
 
                 SqlCommand sql = new SqlCommand("INSERT INTO T_Booking VALUES (" + code + ",'" + c.User + "'," + c.Car + ",'" + startDate + "','" + finishDate + "'," + driver + "," + satNav + "," + babyChair + "," + childChair + "," + baca + "," + insurance + "," + youngDriver + "," + c.PickUp + "," + c.Delivery + "," + c.TotPrice + ")", conn);
                 sql.ExecuteNonQuery();

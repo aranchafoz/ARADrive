@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.SessionState;
 
 namespace Web
 {
@@ -28,19 +29,38 @@ namespace Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Check if user is logged, in other case it's redirect to home
+            if (Session["user"] == null)
+            {
+                Response.Redirect("Home.aspx");
+            }
             if (!IsPostBack)
             {
-                if (Request.Params["pageOrigin"].Equals("product"))
+                // check if we came here from page CATALOG or HOME
+                if (Request.Params.AllKeys.Contains("code") && Request.Params.AllKeys.Contains("pageOrigin")
+                    && Request.Params.AllKeys.Contains("totalPrice") && Request.Params.AllKeys.Contains("datePickUp")
+                    && Request.Params.AllKeys.Contains("dateDropOff"))
                 {
-                    // get all the data from page "Product"
-                    carCode = Int32.Parse(Request.Params["code"]);
-                    totalPrice = Double.Parse(Request.Params["totalPrice"]);
-                    stringPickUp = Request.Params["datePickUp"];
-                    pickUp = BookingCADNS.BookingCAD.ConvertDate(stringPickUp);
-                    stringDropOff = Request.Params["dateDropOff"];
-                    dropOff = BookingCADNS.BookingCAD.ConvertDate(stringDropOff);
+                    if (Request.Params["pageOrigin"].Equals("product"))
+                    {
+                        // get all the data from page "Product"
+                        carCode = Int32.Parse(Request.Params["code"]);
+                        totalPrice = Double.Parse(Request.Params["totalPrice"]);
+                        stringPickUp = Request.Params["datePickUp"];
+                        pickUp = BookingCADNS.BookingCAD.ConvertDate(stringPickUp);
+                        stringDropOff = Request.Params["dateDropOff"];
+                        dropOff = BookingCADNS.BookingCAD.ConvertDate(stringDropOff);
 
-                    Label_TotalPrice.Text = totalPrice.ToString();
+                        Label_TotalPrice.Text = totalPrice.ToString();
+                    }
+                    else
+                    {
+                        Response.Redirect("Home.aspx");
+                    }
+                }
+                else
+                {
+                    Response.Redirect("Home.aspx");
                 }
 
             }
