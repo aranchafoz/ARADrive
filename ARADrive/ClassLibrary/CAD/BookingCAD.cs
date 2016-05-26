@@ -39,13 +39,16 @@ namespace BookingCADNS
         }
 
         // constructor in which we initialize the connection
-        public BookingCAD() {
+        public BookingCAD()
+        {
             conn = new SqlConnection(s);
         }
 
         // getter for all the bookings
-        public ArrayList getAllBookings() {
-            try {
+        public ArrayList getAllBookings()
+        {
+            try
+            {
                 bookings = new ArrayList();
                 conn.Open();  // opens the connection
                 SqlCommand query = new SqlCommand("SELECT * FROM T_Booking", conn); // prepares the query
@@ -55,7 +58,8 @@ namespace BookingCADNS
                 Date startDate;
                 Date finishDate;
 
-                while (dr.Read()) {  // reads the result of the query
+                while (dr.Read())
+                {  // reads the result of the query
 
                     //System.Windows.Forms.MessageBox.Show(dr["startDate"].ToString());
                     startaux = (DateTime)dr["startDate"];
@@ -71,7 +75,9 @@ namespace BookingCADNS
                 dr.Close(); // we close the datareader
 
                 return bookings;
-            } finally {
+            }
+            finally
+            {
                 conn.Close(); // we close the connection
             }
         }
@@ -106,11 +112,13 @@ namespace BookingCADNS
         }
 
         // gets a specific booking given its code
-        public BookingEN getBooking(int code) {
+        public BookingEN getBooking(int code)
+        {
             BookingEN booking = new BookingEN();
             SqlDataReader dr = null;
 
-            try {
+            try
+            {
                 conn = new SqlConnection(s);
                 conn.Open();
                 String query = "SELECT * FROM T_Booking WHERE code = " + code + ";";
@@ -119,10 +127,6 @@ namespace BookingCADNS
                 dr = com.ExecuteReader();
                 DateTime startaux, finishaux;
                 Date startDate, finishDate;
-                int caraux, pickup, delivery, codeaux;
-                string user;
-                bool driver, satnav, babychair, childchair, baca, insurance, youngdriver;
-                double totalprice;
 
                 // Devuelve Empty
                 while (dr.Read())
@@ -138,7 +142,9 @@ namespace BookingCADNS
                 }
                 return booking;
 
-            } finally {
+            }
+            finally
+            {
                 if (dr != null)
                     dr.Close();
                 if (conn.State == ConnectionState.Open)
@@ -147,8 +153,10 @@ namespace BookingCADNS
         }
 
         // Changes an already existing booking given itself
-        public void updateBooking(BookingEN c) {
-            try {
+        public void updateBooking(BookingEN c)
+        {
+            try
+            {
                 conn.Open();
 
                 int satNav = fromBooltoInt(c.SatNav);
@@ -159,15 +167,19 @@ namespace BookingCADNS
 
                 SqlCommand sql = new SqlCommand("UPDATE T_Booking SET usr='" + c.User + "', car=" + c.Car + ", startDate='" + c.Date + "', finishDate='" + c.FinishDate + "', driver=" + c.Driver + ", satNav=" + satNav + ", babyChair=" + babyChair + ", baca=" + baca + ", insurance=" + insurance + ", youngDriver=" + youngDriver + ", pickUp=" + c.PickUp + ", delivery=" + c.Delivery + ", totPrice=" + c.TotPrice + " WHERE code=" + c.Code, conn);
                 sql.ExecuteNonQuery();
-            } finally {
+            }
+            finally
+            {
                 conn.Close();
             }
         }
 
         // creates a new booking
-        public void insertBooking(BookingEN c) {
-            
-            try {
+        public void insertBooking(BookingEN c)
+        {
+
+            try
+            {
                 conn.Open();
                 int code = c.Code;
                 int driver = fromBooltoInt(c.Driver);
@@ -182,18 +194,24 @@ namespace BookingCADNS
 
                 SqlCommand sql = new SqlCommand("INSERT INTO T_Booking VALUES (" + code + ",'" + c.User + "'," + c.Car + ",'" + startDate + "','" + finishDate + "'," + driver + "," + satNav + "," + babyChair + "," + childChair + "," + baca + "," + insurance + "," + youngDriver + "," + c.PickUp + "," + c.Delivery + "," + c.TotPrice + ")", conn);
                 sql.ExecuteNonQuery();
-            } finally {
+            }
+            finally
+            {
                 conn.Close();
             }
         }
 
         // deletes/cancels an already existing booking given its code
-        public void deleteBooking(int code) {
-            try {
+        public void deleteBooking(int code)
+        {
+            try
+            {
                 conn.Open();
                 SqlCommand sql = new SqlCommand("DELETE FROM T_Booking WHERE code=" + code, conn);
                 sql.ExecuteNonQuery();
-            } finally {
+            }
+            finally
+            {
                 conn.Close();
             }
         }
@@ -214,3 +232,4 @@ namespace BookingCADNS
 
     }
 }
+

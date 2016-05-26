@@ -22,8 +22,8 @@ namespace Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
-            Button_Submit.Click += new EventHandler(this.Button_Submit_Click);
+            if (!IsPostBack)
+                Button_Submit.Click += new EventHandler(this.Button_Submit_Click);
         }
 
         static bool ValidateNumber(string number)
@@ -31,7 +31,7 @@ namespace Web
             bool adevolver = true;
             for (int i = 0; i < number.Length; i++)
             {
-                if(number[i] < 48 || number[i] > 57)
+                if (number[i] < 48 || number[i] > 57)
                 {
                     adevolver = false;
                     break;
@@ -151,11 +151,12 @@ namespace Web
             bool drivingLicense = false;*/
 
 
-            try {
-                if (address != string.Empty      && country != string.Empty          && postalcode != string.Empty
-                    && name != string.Empty         && surname != string.Empty          && bd != string.Empty
-                    && telephone != string.Empty    && email != string.Empty            && dni != string.Empty
-                    && password != string.Empty     && passwordConfirm != string.Empty
+            try
+            {
+                if (address != string.Empty && country != string.Empty && postalcode != string.Empty
+                    && name != string.Empty && surname != string.Empty && bd != string.Empty
+                    && telephone != string.Empty && email != string.Empty && dni != string.Empty
+                    && password != string.Empty && passwordConfirm != string.Empty
                     && location != string.Empty)
                 {
                     Date birthdate = BookingCAD.ConvertDate(bd);
@@ -177,10 +178,10 @@ namespace Web
                                                 {
                                                     if (CheckBox_DrivingLicense.Checked)
                                                     {
-                                                        if (ValidateNumber(TextBox_DrivingLicenseNumber.ToString()))
+                                                        if (ValidateNumber(TextBox_DrivingLicenseNumber.Text.ToString()))
                                                         {
-                                                            Date licencia = BookingCAD.ConvertDate(TextBox_DrivingLicenseDueDate.ToString());
-                                                            if (Date.CompareDates(licencia, today) == 1)
+                                                            Date licencia = BookingCAD.ConvertDate(TextBox_DrivingLicenseDueDate.Text.ToString());
+                                                            if (Date.CompareDates(today, licencia) == 1)
                                                             {
                                                                 long telefono = Convert.ToInt64(telephone);
                                                                 //System.Windows.Forms.MessageBox.Show(birthdate.ToString());
@@ -239,7 +240,7 @@ namespace Web
                             else
                             {
                                 Label_Error.Text = "Password fields mismatch";
-                            }  
+                            }
                         }
                         else
                         {

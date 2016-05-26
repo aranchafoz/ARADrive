@@ -87,7 +87,7 @@
                                             <asp:Label ID="Label_BacaPrice" runat="server" Text="9"></asp:Label>
                                         </div>
                                         <div class="col-xs-3">
-                                            <asp:Button ID="Button_Baca" CssClass="btn" runat="server" Text="Select" />
+                                            <asp:Button ID="Button_Baca" CssClass="btn" runat="server" Text="Select"/>
                                         </div>
                                     </div>     
                                 </div>

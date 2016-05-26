@@ -28,20 +28,33 @@ namespace Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.Params["pageOrigin"].Equals("product"))
+            if (!IsPostBack)
+            {
+                if (Request.Params["pageOrigin"].Equals("product"))
+                {
+                    // get all the data from page "Product"
+                    carCode = Int32.Parse(Request.Params["code"]);
+                    totalPrice = Double.Parse(Request.Params["totalPrice"]);
+                    stringPickUp = Request.Params["datePickUp"];
+                    pickUp = BookingCADNS.BookingCAD.ConvertDate(stringPickUp);
+                    stringDropOff = Request.Params["dateDropOff"];
+                    dropOff = BookingCADNS.BookingCAD.ConvertDate(stringDropOff);
+
+                    Label_TotalPrice.Text = totalPrice.ToString();
+                }
+
+            }
+            else
             {
                 // get all the data from page "Product"
                 carCode = Int32.Parse(Request.Params["code"]);
-                totalPrice = Double.Parse(Request.Params["totalPrice"]);
+                totalPrice = Double.Parse(Label_TotalPrice.Text);
                 stringPickUp = Request.Params["datePickUp"];
                 pickUp = BookingCADNS.BookingCAD.ConvertDate(stringPickUp);
                 stringDropOff = Request.Params["dateDropOff"];
                 dropOff = BookingCADNS.BookingCAD.ConvertDate(stringDropOff);
-
-                Label_TotalPrice.Text = totalPrice.ToString();
+                
             }
-
-
             // not necessary because already in Rent.aspx defined
             // Button_Rent.Click += new EventHandler(Button_Rent_Click);
 
@@ -69,7 +82,9 @@ namespace Web
                         BookingCAD aux = new BookingCAD();
 
                         int bookingCode = aux.getLastBookingCode() + 1;
-                        double price = computeFinalPrice();
+
+                        putBooleans();
+                        double price = Double.Parse(Label_TotalPrice.Text);                        
 
                         BookingCADNS.BookingCAD bookingCAD = new BookingCADNS.BookingCAD();
                         BookingEN myBooking = new BookingEN
@@ -94,128 +109,205 @@ namespace Web
 
         protected void AddDriver(object sender, EventArgs e)
         {
+            finalPrice = totalPrice;
             if (Button_Driver.Text.Equals("Select") && IsPostBack)
             {
-
+                finalPrice += Double.Parse(Label_DriverPrice.Text);
                 driver = true;
                 Button_Driver.CssClass = "btn btn-danger";
                 Button_Driver.Text = "Remove";
             }
             else if (Button_Driver.Text.Equals("Remove") && IsPostBack)
             {
+                finalPrice -= Double.Parse(Label_DriverPrice.Text);
                 driver = false;
                 Button_Driver.CssClass = "btn";
                 Button_Driver.Text = "Select";
             }
-            Label_TotalPrice.Text = computeFinalPrice().ToString();
+            Label_TotalPrice.Text = finalPrice.ToString();
         }
 
         protected void AddGPS(object sender, EventArgs e)
         {
+            finalPrice = totalPrice;
             if (Button_GPS.Text.Equals("Select") && IsPostBack)
             {
-
+                finalPrice += Double.Parse(Label_GPSPrice.Text);
                 gps = true;
                 Button_GPS.CssClass = "btn btn-danger";
                 Button_GPS.Text = "Remove";
             }
             else if (Button_GPS.Text.Equals("Remove") && IsPostBack)
             {
+                finalPrice -= Double.Parse(Label_GPSPrice.Text);
                 gps = false;
                 Button_GPS.CssClass = "btn";
                 Button_GPS.Text = "Select";
             }
-            Label_TotalPrice.Text = computeFinalPrice().ToString();
+            Label_TotalPrice.Text = finalPrice.ToString();
         }
 
         protected void AddBaca(object sender, EventArgs e)
         {
+            finalPrice = totalPrice;
             if (Button_Baca.Text.Equals("Select") && IsPostBack)
             {
-
+                finalPrice += Double.Parse(Label_BacaPrice.Text);
                 baca = true;
                 Button_Baca.CssClass = "btn btn-danger";
                 Button_Baca.Text = "Remove";
             }
             else if (Button_Baca.Text.Equals("Remove") && IsPostBack)
             {
+                finalPrice -= Double.Parse(Label_BacaPrice.Text);
                 baca = false;
                 Button_Baca.CssClass = "btn";
                 Button_Baca.Text = "Select";
             }
-            Label_TotalPrice.Text = computeFinalPrice().ToString();
+            Label_TotalPrice.Text = finalPrice.ToString();
         }
 
         protected void AddBabyChair(object sender, EventArgs e)
         {
+            finalPrice = totalPrice;
             if (Button_BabyChair.Text.Equals("Select") && IsPostBack)
             {
-
+                finalPrice += Double.Parse(Label_BabyChairPrice.Text);
                 babyChair = true;
                 Button_BabyChair.CssClass = "btn btn-danger";
                 Button_BabyChair.Text = "Remove";
             }
             else if (Button_BabyChair.Text.Equals("Remove") && IsPostBack)
             {
+                finalPrice -= Double.Parse(Label_BabyChairPrice.Text);
                 babyChair = false;
                 Button_BabyChair.CssClass = "btn";
                 Button_BabyChair.Text = "Select";
             }
-            Label_TotalPrice.Text = computeFinalPrice().ToString();
+            Label_TotalPrice.Text = finalPrice.ToString();
         }
 
         protected void AddChildChair(object sender, EventArgs e)
         {
+            finalPrice = totalPrice;
             if (Button_ChildChair.Text.Equals("Select") && IsPostBack)
             {
-
+                finalPrice += Double.Parse(Label_ChildChairPrice.Text);
                 childChair = true;
                 Button_ChildChair.CssClass = "btn btn-danger";
                 Button_ChildChair.Text = "Remove";
             }
             else if (Button_ChildChair.Text.Equals("Remove") && IsPostBack)
             {
+                finalPrice -= Double.Parse(Label_ChildChairPrice.Text);
                 childChair = false;
                 Button_ChildChair.CssClass = "btn";
                 Button_ChildChair.Text = "Select";
             }
-            Label_TotalPrice.Text = computeFinalPrice().ToString();
+            Label_TotalPrice.Text = finalPrice.ToString();
         }
 
         protected void AddInsurance(object sender, EventArgs e)
         {
+            finalPrice = totalPrice;
             if (Button_Insurance.Text.Equals("Select") && IsPostBack)
             {
-
+                finalPrice += Double.Parse(Label_InsurancePrice.Text);
                 insurance = true;
                 Button_Insurance.CssClass = "btn btn-danger";
                 Button_Insurance.Text = "Remove";
             }
             else if (Button_Insurance.Text.Equals("Remove") && IsPostBack)
             {
+                finalPrice -= Double.Parse(Label_InsurancePrice.Text);
                 insurance = false;
                 Button_Insurance.CssClass = "btn";
                 Button_Insurance.Text = "Select";
             }
-            Label_TotalPrice.Text = computeFinalPrice().ToString();
+            Label_TotalPrice.Text = finalPrice.ToString();
         }
         
         protected double computeFinalPrice() {
             finalPrice = totalPrice;
-            if(driver)
-                finalPrice += Double.Parse(Label_DriverPrice.Text);
-            if (gps)
-                finalPrice += Double.Parse(Label_GPSPrice.Text);
+            
             if (insurance)
                 finalPrice += Double.Parse(Label_InsurancePrice.Text);
+            else
+            {
+                finalPrice -= Double.Parse(Label_InsurancePrice.Text);
+            }
             if (baca)
                 finalPrice += Double.Parse(Label_BacaPrice.Text);
+            else
+            {
+                finalPrice -= Double.Parse(Label_BacaPrice.Text);
+            }
             if (babyChair)
                 finalPrice += Double.Parse(Label_BabyChairPrice.Text);
+            else
+            {
+                finalPrice -= Double.Parse(Label_BabyChairPrice.Text);
+            }
             if (childChair)
                 finalPrice += Double.Parse(Label_ChildChairPrice.Text);
+            else
+            {
+                finalPrice-= Double.Parse(Label_ChildChairPrice.Text);
+            }
 
             return finalPrice;
+        }
+
+        protected void putBooleans()
+        {
+            if (Button_Driver.Text.Equals("Select") && IsPostBack)
+            {
+                driver = false;
+            }
+            else if (Button_Driver.Text.Equals("Remove") && IsPostBack)
+            {
+                driver = true;
+            }
+            if (Button_GPS.Text.Equals("Select") && IsPostBack)
+            {
+                gps = false;
+            }
+            else if (Button_GPS.Text.Equals("Remove") && IsPostBack)
+            {
+                gps = true;
+            }
+            if (Button_Insurance.Text.Equals("Select") && IsPostBack)
+            {
+                insurance = false;
+            }
+            else if (Button_Insurance.Text.Equals("Remove") && IsPostBack)
+            {
+                insurance = true;
+            }
+            if (Button_Baca.Text.Equals("Select") && IsPostBack)
+            {
+                baca = false;
+            }
+            else if (Button_Baca.Text.Equals("Remove") && IsPostBack)
+            {
+                baca = true;
+            }
+            if (Button_BabyChair.Text.Equals("Select") && IsPostBack)
+            {
+                babyChair = false;
+            }
+            else if (Button_BabyChair.Text.Equals("Remove") && IsPostBack)
+            {
+                babyChair = true;
+            }
+            if (Button_ChildChair.Text.Equals("Select") && IsPostBack)
+            {
+                childChair = false;
+            }
+            else if (Button_ChildChair.Text.Equals("Remove") && IsPostBack)
+            {
+                childChair = true;
+            }
         }
 
     }

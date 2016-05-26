@@ -28,20 +28,16 @@ namespace Web
         {
             // Loading client of user logged
             ClientEN client = new ClientEN((ClientEN)Session["user"]);
-            
+
             try
             {
                 foreach (DataListItem item in DataListBookings.Items)
                 {
                     Label label_code = item.FindControl("Label_BookingCode") as Label;
                     int code = Int32.Parse(label_code.Text.ToString());
-                    
+
                     BookingCAD aux = new BookingCAD();
-                    // No funciona
-                    ArrayList lista_bookings = aux.getAllBookings();
-                    BookingEN booking = (BookingEN)lista_bookings[code-1];
-                    // Ni asi
-                    //BookingEN booking = aux.getBooking(code);
+                    BookingEN booking = aux.getBooking(code);
 
                     Label label_user = item.FindControl("Label_User") as Label;
                     string user = label_user.Text.ToString();
@@ -78,8 +74,8 @@ namespace Web
                         {
                             Image childChair = item.FindControl("Image_ChildChair") as Image;
                             childChair.ImageUrl = "assets/img/Checkmark-15.png";
-                        }                  
-                        
+                        }
+
                     }
 
                 }
